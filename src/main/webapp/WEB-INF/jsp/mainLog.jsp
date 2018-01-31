@@ -25,13 +25,13 @@
           <img src="/storm/imge/mainPage.png" alt="LOGO" >
         </a>
       </figure>
-      <h1 class="animated fadeInDown delay-07s">瞎搞</h1>
+      <h1 class="animated fadeInDown delay-07s">Welcome</h1>
       <ul class="we-create animated fadeInUp delay-1s">
-        <li>一个闲的蛋痛的人.</li>
+        <li>A man with a spare egg.</li>
         <br>
-        <li>做出来的一个没什么屌用的网站.</li>
+        <li>A web site that doesn't make any difference.</li>
       </ul>
-      <a class="link animated fadeInUp delay-1s servicelink" href="#">去导航选择科目搞事吧</a>
+      <a class="link animated fadeInUp delay-1s servicelink" href="#">Select some to navigation</a>
     </div>
   </header>
   <!--header-end-->
