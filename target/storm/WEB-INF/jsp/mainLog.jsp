@@ -7,6 +7,29 @@
 <title>Insert title here</title>
 </head>
 <body>
- hahahahahahah
+<!--header-start-->
+  <header class="header" id="header">
+    <div class="container">
+      <figure class="logo animated fadeInDown delay-07s">
+        <a href="#">
+          <img src="/storm/imge/mainPage.png" alt="">
+        </a>
+      </figure>
+      <h1 class="animated fadeInDown delay-07s">瞎搞</h1>
+      <ul class="we-create animated fadeInUp delay-1s">
+        <li>一个闲的蛋痛的人.</li>
+        <br>
+        <li>做出来的一个没什么屌用的网站.</li>
+      </ul>
+      <a class="link animated fadeInUp delay-1s servicelink" href="#">选择菜单去搞事吧</a>
+    </div>
+  </header>
+  <!--header-end-->
 </body>
+<script type="text/javascript" charset="utf-8">
+	 window.onload = function(){
+		var user = "${row}";
+		console.log("row",user);
+	 };
+</script>
 </html>

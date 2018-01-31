@@ -305,8 +305,9 @@ function _createCodeFollow(codeLength) {
     }
     return code;
 }
-var regUsername = /^[1-9][0-9]{4,19}$/;
-var regPasswordSpecial = /[~!@#%&=;':",./<>_\}\]\-\$\(\)\*\+\.\[\?\\\^\{\|]/;
+var regUsername = /^[1-9][0-9]{2,19}$/;
+//var regPasswordSpecial = /[~!@#%&=;':",./<>_\}\]\-\$\(\)\*\+\.\[\?\\\^\{\|]/;
+var regPasswordSpecial = /[\s\S]*/;
 var regPasswordAlpha = /[a-zA-Z]/;
 var regPasswordNum = /[0-9]/;
 var password;
@@ -351,13 +352,15 @@ $('.container').find('input').eq(1).change(function() {
     		data : JSON.stringify(data),
     		success : function(result) {
     			if(result.falg == 1){
-    				fail($(this), 1, '这个id已经被人用过了');
+    				console.log("ID被占用");
+    				fail($('.container').find('input').eq(1), 1, '这个id已经被人用过了');
     			}else {
-    		        success($(this), 1);
+    				console.log("IDOJBK");
+    		        success($('.container').find('input').eq(1), 1);
     			}
     		},
     		error : function(result) {
-    			var message = JSON.stringify(result);
+    			console.log("校验ID错误");
     		}
     	});
     } else if ($(this).val().length < 2) {
@@ -382,11 +385,9 @@ $('.container').find('input').eq(2).change(function() {
 
     password = $(this).val();
 
-    if ($(this).val().length < 8) {
-        fail($(this), 2, '密码太短，不能少于8个字符');
+    if ($(this).val().length <= 0) {
+        fail($(this), 2, '你这么短的吗');
     } else {
-
-
         if (atLeastTwo($(this).val()) < 2) {
             fail($(this), 2, '密码中至少包含字母、数字、特殊字符的两种')
         } else {
@@ -442,9 +443,11 @@ $('.container').find('input').eq(6).change(function() {
 
 $('#submit').click(function(e) {
 	var flag = 0;
-	for(var i=0; i<100;i++){
-		if(!$('.container').find('input').eq(i)){
-			fail($('.container').find('input').eq(i), i, '这个没输入哦');
+	
+	for(var i = 0; i < $('.container').find('input').length; i++){
+		var display = $('.container').find('input').eq(0).parent().next().attr("style");
+		if(($('.container').find('input').eq(i).val() == "") || (display.indexOf("display") < -1)){
+			fail($('.container').find('input').eq(i), i, '你是不是忘了什么');
 			flag = 1;
 		}
 	}
@@ -462,32 +465,6 @@ $('#reset').click(function() {
     $('.glyphicon-remove').hide();
     check = [false, false, false, false, false, false, ];
 });
-
-$("#id").blur(function(){  //ID失焦事件 
-	var data = { id : $("#id").val() };
-	$.ajax({
-		url : "main/checkId",
-		type : "POST",
-		dataType : "json",
-		// headers: { "content-Type":"application/json"},
-		contentType : "application/json;charset=UTF-8",
-		// <!-- 向后端传输的数据 -->
-		data : JSON.stringify(data),
-		success : function(result) {
-			// <!-- 处理后端返回的数据 -->
-			if(result.falg == 1){
-				fail($(this), 1, '这个id已经被人用过了');
-			}else {
-				
-			}
-		},
-		error : function(result) {
-			var message = JSON.stringify(result.message);
-		}
-	});
-	$("#id").css("background-color","#D6D6FF");	
-});
-
 </script>
 </body>
 </html>

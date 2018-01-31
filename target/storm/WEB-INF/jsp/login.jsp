@@ -56,7 +56,6 @@
 			id : $("#inputId").val(),
 			password : $("#inputPassword").val()
 		}
-		console.log("传输数据", data);
 		$.ajax({
 			url : "main/showMain",
 			type : "POST",
@@ -68,10 +67,9 @@
 			success : function(result) {
 				// <!-- 处理后端返回的数据 -->
 				var message = JSON.stringify(result.message);
-				console.log("查询结果", result.message);
 				if(result.falg == 2){
 					$("#errmessage").hide(500);
-					window.location.href = uitl.getRootPath() + "/index.jsp?" + result.row.username;
+					window.location.href = uitl.getRootPath() + "/index.jsp?name=" + result.row.username;
 				}else {
 					$("#errmessage").show(500);
 				}

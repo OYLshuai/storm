@@ -87,4 +87,10 @@ public class UserController {
 		return result;
 		
 	}
+	
+	@RequestMapping("/text")
+	public String text(HttpServletRequest request, Model model) {
+		model.addAttribute("row", "1");
+		return "mainLog";
+	}
 }
