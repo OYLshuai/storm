@@ -59,7 +59,7 @@
 		            <li><a href="#">Java 模块错误反馈</a></li>
 		          </ul>
 		        </li>
-		        <li class=""><a href="#">Link <span class="sr-only">(current)</span></a></li>
+		        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
 		        <li><a href="#">Link</a></li>
 		        <li><a href="#">Link</a></li>
 		        <li><a href="#">Link</a></li>
