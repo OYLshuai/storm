@@ -46,8 +46,20 @@
 		
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+		      <ul class="nav navbar-nav first_ul">
+		        <li class="dropdown active">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Java <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">Java 基础</a></li>
+		            <li><a href="#">Java Spring</a></li>
+		            <li><a href="#">SpringMVC</a></li>
+		            <li role="separator" class="divider"></li>
+		            <li><a href="#">Java 测试题</a></li>
+		            <li role="separator" class="divider"></li>
+		            <li><a href="#">Java 模块错误反馈</a></li>
+		          </ul>
+		        </li>
+		        <li class=""><a href="#">Link <span class="sr-only">(current)</span></a></li>
 		        <li><a href="#">Link</a></li>
 		        <li><a href="#">Link</a></li>
 		        <li><a href="#">Link</a></li>
