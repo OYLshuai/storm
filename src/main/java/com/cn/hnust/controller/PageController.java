@@ -15,4 +15,10 @@ public class PageController {
 		model.addAttribute("row", "1");
 		return "mainLog";
 	}
+	
+	@RequestMapping("/javaPage")
+	public String java(HttpServletRequest request, Model model) {
+		model.addAttribute("row", "1");
+		return "java";
+	}
 }

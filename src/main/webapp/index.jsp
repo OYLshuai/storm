@@ -11,6 +11,7 @@
 <link href="/storm/static/css/style.css" rel="stylesheet">
 <!--引入JQuery -->
 <script src="/storm/static/js/uitl.js"></script>
+<script src="/storm/static/js/menu.js"></script>
 <script src="/storm/static/js/jquery.min.js"></script>
 <script src="/storm/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
@@ -38,26 +39,24 @@
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-				aria-expanded="false">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 				<span class="sr-only">Toggle navigation</span> 
 				<span class="icon-bar"></span> 
 				<span class="icon-bar"></span> 
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">${param.name}</a>
+			<a class="navbar-brand" href="/storm/page/mainLogPage" target="iframe">${param.name}</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
+		<div class="collapse navbar-collapse" id="selectMenuDiv">
 			<ul class="nav navbar-nav first_ul">
-				<li id="java" class="dropdown active"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Java <span class="caret"></span></a>
+				<li id="Link_0" class="dropdown active">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						Java <span class="caret"> </span>
+					</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Java 基础</a></li>
+						<li><a href="/storm/page/javaPage" target="iframe">Java 基础</a></li>
 						<li><a href="#">Java Spring</a></li>
 						<li><a href="#">SpringMVC</a></li>
 						<li role="separator" class="divider"></li>
@@ -66,12 +65,13 @@
 						<li><a href="#">Java 模块错误反馈</a></li>
 					</ul>
 				</li>
-				<li><a href="#">Link <span class="sr-only">(current)</span></a></li>
-				<li><a href="#">Link</a></li>
-				<li><a href="#">Link</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Dropdown <span class="caret"></span></a>
+				<li id="Link_1"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+				<li id="Link_2"><a href="#">Link</a></li>
+				<li id="Link_3"><a href="#">Link</a></li>
+				<li id="Link_4" class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+					Dropdown <span class="caret"> </span>
+				</a>
 					<ul class="dropdown-menu">
 						<li><a href="#">Action</a></li>
 						<li><a href="#">Another action</a></li>
@@ -111,10 +111,9 @@
 		</div>
 	</div>
 	</nav>
-	<div id="content" class="wrapperXXX jumbotron"
-		style="padding-top: 3px; padding-bottom: 3px;">
+	<div id="content" class="wrapperXXX jumbotron" style="padding-top: 3px; padding-bottom: 3px;">
 		<div class="container-fluid mainXXX">
-			<iframe id="iframe" src="/storm/page/mainLogPage" width="100%" height="88%" frameborder="no" scrolling="yes"> 
+			<iframe id="iframe" name="iframe" src="/storm/page/mainLogPage" width="100%" height="88%" frameborder="no" scrolling="yes"> 
 				
 			</iframe>
 		</div>
@@ -122,8 +121,11 @@
 </body>
 <script type="text/javascript" charset="utf-8">
 	 window.onload = function(){
-		var user = "${user}";
-		console.log("user",user);
+		var user = "${param.name}";
+		menu.selectStyle();
+		$("#Link_0").onclick = function(){
+			console.log("onclick",i);
+		}
 	 };
 </script>
 </html>
