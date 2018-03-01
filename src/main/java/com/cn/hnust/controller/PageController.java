@@ -29,4 +29,10 @@ public class PageController {
 		model.addAttribute("row", "1");
 		return "javaspring";
 	}
+	
+	@RequestMapping("/javaReptilePage")
+	public String javaRePtile(HttpServletRequest request, Model model) {
+		model.addAttribute("row", "1");
+		return "reptile";
+	}
 }
