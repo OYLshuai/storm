@@ -111,11 +111,13 @@
 		</div>
 	</div>
 	</nav>
-	<div id="content" class="wrapperXXX jumbotron" style="padding-top: 3px; padding-bottom: 3px;">
-		<div class="container-fluid mainXXX">
-			<iframe id="iframe" name="iframe" src="/storm/page/mainLogPage" width="100%" height="88%" frameborder="no" scrolling="yes"> 
-				
-			</iframe>
+	<div style="overflow: hidden;">
+		<div id="content" class="wrapperXXX jumbotron" style="padding-top: 3px; padding-bottom: 3px;overflow-y: auto;overflow-x: hidden; ">
+			<div class="container-fluid mainXXX">
+				<iframe id="iframe" name="iframe" src="/storm/page/mainLogPage" width="100%" height="88%" frameborder="no" scrolling="yes"> 
+					
+				</iframe>
+			</div>
 		</div>
 	</div>
 </body>

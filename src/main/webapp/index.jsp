@@ -20,22 +20,18 @@
 <style type="text/css">
 .wrapperXXX {
 	position: fixed;
-	width: 100%;
+	width: 102.3%;
 	height: 100%;
 }
 
 .mainXXX {
 	height: 100%;
 }
-
-.bottomXXX {
-	
-}
 </style>
 <title>hehe</title>
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default" style="margin-bottom: 5px;">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -112,7 +108,7 @@
 	</div>
 	</nav>
 	<div id="content" class="wrapperXXX jumbotron" style="padding-top: 3px; padding-bottom: 3px;">
-		<div class="container-fluid mainXXX">
+		<div class="container-fluid mainXXX" style="padding-left: 1px;"> 
 			<iframe id="iframe" name="iframe" src="/storm/page/mainLogPage" width="100%" height="88%" frameborder="no" scrolling="yes"> 
 				
 			</iframe>

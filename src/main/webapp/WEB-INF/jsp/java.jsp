@@ -37,7 +37,7 @@
 </head>
 <body>
 	<div class="col-md-12">
-		<div class="list-group col-md-2" style="padding-right: 0px;">
+		<div class="list-group col-md-2" style=" padding-top: 5px;">
 		  <a href="/storm/javaPage/javaIntPage" target="javaIframe" class="list-group-item active"> Java 简介 </a>
 		  <a href="#" class="list-group-item">Java 开发环境配置</a>
 		  <a href="#" class="list-group-item">Java 基础语法</a>
@@ -55,7 +55,7 @@
 		</div>
 		
 		<div class="col-md-10" style="padding-left: 0px;padding-right: 0px;">
-				<div id="content" class="wrapperXXX jumbotron " style="padding-top: 3px; padding-bottom: 3px;">
+				<div id="content" class="wrapperXXX jumbotron " style="padding-top: 0px; padding-bottom: 3px;">
 				<div class="container-fluid mainXXX ">
 					<iframe id="javaIframe" name="javaIframe" src="/storm/javaPage/javaIntPage" width="84%" height="100%" frameborder="no" scrolling="yes"> 
 						

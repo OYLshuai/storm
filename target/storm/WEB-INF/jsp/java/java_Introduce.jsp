@@ -14,10 +14,54 @@
 <script src="/storm/static/js/menu.js"></script>
 <script src="/storm/static/js/jquery.min.js"></script>
 <script src="/storm/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
-<body>
-	欢迎来到 Java 从入门到放弃！！！！！！！！！！！！！！
+<body >
+	<div style="padding:75px;">
+		<div>
+			</br>
+		</div>
+		<h2>欢迎来到-Java 从入门到放弃</h2>
+		<h1>Java 简介</h1>
+		<p class="lead">Java是由Sun
+			Microsystems公司于1995年5月推出的Java面向对象程序设计语言和Java平台的总称。由James
+			Gosling和同事们共同研发，并在1995年正式推出。 Java分为三个体系：
+		</p>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
 </body>
 </html>
