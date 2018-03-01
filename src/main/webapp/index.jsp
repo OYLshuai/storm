@@ -47,13 +47,13 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="selectMenuDiv">
 			<ul class="nav navbar-nav first_ul">
-				<li id="Link_0" class="dropdown active">
+				<li id="Link_0" class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 						Java <span class="caret"> </span>
 					</a>
 					<ul class="dropdown-menu">
 						<li><a href="/storm/page/javaPage" target="iframe">Java 基础</a></li>
-						<li><a href="#">Java Spring</a></li>
+						<li><a href="/storm/page/javaSpringPage" target="iframe">Java Spring</a></li>
 						<li><a href="#">SpringMVC</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="#">Java 测试题</a></li>
@@ -61,7 +61,7 @@
 						<li><a href="#">Java 模块错误反馈</a></li>
 					</ul>
 				</li>
-				<li id="Link_1"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+				<li id="Link_1"><a href="/storm/page/javaSpringPage" target="iframe">Link <span class="sr-only">(current)</span></a></li>
 				<li id="Link_2"><a href="#">Link</a></li>
 				<li id="Link_3"><a href="#">Link</a></li>
 				<li id="Link_4" class="dropdown">

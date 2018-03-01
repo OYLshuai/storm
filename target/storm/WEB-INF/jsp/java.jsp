@@ -39,7 +39,7 @@
 	<div class="col-md-12">
 		<div class="list-group col-md-2" style=" padding-top: 5px;">
 		  <a href="/storm/javaPage/javaIntPage" target="javaIframe" class="list-group-item active"> Java 简介 </a>
-		  <a href="#" class="list-group-item">Java 开发环境配置</a>
+		  <a href="/storm/javaPage/javaConfigure" target="javaIframe" class="list-group-item">Java 开发环境配置</a>
 		  <a href="#" class="list-group-item">Java 基础语法</a>
 		  <a href="#" class="list-group-item">Java 对象和类</a>
 		  <a href="#" class="list-group-item">Java 基本数据类型</a>
@@ -61,8 +61,15 @@
 						
 					</iframe>
 				</div>
-	</div>
+				</div>
 		</div>
 	</div>
 </body>
+<script type="text/javascript" charset="utf-8">
+window.onload = function(){
+	$('.list-group a').bind('click', function(){
+	    $(this).addClass('active').siblings().removeClass('active');
+	});
+ };
+</script>
 </html>

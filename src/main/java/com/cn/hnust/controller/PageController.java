@@ -1,4 +1,6 @@
-
+/***
+ * 顶上导航栏跳转控制
+ */
 package com.cn.hnust.controller;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,5 +22,11 @@ public class PageController {
 	public String java(HttpServletRequest request, Model model) {
 		model.addAttribute("row", "1");
 		return "java";
+	}
+	
+	@RequestMapping("/javaSpringPage")
+	public String javaSpring(HttpServletRequest request, Model model) {
+		model.addAttribute("row", "1");
+		return "javaspring";
 	}
 }

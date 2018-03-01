@@ -20,22 +20,18 @@
 <style type="text/css">
 .wrapperXXX {
 	position: fixed;
-	width: 100%;
+	width: 102.3%;
 	height: 100%;
 }
 
 .mainXXX {
 	height: 100%;
 }
-
-.bottomXXX {
-	
-}
 </style>
 <title>hehe</title>
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default" style="margin-bottom: 5px;">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -51,13 +47,13 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="selectMenuDiv">
 			<ul class="nav navbar-nav first_ul">
-				<li id="Link_0" class="dropdown active">
+				<li id="Link_0" class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 						Java <span class="caret"> </span>
 					</a>
 					<ul class="dropdown-menu">
 						<li><a href="/storm/page/javaPage" target="iframe">Java 基础</a></li>
-						<li><a href="#">Java Spring</a></li>
+						<li><a href="/storm/page/javaSpringPage" target="iframe">Java Spring</a></li>
 						<li><a href="#">SpringMVC</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="#">Java 测试题</a></li>
@@ -65,7 +61,7 @@
 						<li><a href="#">Java 模块错误反馈</a></li>
 					</ul>
 				</li>
-				<li id="Link_1"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+				<li id="Link_1"><a href="/storm/page/javaSpringPage" target="iframe">Link <span class="sr-only">(current)</span></a></li>
 				<li id="Link_2"><a href="#">Link</a></li>
 				<li id="Link_3"><a href="#">Link</a></li>
 				<li id="Link_4" class="dropdown">
@@ -111,13 +107,11 @@
 		</div>
 	</div>
 	</nav>
-	<div style="overflow: hidden;">
-		<div id="content" class="wrapperXXX jumbotron" style="padding-top: 3px; padding-bottom: 3px;overflow-y: auto;overflow-x: hidden; ">
-			<div class="container-fluid mainXXX">
-				<iframe id="iframe" name="iframe" src="/storm/page/mainLogPage" width="100%" height="88%" frameborder="no" scrolling="yes"> 
-					
-				</iframe>
-			</div>
+	<div id="content" class="wrapperXXX jumbotron" style="padding-top: 3px; padding-bottom: 3px;">
+		<div class="container-fluid mainXXX" style="padding-left: 1px;"> 
+			<iframe id="iframe" name="iframe" src="/storm/page/mainLogPage" width="100%" height="88%" frameborder="no" scrolling="yes"> 
+				
+			</iframe>
 		</div>
 	</div>
 </body>

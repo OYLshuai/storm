@@ -1,3 +1,6 @@
+/*****
+ * Java 页面的控制跳转
+ */
 package com.cn.hnust.controller;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,5 +16,11 @@ public class JavaPageCon {
 	public String text(HttpServletRequest request, Model model) {
 		model.addAttribute("row", "1");
 		return "java/java_Introduce";
+	}
+
+	@RequestMapping("/javaConfigure")
+	public String javaConfigure(HttpServletRequest request, Model model) {
+		model.addAttribute("row", "1");
+		return "java/java_configure";
 	}
 }
