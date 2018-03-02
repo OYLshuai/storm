@@ -1,3 +1,6 @@
+/***********
+ * 爬虫的一个练习 获取基本的url数据
+ */
 package com.cn.hnust.reptile;
 
 import java.io.*;

@@ -19,18 +19,100 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>Insert title here</title>
 </head>
-<body>
-	<div>
-		<p style="float: left;">百度首页Logo链接：</p>
-		<button type="button" class="btn btn-info" onclick="baiduLogo()">（点击爬取）</button>
+<body style="padding: 30px;">
+	<div class="col-md-6">
+		<p class="col-md-3" style="float: left;">百度首页Logo链接：</p>
+		<button type="button" class="btn btn-info col-md-3" onclick="baiduLogo()">（点击爬取）</button>
+	</div>
+	<div class="col-md-6">
+		<p class="col-md-3" style="float: left;">爬虫-图片下载：</p>
+		<button type="button" class="btn btn-info col-md-3" onclick="baiduImage()">（点击爬取）</button>
 	</div>
 	<div id="context">
 		
 	</div>
+
+
+	<!-- modal -->
+	<div class="modal fade" id="mymodal" tabindex="-1" role="dialog"
+		aria-labelledby="mymodallabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="mymodallabel">输入访问的Url</h4>
+				</div>
+				<div class="modal-body">
+					<div id="urlPre" class="input-group">
+					  <span class="input-group-addon" id="basic-addon1">url</span>
+					  <input id="url" type="text" class="form-control" placeholder=www.baidu.com aria-describedby="basic-addon1">
+					</div>
+					<br>
+					<div id="encodePre" class="input-group">
+					  <span class="input-group-addon" id="basic-addon1">编码方式</span>
+					  <input id="encode" type="text" class="form-control" placeholder=utf-8 aria-describedby="basic-addon1">
+					</div>
+					<br>
+					<div id="filepathPre" class="input-group">
+					  <span class="input-group-addon" id="basic-addon1">储存地址</span>
+					  <input id="filepath" type="text" class="form-control" placeholder=C:/ aria-describedby="basic-addon1">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button id="imgBut" type="button" class="btn btn-primary" onclick="downlodImg()">开始下载</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 <script type="text/javascript">
+window.onload = function(){
+    $("#url").blur(function() {  
+        var regtitle = /^((ht|f)tps?):\/\/([\w\-]+(\.[\w\-]+)*\/)*[\w\-]+(\.[\w\-]+)*\/?(\?([\w\-\.,@?^=%&:\/~\+#]*)+)?/;  
+        var uname = $("#url").val();  
+        $("#urlPre").css("background-color", "white");  
+        if (uname.length <= 0 || !regtitle.test(uname)) {  
+            $("#urlPre").removeClass("has-success");  
+            $("#urlPre").addClass("has-error");  
+            $("#imgBut").attr("disabled","disabled");
+        } else {  
+            $("#urlPre").addClass("has-success");
+            $("#urlPre").removeClass("has-error");  
+            $("#imgBut").removeAttr("disabled");
+        }  
+    });  
+    $("#filepath").blur(function() {  
+        var uname = $("#filepath").val();  
+        $("#filepathPre").css("background-color", "white");  
+        if (uname.length <= 0 || uname =="") {  
+            $("#filepathPre").removeClass("has-success");  
+            $("#filepathPre").addClass("has-error");  
+            $("#imgBut").attr("disabled","disabled");
+        } else {  
+            $("#filepathPre").addClass("has-success");
+            $("#filepathPre").removeClass("has-error");  
+            $("#imgBut").removeAttr("disabled");
+        }  
+    });
+    $("#encode").blur(function() {  
+        var uname = $("#encode").val();  
+        $("#encodePre").css("background-color", "white");  
+        if (uname.length <= 0 || uname =="") {  
+            $("#encodePre").removeClass("has-success");  
+            $("#encodePre").addClass("has-error");  
+            $("#imgBut").attr("disabled","disabled");
+        } else {  
+            $("#encodePre").addClass("has-success");
+            $("#encodePre").removeClass("has-error");  
+            $("#imgBut").removeAttr("disabled");
+        }  
+    });
+}; 
+
 function baiduLogo(){
-	console.log("开始抓取百度Logo");
 	$.ajax({
 		url : "/storm/reptile/reptileBaidu",
 		type : "POST",
@@ -45,6 +127,39 @@ function baiduLogo(){
 			var message = JSON.stringify(result.flag);
 		}
 	});
+}
+
+function baiduImage(){
+	$('#mymodal').modal('show');
+	if((!$("#urlPre").hasClass("has-success")) || (!$("#filepathPre").hasClass("has-success")) || (!$("#encodePre").hasClass("has-success"))){
+		$("#imgBut").attr("disabled","disabled");
+	}
+}
+
+function downlodImg(){
+	var url = $('#url').val();
+	var encode = $('#encode').val();
+	var filepath = $('#filepath').val();
+	var data = {
+			url : url,
+			encode : encode,
+			filepath : filepath
+		}
+	$.ajax({
+		url : "/storm/reptile/reptileDownImg",
+		type : "POST",
+		dataType : "json",
+		contentType : "application/json;charset=UTF-8",
+		data : JSON.stringify(data),
+		success : function(result) {
+			var message = JSON.stringify(result.imgState);
+			$('#context').text(message);
+		},
+		error : function(result) {
+			var message = JSON.stringify(result.flag);
+		}
+	});
+	$('#mymodal').modal('hide');
 }
 </script>
 </html>
