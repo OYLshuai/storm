@@ -27,8 +27,15 @@
 		<p class="lead">
 			首先我们需要下载java开发工具包JDK，下载地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="Blank ">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a>，点击如下下载按钮：
 		</p>
-		<img src="/storm/page/javadownload.jpg" alt="" class="">
-		<img src="/storm/page/javadownload1.jpg" alt="" class="">
+		<img src="/storm/imge/javadownload.jpg" alt="" class="">
+		<img src="/storm/imge/javadownload1.jpg" alt="" class="">
+		<p>
+			下载后JDK的安装根据提示进行，还有安装JDK的时候也会安装JRE，一并安装就可以了。
+			安装JDK，安装过程中可以自定义安装目录等信息，例如我们选择安装目录为 C:\Program Files (x86)\Java\jdk1.8.0_91。
+		</p>
+		<p class="lead">
+			后面的去看这个教程吧：<a href="http://www.runoob.com/java/java-environment-setup.html" target="Blank ">Java 环境配置</a>。
+		</p>
 	</div>
 </body>
 </html>

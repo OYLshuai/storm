@@ -20,6 +20,31 @@
 <title>Insert title here</title>
 </head>
 <body>
-爬虫
+	<div>
+		<p style="float: left;">百度首页Logo链接：</p>
+		<button type="button" class="btn btn-info" onclick="baiduLogo()">（点击爬取）</button>
+	</div>
+	<div id="context">
+		
+	</div>
 </body>
+<script type="text/javascript">
+function baiduLogo(){
+	console.log("开始抓取百度Logo");
+	$.ajax({
+		url : "/storm/reptile/reptileBaidu",
+		type : "POST",
+		dataType : "json",
+		contentType : "application/json;charset=UTF-8",
+		data : JSON.stringify(),
+		success : function(result) {
+			var message = JSON.stringify(result.flag);
+			$('#context').text(message);
+		},
+		error : function(result) {
+			var message = JSON.stringify(result.flag);
+		}
+	});
+}
+</script>
 </html>
