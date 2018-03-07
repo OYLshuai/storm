@@ -41,7 +41,10 @@ public class ReptileCon {
 	@ResponseBody
 	public JSONObject downImg(@RequestBody ImageUrl ImageUrl) {
 		JSONObject result1 = new JSONObject();
-		JSONObject img = new JSONObject();
+		JSONObject suImg = new JSONObject();
+		JSONObject faImg = new JSONObject();
+		int suLength = 0;
+		int faLength = 0;
 		String htmlResource = ReptileDowImg.getHtmlResourceByUrl(ImageUrl.getUrl(), ImageUrl.getEncode());
 		// 解析网页源代码
         Document document = Jsoup.parse(htmlResource);
@@ -52,17 +55,23 @@ public class ReptileCon {
             String imgSrc = element.attr("src");
             if (!"".equals(imgSrc) && (imgSrc.startsWith("http://") || imgSrc.startsWith("https://"))) {
                 // 判断imgSrc是否为空且是否以"http://"开头
-            	img.put("success:"+imgSrc, imgSrc);
             	log.info("正在下载的图片的地址：" + imgSrc);
                 ReptileDowImg.downImages(ImageUrl.getFilepath(), imgSrc);
+            	suImg.put("success:"+imgSrc, imgSrc);
+            	suLength++;
             }
             else{
-            	img.put("faile:"+imgSrc, imgSrc);
             	log.info("无效的地址：" + imgSrc);
+            	faImg.put("faile:"+imgSrc, imgSrc);
+            	faLength++;
             }
         }
-
-		result1.put("imgState", img);
+        
+        faImg.put("length", faLength);
+        suImg.put("length", suLength);
+        
+		result1.put("success", suImg);
+		result1.put("faile", faImg);
 		result1.put("flag", ImageUrl.getUrl());
 		return result1;
 	}

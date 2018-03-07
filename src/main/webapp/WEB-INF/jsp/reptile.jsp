@@ -152,7 +152,8 @@ function downlodImg(){
 		contentType : "application/json;charset=UTF-8",
 		data : JSON.stringify(data),
 		success : function(result) {
-			var message = JSON.stringify(result.imgState);
+			showImg(result.success);
+			var message = JSON.stringify(result.success);
 			$('#context').text(message);
 		},
 		error : function(result) {
@@ -160,6 +161,12 @@ function downlodImg(){
 		}
 	});
 	$('#mymodal').modal('hide');
+}
+
+function showImg(successImg){
+	for(var i=0;i<successImg.length;i++){
+		console.log("success",successImg[i]);
+	}
 }
 </script>
 </html>
