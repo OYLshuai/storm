@@ -40,18 +40,18 @@
 		<div class="list-group col-md-2" style=" padding-top: 5px;">
 		  <a href="/storm/javaPage/javaIntPage" target="javaIframe" class="list-group-item active"> Java 简介 </a>
 		  <a href="/storm/javaPage/javaConfigure" target="javaIframe" class="list-group-item">Java 开发环境配置</a>
-		  <a href="#" class="list-group-item">Java 基础语法</a>
+		  <a href="/storm/javaPage/javaBase" target="javaIframe" class="list-group-item">Java 基础语法</a>
 		  <a href="#" class="list-group-item">Java 对象和类</a>
 		  <a href="#" class="list-group-item">Java 基本数据类型</a>
 		  <a href="#" class="list-group-item">Java 变量类型</a>
 		  <a href="#" class="list-group-item">Java 修饰符和运算符</a>
 		  <a href="#" class="list-group-item">Java 基本结构</a>
 		  <a href="#" class="list-group-item">Java 数组</a>
+		  <a href="#" class="list-group-item">Java String类</a>
 		  <a href="#" class="list-group-item">Java 方法</a>
 		  <a href="#" class="list-group-item">Java 三大特征</a>
 		  <a href="#" class="list-group-item">Java 抽象类</a>
 		  <a href="#" class="list-group-item">Java 接口</a>
-		  <a href="#" class="list-group-item">Java String类</a>
 		</div>
 		
 		<div class="col-md-10" style="padding-left: 0px;padding-right: 0px;">

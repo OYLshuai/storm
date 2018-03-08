@@ -101,7 +101,7 @@
 						<li><a href="#">意见反馈</a></li>
 						<li><a href="#">修改密码</a></li>
 						<li role="separator" class="divider"></li>
-						<li><a href="#">退出登陆</a></li>
+						<li><a href="login">退出登陆</a></li>
 					</ul></li>
 			</ul>
 		</div>
@@ -109,7 +109,7 @@
 	</nav>
 	<div id="content" class="wrapperXXX jumbotron" style="padding-top: 3px; padding-bottom: 3px;">
 		<div class="container-fluid mainXXX" style="padding-left: 1px;"> 
-			<iframe id="iframe" name="iframe" src="/storm/page/mainLogPage" width="100%" height="88%" frameborder="no" scrolling="yes"> 
+			<iframe id="iframe" name="iframe" src="/storm/page/mainLogPage" width="100%" height="92%" frameborder="no" scrolling="yes"> 
 				
 			</iframe>
 		</div>

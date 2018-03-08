@@ -19,7 +19,7 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>Insert title here</title>
 </head>
-<body>
+<body style="padding: 30px;">
 	<div class="col-md-6">
 		<p class="col-md-3" style="float: left;">百度首页Logo链接：</p>
 		<button type="button" class="btn btn-info col-md-3" onclick="baiduLogo()">（点击爬取）</button>
@@ -76,18 +76,43 @@ window.onload = function(){
         $("#urlPre").css("background-color", "white");  
         if (uname.length <= 0 || !regtitle.test(uname)) {  
             $("#urlPre").removeClass("has-success");  
-            $("#urlPre").addClass("has-warning");  
+            $("#urlPre").addClass("has-error");  
             $("#imgBut").attr("disabled","disabled");
         } else {  
             $("#urlPre").addClass("has-success");
-            $("#urlPre").removeClass("has-warning");  
+            $("#urlPre").removeClass("has-error");  
             $("#imgBut").removeAttr("disabled");
         }  
     });  
+    $("#filepath").blur(function() {  
+        var uname = $("#filepath").val();  
+        $("#filepathPre").css("background-color", "white");  
+        if (uname.length <= 0 || uname =="") {  
+            $("#filepathPre").removeClass("has-success");  
+            $("#filepathPre").addClass("has-error");  
+            $("#imgBut").attr("disabled","disabled");
+        } else {  
+            $("#filepathPre").addClass("has-success");
+            $("#filepathPre").removeClass("has-error");  
+            $("#imgBut").removeAttr("disabled");
+        }  
+    });
+    $("#encode").blur(function() {  
+        var uname = $("#encode").val();  
+        $("#encodePre").css("background-color", "white");  
+        if (uname.length <= 0 || uname =="") {  
+            $("#encodePre").removeClass("has-success");  
+            $("#encodePre").addClass("has-error");  
+            $("#imgBut").attr("disabled","disabled");
+        } else {  
+            $("#encodePre").addClass("has-success");
+            $("#encodePre").removeClass("has-error");  
+            $("#imgBut").removeAttr("disabled");
+        }  
+    });
 }; 
 
 function baiduLogo(){
-	console.log("开始抓取百度Logo");
 	$.ajax({
 		url : "/storm/reptile/reptileBaidu",
 		type : "POST",
@@ -105,17 +130,13 @@ function baiduLogo(){
 }
 
 function baiduImage(){
-	console.log("打开模态窗口");
 	$('#mymodal').modal('show');
-	if($("#urlPre").hasClass("has-warning")){
+	if((!$("#urlPre").hasClass("has-success")) || (!$("#filepathPre").hasClass("has-success")) || (!$("#encodePre").hasClass("has-success"))){
 		$("#imgBut").attr("disabled","disabled");
 	}
 }
 
-
-
 function downlodImg(){
-	console.log("开始下载");
 	var url = $('#url').val();
 	var encode = $('#encode').val();
 	var filepath = $('#filepath').val();
@@ -124,15 +145,15 @@ function downlodImg(){
 			encode : encode,
 			filepath : filepath
 		}
-	console.log("data",data);
 	$.ajax({
 		url : "/storm/reptile/reptileDownImg",
 		type : "POST",
 		dataType : "json",
 		contentType : "application/json;charset=UTF-8",
-		data : data,
+		data : JSON.stringify(data),
 		success : function(result) {
-			var message = JSON.stringify(result.flag);
+			showImg(result.success);
+			var message = JSON.stringify(result.success);
 			$('#context').text(message);
 		},
 		error : function(result) {
@@ -140,6 +161,12 @@ function downlodImg(){
 		}
 	});
 	$('#mymodal').modal('hide');
+}
+
+function showImg(successImg){
+	for(var i=0;i<successImg.length;i++){
+		console.log("success",successImg[i]);
+	}
 }
 </script>
 </html>
