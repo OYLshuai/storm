@@ -35,4 +35,10 @@ public class PageController {
 		model.addAttribute("row", "1");
 		return "reptile";
 	}
+	
+	@RequestMapping("/htmlJsp")
+	public String htmlJsp(HttpServletRequest request, Model model) {
+		model.addAttribute("row", "1");
+		return "html_jsp";
+	}
 }
