@@ -22,13 +22,15 @@
 .p1 {
     background-color:#E7EAEB;
     font-size:12px; 
-    text-indent:24px;}
+    text-indent:24px;
+    padding:15px;
+    }
 
 </style>
 <body >
 	<div style="padding:75px;">
 		<div>
-			</br>
+			<br/>
 		</div>
 		<h2>欢迎来到-Java 从入门到放弃</h2>
 		<h1>Java 简介</h1>
@@ -83,7 +85,7 @@
 			<li>
 				多线程
 				<p class="p1">
-					ava是多线索语言，它提供支持多线索的执行（也称为轻便过程），能处理不同任务，使具有线索的程序设计很容易。Java的lang包提供一个Thread类，它支持开始线索、运行线索、停止线索和检查线索状态的方法。
+					Java是多线索语言，它提供支持多线索的执行（也称为轻便过程），能处理不同任务，使具有线索的程序设计很容易。Java的lang包提供一个Thread类，它支持开始线索、运行线索、停止线索和检查线索状态的方法。
 					Java的线索支持也包括一组同步原语。这些原语是基于监督程序和条件变量风范，由C.A.R.Haore开发的广泛使用的同步化方案。用关键词synchronized，程序员可以说明某些方法在一个类中不能并发地运行。这些方法在监督程序控制之下，确保变量维持在一个一致的状态。
 				</p>
 			</li>
@@ -109,4 +111,13 @@
 		</ul>
 	</div>
 </body>
+<style>
+    h2{display:none;}
+    li{padding: 5px;}
+</style>
+<script type="text/javascript" charset="utf-8">
+	 $(function(){
+		 $("h2").fadeIn();
+	 });
+</script>
 </html>

@@ -20,7 +20,7 @@
 <body>
 	<div style="padding:75px;">
 		<div>
-			</br>
+			<br/>
 		</div>
 		<h2>Java 环境配置(Window)</h2>
 		<h1>Java 下载</h1>
@@ -38,4 +38,12 @@
 		</p>
 	</div>
 </body>
+<style>
+    h2{display:none;}
+</style>
+<script type="text/javascript" charset="utf-8">
+	 $(function(){
+		 $("h2").fadeIn();
+	 });
+</script>
 </html>
