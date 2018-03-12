@@ -17,7 +17,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
-<body>
-基础数据类型
+<style type="text/css">
+
+.p1 {
+    background-color:#E7EAEB;
+    font-size:12px; 
+    text-indent:24px;
+    padding:15px;
+    }
+
+</style>
+<body >
+	<div style="padding:75px;">
+		<div>
+			<br/>
+		</div>
+		<h2>基础数据类型</h2>
+	</div>
 </body>
+<style>
+    h2{display:none;}
+    li{padding: 5px;}
+</style>
+<script type="text/javascript" charset="utf-8">
+	 $(function(){
+		 $("h2").fadeIn();
+	 });
+</script>
 </html>
