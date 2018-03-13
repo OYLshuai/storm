@@ -113,7 +113,7 @@
 </body>
 <style>
     h2{display:none;}
-    li{padding: 5px;}
+    li{padding: 10px;}
 </style>
 <script type="text/javascript" charset="utf-8">
 	 $(function(){

@@ -52,12 +52,12 @@
 					<br>
 					<div id="encodePre" class="input-group">
 					  <span class="input-group-addon" id="basic-addon1">编码方式</span>
-					  <input id="encode" type="text" class="form-control" placeholder=utf-8 aria-describedby="basic-addon1">
+					  <input id="encode" type="text" class="form-control" value="utf-8" placeholder=utf-8 aria-describedby="basic-addon1">
 					</div>
 					<br>
 					<div id="filepathPre" class="input-group">
 					  <span class="input-group-addon" id="basic-addon1">储存地址</span>
-					  <input id="filepath" type="text" class="form-control" placeholder=C:/ aria-describedby="basic-addon1">
+					  <input id="filepath" type="text" class="form-control" value="D:\随时可以删除的文件" placeholder=C:/ aria-describedby="basic-addon1">
 					</div>
 				</div>
 				<div class="modal-footer">

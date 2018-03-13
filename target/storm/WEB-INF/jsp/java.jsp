@@ -55,13 +55,13 @@
 		</div>
 		
 		<div class="col-md-10" style="padding-left: 0px;padding-right: 0px;">
-				<div id="content" class="wrapperXXX jumbotron " style="padding-top: 0px; padding-bottom: 3px;">
+			<div id="content" class="wrapperXXX jumbotron " style="padding-top: 0px; padding-bottom: 3px;">
 				<div class="container-fluid mainXXX ">
 					<iframe id="javaIframe" name="javaIframe" src="/storm/javaPage/javaIntPage" width="84%" height="100%" frameborder="no" scrolling="yes"> 
 						
 					</iframe>
 				</div>
-				</div>
+			</div>
 		</div>
 	</div>
 </body>

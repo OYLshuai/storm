@@ -6,8 +6,10 @@ var menu = {
 				var li_id ="#Link_" + i;
 				
 			}
+		},
+		"HTitle":function(){
+			
 		}
-		
 }
 
 function classChange(){
