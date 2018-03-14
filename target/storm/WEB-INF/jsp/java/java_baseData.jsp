@@ -423,16 +423,14 @@ String a = "\u0001";
 	 
 	 $('#tb_departments').bootstrapTable({
 		 url: 'tableText.json',
+		 dataType: "json",
 		    columns: [{
-		        field: 'id',
-		        title: 'Item ID'
+		        field: 'symbol',
+		        title: '转义字符'
 		    }, {
-		        field: 'name',
-		        title: 'Item Name'
-		    }, {
-		        field: 'price',
-		        title: 'Item Price'
-		    }, ]
+		        field: 'meaning',
+		        title: '含义'
+		    }]
 		});
 </script>
 </html>

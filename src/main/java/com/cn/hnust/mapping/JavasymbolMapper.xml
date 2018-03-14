@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.hnust.dao.JavasymbolMapper">
+  <resultMap id="BaseResultMap" type="com.cn.hnust.pojo.Javasymbol">
+    <result column="symbol" jdbcType="VARCHAR" property="symbol" />
+    <result column="meaning" jdbcType="VARCHAR" property="meaning" />
+  </resultMap>
+  
+  <select id="selectall" resultMap="BaseResultMap"> 
+		select * from javasymbol 
+  </select>
+  
+  <insert id="insert" parameterType="com.cn.hnust.pojo.Javasymbol">
+    insert into javasymbol (symbol, meaning)
+    values (#{symbol,jdbcType=VARCHAR}, #{meaning,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.hnust.pojo.Javasymbol">
+    insert into javasymbol
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="symbol != null">
+        symbol,
+      </if>
+      <if test="meaning != null">
+        meaning,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="symbol != null">
+        #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="meaning != null">
+        #{meaning,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
