@@ -12,12 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cn.hnust.pojo.Elemt;
 import com.cn.hnust.pojo.Javasymbol;
 import com.cn.hnust.service.IJavaSymbol;
 @Controller
 @RequestMapping("/javaPage")
-public class AllText {
+public class JavaPageJson {
 
 	@Resource
 	private IJavaSymbol javaSymbol;
@@ -27,15 +26,5 @@ public class AllText {
 		List<Map<String, Javasymbol>> response = this.javaSymbol.getAllJavasymbol();
 		
 		return response;
-	}
-	
-	public Elemt initElemt(int i){
-		Elemt ele = new Elemt();
-		ele.setId(i);
-		ele.setName(i+"j");
-		ele.setPrice("$"+i);
-
-		return ele;
-		
 	}
 }
