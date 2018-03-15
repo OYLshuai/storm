@@ -67,7 +67,7 @@
 </body>
 <script type="text/javascript" charset="utf-8">
 window.onload = function(){
-	$('.list-group a').bind('click', function(){
+	$('.list-group a').bind('click', function(){	
 	    $(this).addClass('active').siblings().removeClass('active');
 	});
  };

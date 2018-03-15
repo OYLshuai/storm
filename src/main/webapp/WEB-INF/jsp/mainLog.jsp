@@ -39,7 +39,6 @@
 <script type="text/javascript" charset="utf-8">
 	 window.onload = function(){
 		var user = "${row}";
-		console.log("row",user);
 	 };
 </script>
 </html>

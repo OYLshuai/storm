@@ -393,8 +393,45 @@ String a = "\u0001";
 		</pre>
 		<p style="text-indent:24px;">Java语言支持一些特殊的转义字符序列。</p>
 		<table id="tb_departments">
-		
 		</table>
+		<hr/>
+		
+		<h3 class="min_title"> 自动类型转换</h3>
+		<p style="text-indent:24px;"><b>整型、实型（常量）、字符型数据可以混合运算。运算中，不同类型的数据先转化为同一类型，然后进行运算。</b></p>
+		<p style="text-indent:24px;">转换从低级到高级。</p>
+		<pre class="pre_class">
+低  ------------------------------------>  高
+
+byte,short,char—> int —> long—> float —> double 
+		</pre>
+		<br/>
+		<p style="text-indent:24px;">数据类型转换必须满足如下规则：</p>
+		<ul>
+		   <li>
+		      	1. 不能对boolean类型进行类型转换。
+		   </li>
+		   <li>
+		   	  	2. 不能把对象类型转换成不相关类的对象。
+		   </li>
+		   <li>
+		      	3. 在把容量大的类型转换为容量小的类型时必须使用强制类型转换。
+		   </li>
+		   <li> 
+		      	4. 转换过程中可能导致溢出或损失精度，例如：
+		      	<pre class="pre_class">
+int i =128;   
+byte b = (byte)i;
+				</pre>
+				<p style="text-indent:24px;">因为 byte 类型是 8 位，最大值为127，所以当 int 强制转换为 byte 类型时，值 128 时候就会导致溢出。</p>
+		   </li>
+		   <li>
+		      	5. 浮点数到整数的转换是通过舍弃小数得到，而不是四舍五入，例如：
+		      	<pre class="pre_class">
+(int)23.7 == 23;        
+(int)-45.89f == -45
+				</pre>
+		   </li>
+		</ul>
 		<hr/>
 	</div>
 </body>
@@ -412,6 +449,7 @@ String a = "\u0001";
 		font-size: 25px;
 		font-family: Verdana, 微软雅黑,宋体;
 	}
+	thead{background: black;color: white;}
 	pre{margin-left: 20px;width: 95%;}
     h2{display:none;}
     li{padding: 5px;}
@@ -424,6 +462,8 @@ String a = "\u0001";
 	 $('#tb_departments').bootstrapTable({
 		 url: 'tableText.json',
 		 dataType: "json",
+		 striped: true,                      //是否显示行间隔色
+		// pagination: true,                   //是否显示分页（*）
 		    columns: [{
 		        field: 'symbol',
 		        title: '转义字符'

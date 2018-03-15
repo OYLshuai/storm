@@ -1,0 +1,17 @@
+.pre_class{
+	    font: 12px/20px Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;
+	    white-space: pre-wrap;
+	    word-break: break-all;
+	    word-wrap: break-word;
+	    border: 1px solid #ddd;
+	    background: #fbfbfb url(/storm/imge/codecolorer_bg.gif) top;
+	}
+.min_title{
+	color:#333;
+	font-size: 25px;
+	font-family: Verdana, Î¢ÈíÑÅºÚ,ËÎÌå;
+}
+thead{background: black;color: white;}
+pre{margin-left: 20px;width: 95%;}
+h2{display:none;}
+li{padding: 5px;}

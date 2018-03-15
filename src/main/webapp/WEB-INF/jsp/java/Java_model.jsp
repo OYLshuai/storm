@@ -9,6 +9,7 @@
 <!--引入样式 -->
 <link href="/storm/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="/storm/static/css/style.css" rel="stylesheet">
+<link href="/storm/static/css/myStyle.css" rel="stylesheet">
 <!--引入JQuery -->
 <script src="/storm/static/js/uitl.js"></script>
 <script src="/storm/static/js/menu.js"></script>
@@ -34,11 +35,9 @@
 		</div>
 		<h2>title</h2>
 	</div>
+	<%@ include file="/WEB-INF/jsp/jumpPage.jsp" %>
 </body>
-<style>
-    h2{display:none;}
-    li{padding: 5px;}
-</style>
+
 <script type="text/javascript" charset="utf-8">
 	 $(function(){
 		 $("h2").fadeIn();
