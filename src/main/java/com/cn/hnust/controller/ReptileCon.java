@@ -1,5 +1,8 @@
 package com.cn.hnust.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -43,6 +46,8 @@ public class ReptileCon {
 		JSONObject result1 = new JSONObject();
 		JSONObject suImg = new JSONObject();
 		JSONObject faImg = new JSONObject();
+		List<String> suPageUrl = new ArrayList<String>();
+		List<String> faPageUrl = new ArrayList<String>();
 		int suLength = 0;
 		int faLength = 0;
 		String htmlResource = ReptileDowImg.getHtmlResourceByUrl(ImageUrl.getUrl(), ImageUrl.getEncode());
@@ -56,19 +61,22 @@ public class ReptileCon {
             if (!"".equals(imgSrc) && (imgSrc.startsWith("http://") || imgSrc.startsWith("https://"))) {
                 // 判断imgSrc是否为空且是否以"http://"开头
             	log.info("正在下载的图片的地址：" + imgSrc);
+            	suPageUrl.add(suPageUrl.size(), imgSrc);
                 ReptileDowImg.downImages(ImageUrl.getFilepath(), imgSrc);
-            	suImg.put("success:"+imgSrc, imgSrc);
             	suLength++;
             }
             else{
             	log.info("无效的地址：" + imgSrc);
             	faImg.put("faile:"+imgSrc, imgSrc);
+            	faPageUrl.add(faPageUrl.size(), imgSrc);
             	faLength++;
             }
         }
         
         faImg.put("length", faLength);
+        faImg.put("pageUrl", faPageUrl);
         suImg.put("length", suLength);
+        suImg.put("pageUrl", suPageUrl);
         
 		result1.put("success", suImg);
 		result1.put("faile", faImg);

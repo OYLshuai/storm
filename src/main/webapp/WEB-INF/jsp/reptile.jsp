@@ -20,22 +20,24 @@
 <title>Insert title here</title>
 </head>
 <body style="padding: 30px;">
-	<div class="col-md-6">
+<!-- 	<div class="col-md-6">
 		<p class="col-md-3" style="float: left;">百度首页Logo链接：</p>
 		<button type="button" class="btn btn-info col-md-3" onclick="baiduLogo()">（点击爬取）</button>
+	</div> -->
+	<div class="text-center jumbotron" style="padding: 10px;">
+		<!-- <p class="text-center" style="float: left;">爬虫-图片下载：</p> -->
+		<button type="button" class="btn btn-primary btn-lg " style="padding-left: 110px;padding-right: 110px;" onclick="baiduImage()">（点击爬取）</button>
 	</div>
-	<div class="col-md-6">
-		<p class="col-md-3" style="float: left;">爬虫-图片下载：</p>
-		<button type="button" class="btn btn-info col-md-3" onclick="baiduImage()">（点击爬取）</button>
+	<div id="successImg">
+		
 	</div>
-	<div id="context">
+	<div id="faileImg">
 		
 	</div>
 
 
 	<!-- modal -->
-	<div class="modal fade" id="mymodal" tabindex="-1" role="dialog"
-		aria-labelledby="mymodallabel">
+	<div class="modal fade" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="mymodallabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -112,7 +114,7 @@ window.onload = function(){
     });
 }; 
 
-function baiduLogo(){
+/* function baiduLogo(){
 	$.ajax({
 		url : "/storm/reptile/reptileBaidu",
 		type : "POST",
@@ -127,7 +129,7 @@ function baiduLogo(){
 			var message = JSON.stringify(result.flag);
 		}
 	});
-}
+} */
 
 function baiduImage(){
 	$('#mymodal').modal('show');
@@ -153,8 +155,7 @@ function downlodImg(){
 		data : JSON.stringify(data),
 		success : function(result) {
 			showImg(result.success);
-			var message = JSON.stringify(result.success);
-			$('#context').text(message);
+			showUrl(result.faile);
 		},
 		error : function(result) {
 			var message = JSON.stringify(result.flag);
@@ -165,8 +166,26 @@ function downlodImg(){
 
 function showImg(successImg){
 	for(var i=0;i<successImg.length;i++){
-		console.log("success",successImg[i]);
+		console.log("pageUrl",successImg.pageUrl[i])
+ 		$('<img />',{  
+	        src:successImg.pageUrl[i],  
+	        alt:'img!'+i,   
+	        click:function(){  
+	            //alert("hello,img!!!");  
+	        }  
+	    }).css({  
+	        border:'1px solid red',  
+	        cursor:'pointer',  
+	        padding:'5px'  
+	    }).appendTo('#successImg');  
 	}
 }
+
+function showUrl(faileImg){
+	for(var i=0;i<successImg.length;i++){
+		console.log("success",successImg);
+	}
+}
+
 </script>
 </html>
