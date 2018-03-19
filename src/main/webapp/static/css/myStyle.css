@@ -1,3 +1,4 @@
+/* javaæ–‡ä»¶å¤¹çš„æ ·å¼ */
 .pre_class{
 	    font: 12px/20px Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;
 	    white-space: pre-wrap;
@@ -9,9 +10,10 @@
 .min_title{
 	color:#333;
 	font-size: 25px;
-	font-family: Verdana, Î¢ÈíÑÅºÚ,ËÎÌå;
+	font-family: Verdana, å¾®è½¯é›…é»‘;
 }
 thead{background: black;color: white;}
 pre{margin-left: 20px;width: 95%;}
 h2{display:none;}
 li{padding: 5px;}
+

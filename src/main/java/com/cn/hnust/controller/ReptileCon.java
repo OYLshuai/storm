@@ -24,14 +24,12 @@ import com.cn.hnust.reptile.reptile;
 @Controller
 @RequestMapping("/reptile")
 public class ReptileCon {
-    //»ñÈ¡ÈÕÖ¾¼ÇÂ¼Æ÷Logger£¬Ãû×ÖÎª±¾ÀàÀàÃû
     private static Logger log = Logger.getLogger(ReptileCon.class);
     
 
 	@RequestMapping(value = "/reptileBaidu", method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
 	public JSONObject baiduLogo() {
-		// ¶¨Òå¼´½«·ÃÎÊµÄÁ´½Ó
 		String url = "http://www.baidu.com";
 		String result = reptile.SentGet(url);
 		String imgSrc = reptile.RegexString(result, "href=\"(.+?)\"");
@@ -51,24 +49,22 @@ public class ReptileCon {
 		int suLength = 0;
 		int faLength = 0;
 		String htmlResource = ReptileDowImg.getHtmlResourceByUrl(ImageUrl.getUrl(), ImageUrl.getEncode());
-		// ½âÎöÍøÒ³Ô´´úÂë
         Document document = Jsoup.parse(htmlResource);
-        // »ñÈ¡ËùÓĞÍ¼Æ¬µÄµØÖ·
+       // Ö·
         Elements elements = document.getElementsByTag("img");
         
         for(Element element : elements){
             String imgSrc = element.attr("src");
-            if (!"".equals(imgSrc) && (imgSrc.startsWith("http://") || imgSrc.startsWith("https://"))) {
-                // ÅĞ¶ÏimgSrcÊÇ·ñÎª¿ÕÇÒÊÇ·ñÒÔ"http://"¿ªÍ·
-            	log.info("ÕıÔÚÏÂÔØµÄÍ¼Æ¬µÄµØÖ·£º" + imgSrc);
+            if (!"".equals(imgSrc) && (imgSrc.startsWith("http://") || imgSrc.startsWith("https://")) && (imgSrc.endsWith(".jpg") || imgSrc.endsWith(".png") || imgSrc.endsWith(".gif"))) {
             	suPageUrl.add(suPageUrl.size(), imgSrc);
                 ReptileDowImg.downImages(ImageUrl.getFilepath(), imgSrc);
+            	log.info("ä¸‹è½½æˆåŠŸï¼š" + imgSrc);
             	suLength++;
             }
             else{
-            	log.info("ÎŞĞ§µÄµØÖ·£º" + imgSrc);
             	faImg.put("faile:"+imgSrc, imgSrc);
             	faPageUrl.add(faPageUrl.size(), imgSrc);
+            	log.info("ä¸‹è½½å¤±è´¥ï¼š" + imgSrc);
             	faLength++;
             }
         }

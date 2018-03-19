@@ -35,7 +35,9 @@
 		</div>
 		<h2>title</h2>
 	</div>
+	<%@ include file="/WEB-INF/jsp/jumpPage.jsp" %>
 </body>
+
 <script type="text/javascript" charset="utf-8">
 	 $(function(){
 		 $("h2").fadeIn();

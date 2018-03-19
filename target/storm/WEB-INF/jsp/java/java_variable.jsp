@@ -267,6 +267,7 @@ public class Employee {
 		<p style="text-indent:24px;"><b>注意：</b>如果其他类想要访问该变量，可以这样访问：<b>Employee.DEPARTMENT。</b></p>
 		<hr/>
 	</div>
+	<%@ include file="/WEB-INF/jsp/jumpPage.jsp" %>
 </body>
 <style>
 	

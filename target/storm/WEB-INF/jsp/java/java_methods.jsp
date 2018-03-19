@@ -9,6 +9,7 @@
 <!--引入样式 -->
 <link href="/storm/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="/storm/static/css/style.css" rel="stylesheet">
+<link href="/storm/static/css/myStyle.css" rel="stylesheet">
 <!--引入JQuery -->
 <script src="/storm/static/js/uitl.js"></script>
 <script src="/storm/static/js/menu.js"></script>
@@ -17,7 +18,29 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
-<body>
-方法
+<style type="text/css">
+
+.p1 {
+    background-color:#E7EAEB;
+    font-size:12px; 
+    text-indent:24px;
+    padding:15px;
+    }
+
+</style>
+<body >
+	<div style="padding:75px;">
+		<div>
+			<br/>
+		</div>
+		<h2>title</h2>
+	</div>
+	<%@ include file="/WEB-INF/jsp/jumpPage.jsp" %>
 </body>
+
+<script type="text/javascript" charset="utf-8">
+	 $(function(){
+		 $("h2").fadeIn();
+	 });
+</script>
 </html>

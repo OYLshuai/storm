@@ -110,10 +110,7 @@
 			</li>
 		</ul>
 	</div>
-	<div id="jump_div">
-	   <span class="glyphicon glyphicon-chevron-left"></span>
-	   <span class="glyphicon glyphicon-chevron-right"></span>
-	</div>
+	<%@ include file="/WEB-INF/jsp/jumpPage.jsp" %>
 </body>
 <style>
     h2{display:none;}

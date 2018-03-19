@@ -37,6 +37,7 @@
 			后面的去看这个教程吧：<a href="http://www.runoob.com/java/java-environment-setup.html" target="Blank ">Java 环境配置</a>。
 		</p>
 	</div>
+	<%@ include file="/WEB-INF/jsp/jumpPage.jsp" %>
 </body>
 <style>
     h2{display:none;}

@@ -27,18 +27,18 @@ public class UserController {
 		JSONObject result = new JSONObject();
 
 		if (user.getId() == null || user.getPassword() == null) {
-			result.put("message", "ÇëÊäÈëÕËºÅÃÜÂë!");
+			result.put("message", "ç”¨æˆ·åæˆ–è€…å¯†ç é”™è¯¯!");
 			result.put("falg", 0);
 		} else {
 			int userId = user.getId();
 			String Password = user.getPassword();
 			user = this.userService.getUserByPassword(userId, Password);
 			if (user != null) {
-				result.put("message", "µÇÂ½³É¹¦");
+				result.put("message", "ç™»é™†æˆåŠŸ");
 				result.put("row", user);
 				result.put("falg", 2);
 			} else {
-				result.put("message", "µÇÂ½Ê§°Ü£¬ÇëÑéÖ¤ÕËºÅÃÜÂë£¡");
+				result.put("message", "ç™»å½•å¤±è´¥");
 				result.put("falg", 1);
 			}
 		}

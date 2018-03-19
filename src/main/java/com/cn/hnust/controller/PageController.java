@@ -1,5 +1,5 @@
 /***
- * ∂•…œµº∫Ω¿∏Ã¯◊™øÿ÷∆
+ * È°µÈù¢Ë∑≥ËΩ¨
  */
 package com.cn.hnust.controller;
 
@@ -40,5 +40,11 @@ public class PageController {
 	public String htmlJsp(HttpServletRequest request, Model model) {
 		model.addAttribute("row", "1");
 		return "html_jsp";
+	}
+	
+	@RequestMapping("/demoJsp")
+	public String demoJsp(HttpServletRequest request, Model model) {
+		model.addAttribute("row", "1");
+		return "testDemo";
 	}
 }

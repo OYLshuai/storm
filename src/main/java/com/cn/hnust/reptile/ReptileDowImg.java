@@ -1,5 +1,5 @@
 /**********
- * ÅÀ³æµÄÍ¼Æ¬ÏÂÔØ
+ * çˆ¬è™«
  */
 package com.cn.hnust.reptile;
 
@@ -15,7 +15,7 @@ import java.net.URLConnection;
 
 public class ReptileDowImg {
 	/**
-	 * ¸ù¾İÍøÒ³ºÍ±àÂë»ñÈ¡ÍøÒ³ÄÚÈİºÍÔ´´úÂë
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½Í±ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Ò³ï¿½ï¿½ï¿½İºï¿½Ô´ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param url
 	 * @param encoding
@@ -28,18 +28,18 @@ public class ReptileDowImg {
 		BufferedReader reader = null;
 
 		try {
-			// ½¨Á¢ÍøÂçÁ¬½Ó
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			urlObj = new URL(url);
-			// ´ò¿ªÍøÂçÁ¬½Ó
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			uc = urlObj.openConnection();
-			// ´´½¨ÊäÈëÁ÷
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			in = new InputStreamReader(uc.getInputStream(), encoding);
-			// ´´½¨Ò»¸ö»º³åĞ´ÈëÁ÷
+			// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ´ï¿½ï¿½ï¿½ï¿½
 			reader = new BufferedReader(in);
 
 			String line = null;
 			while ((line = reader.readLine()) != null) {
-				// Ò»ĞĞÒ»ĞĞ×·¼Ó
+				// Ò»ï¿½ï¿½Ò»ï¿½ï¿½×·ï¿½ï¿½
 				buffer.append(line + "\r\n");
 			}
 
@@ -58,27 +58,25 @@ public class ReptileDowImg {
 	}
 
 	/**
-	 * ¸ù¾İÍ¼Æ¬µÄURLÏÂÔØµÄÍ¼Æ¬µ½±¾µØµÄfilePath
+	 * ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½URLï¿½ï¿½ï¿½Øµï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½filePath
 	 * 
 	 * @param filePath
-	 *            ÎÄ¼ş¼Ğ
+	 *            ï¿½Ä¼ï¿½ï¿½ï¿½
 	 * @param imageUrl
-	 *            Í¼Æ¬µÄÍøÖ·
+	 *            Í¼Æ¬ï¿½ï¿½ï¿½ï¿½Ö·
 	 */
 	public static void downImages(String filePath, String imageUrl) {
-		// ½ØÈ¡Í¼Æ¬µÄÃû³Æ
 		String fileName = imageUrl.substring(imageUrl.lastIndexOf("/"));
 
-		// ´´½¨ÎÄ¼şµÄÄ¿Â¼½á¹¹
 		File files = new File(filePath);
-		if (!files.exists()) {// ÅĞ¶ÏÎÄ¼ş¼ĞÊÇ·ñ´æÔÚ£¬Èç¹û²»´æÔÚ¾Í´´½¨Ò»¸öÎÄ¼ş¼Ğ
+		if (!files.exists()) {// æ–‡ä»¶å¤¹ä¸å­˜åœ¨åˆ™åˆ›å»ºæ–‡ä»¶å¤¹
 			files.mkdirs();
 		}
 		try {
 			URL url = new URL(imageUrl);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			InputStream is = connection.getInputStream();
-			// ´´½¨ÎÄ¼ş
+			// ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 			File file = new File(filePath + fileName);
 			FileOutputStream out = new FileOutputStream(file);
 			int i = 0;
