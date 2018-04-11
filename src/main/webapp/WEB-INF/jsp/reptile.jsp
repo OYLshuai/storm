@@ -250,7 +250,7 @@ function showImg(successImg){
 	    	    }).appendTo('#bigImgDiv'); 
 	        }  
 	    }).css({  
-	        border:'1px solid red',  
+	        //border:'1px solid red',  
 	        cursor:'pointer',  
 	        padding:'5px'  
 	    }).appendTo('#successImg');  
@@ -262,7 +262,7 @@ function showUrl(faileImg){
  		$('<p />',{  
  			html:"失败图片链接：<b>" + faileImg.pageUrl[i] + "</b>"
 	    }).css({  
-	        border:'1px solid red', 
+	        //border:'1px solid red', 
 	        padding:'5px'  
 	    }).appendTo('#faileImg');  
 	}
