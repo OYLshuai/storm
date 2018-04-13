@@ -14,7 +14,7 @@
 <script src="/storm/static/js/menu.js"></script>
 <script src="/storm/static/js/jquery.min.js"></script>
 <script src="/storm/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
 <body>

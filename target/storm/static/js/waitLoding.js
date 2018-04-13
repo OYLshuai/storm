@@ -28,12 +28,13 @@ var loding = {
 	"Request":function(){
 	    //请求时spinner出现
 	    $("#mb").css("display","block");
-	    var target1 = $(".firstDiv").get(0);
+	    var target1 = $("#md").get(0);
 	    spinner.spin(target1);
-	    //var target = $("#firstDiv").get(0);
-	    //spinner.spin(target);
+	    var target = $("#firstDiv").get(0);
+	    spinner.spin(target);
 	},
 	"Repost":function(){
 		spinner.spin();
+	    $("#mb").css("display","none");
 	}
 }
