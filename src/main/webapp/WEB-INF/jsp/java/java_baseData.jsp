@@ -392,6 +392,7 @@ char a = '\u0001';
 String a = "\u0001";
 		</pre>
 		<p style="text-indent:24px;">Java语言支持一些特殊的转义字符序列。</p>
+
 		<table id="tb_departments">
 		</table>
 		<hr/>
@@ -461,7 +462,7 @@ byte b = (byte)i;
 	 });
 	 
 	 $('#tb_departments').bootstrapTable({
-		 url: 'tableText.json',
+		 url: '../javaDate/tableText.json',
 		 dataType: "json",
 		 striped: true,                      //是否显示行间隔色
 		// pagination: true,                   //是否显示分页（*）

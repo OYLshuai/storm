@@ -16,7 +16,7 @@
   </insert>
   <insert id="insertSelective" parameterType="com.cn.hnust.pojo.Javasymbol">
     insert into javasymbol
-    <trim prefix="(" suffix=")" suffixOverrides=",">
+    <trim prefix="(" suffix=")" suffixOverrides=","> 
       <if test="symbol != null">
         symbol,
       </if>

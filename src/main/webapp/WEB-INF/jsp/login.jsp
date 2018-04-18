@@ -50,6 +50,17 @@
 	 var user = "${user}";
 	 console.log("user",user);
 	 }; */
+
+    $(document).keyup("keydown",function(e){
+        // 兼容FF和IE和Opera
+        var theEvent = e || window.event;
+        var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+        if (code == 13) {
+            //回车执行查询
+            login();
+        }
+    })
+
 	function login() {
 		checkInput();
 		var data = {
