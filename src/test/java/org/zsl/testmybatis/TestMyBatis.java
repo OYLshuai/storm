@@ -28,7 +28,7 @@ import com.cn.hnust.service.IUserService;
     //      userService = (IUserService) ac.getBean("userService");  
     //  }  
       
-        @Test  
+        @Test
         public void test1() {  
             User user = userService.getUserById(1);  
             // System.out.println(user.getUserName());  

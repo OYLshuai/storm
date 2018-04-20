@@ -8,11 +8,26 @@
     <result column="price" jdbcType="INTEGER" property="price" />
     <result column="remak" jdbcType="VARCHAR" property="remak" />
   </resultMap>
+  
+  <select id="selectAllRoom" resultMap="BaseResultMap"> 
+		select * from room 
+  </select>
+  
+  <select id="selectCheckRoom" resultMap="BaseResultMap"> 
+		select * from room where rstate in ('2','3','4','5')
+  </select>
+  
+  <select id="selectUnCheckRoom" resultMap="BaseResultMap"> 
+		select * from room where rstate = '1'
+  </select>
+  
   <insert id="insert" parameterType="com.cn.hnust.pojo.Room">
-    insert into room (roomno, roomtype, rstate, 
-      price, remak)
-    values (#{roomno,jdbcType=INTEGER}, #{roomtype,jdbcType=CHAR}, #{rstate,jdbcType=CHAR}, 
-      #{price,jdbcType=INTEGER}, #{remak,jdbcType=VARCHAR})
+    insert into room (roomno, roomtype, rstate, price, remak)
+    values (#{roomno,jdbcType=INTEGER}, 
+            #{roomtype,jdbcType=CHAR}, 
+            #{rstate,jdbcType=CHAR}, 
+            #{price,jdbcType=INTEGER},
+            #{remak,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cn.hnust.pojo.Room">
     insert into room

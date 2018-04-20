@@ -46,12 +46,13 @@
 		  <a href="#" class="list-group-item">客户检查</a>
 		  <a href="#" class="list-group-item">订单信息</a>
 		  <a href="#" class="list-group-item">客户退房</a>
+		  <a href="/storm/system/SystemDict" target="systemIframe" class="list-group-item">数据字典设置</a>
 		</div>
 		
 		<div class="col-md-10" style="padding-left: 0px;padding-right: 0px;">
 			<div id="content" class="wrapperXXX jumbotron " style="padding-top: 0px; padding-bottom: 3px;">
 				<div class="container-fluid mainXXX ">
-					<iframe id="systemIframe" name="systemIframe" src=" " width="84%" height="100%" frameborder="no" scrolling="yes"> 
+					<iframe id="systemIframe" name="systemIframe" src="/storm/system/SystemMain" width="82%" height="100%" frameborder="no" scrolling="yes"> 
 						
 					</iframe>
 				</div>

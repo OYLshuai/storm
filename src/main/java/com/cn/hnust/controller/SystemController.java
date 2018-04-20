@@ -10,8 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/system")
 public class SystemController {
 	@RequestMapping("/SystemMain")
-	public String text(HttpServletRequest request, Model model) {
+	public String SystemMain(HttpServletRequest request, Model model) {
 		model.addAttribute("row", "1");
 		return "system/SystemMain";
+	}
+
+	@RequestMapping("/SystemDict")
+	public String SystemDict(HttpServletRequest request, Model model) {
+		model.addAttribute("row", "1");
+		return "system/SystemDict";
 	}
 }
