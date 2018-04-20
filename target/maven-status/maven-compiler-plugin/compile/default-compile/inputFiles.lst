@@ -15,9 +15,11 @@ E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\pojo\Javasymbol.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\dao\RoomMapper.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\controller\UserController.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\reptile\ReptileDowImg.java
+E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\ISysdictService.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\controller\JavaPageCon.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\IUserService.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\dao\DictindexMapper.java
+E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\controller\SysDictionrayController.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\controller\ReptileCon.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\dao\JavasymbolMapper.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\controller\JavaPageJson.java
@@ -29,3 +31,4 @@ E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\pojo\Customer.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\pojo\Dictindex.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\impl\JavaSymbolServiceImpl.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\dao\CustomerMapper.java
+E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\impl\SysdictServiceImpl.java

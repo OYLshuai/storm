@@ -7,6 +7,15 @@
     <result column="SUBENTRY" jdbcType="VARCHAR" property="subentry" />
     <result column="SUBPROMPT" jdbcType="VARCHAR" property="subprompt" />
   </resultMap>
+  
+  <select id="selectAllDict" resultMap="BaseResultMap"> 
+		select * from sysdictionary 
+  </select>
+  
+  <select id="selectByDictEntryDict" parameterType="java.lang.Integer" resultMap="BaseResultMap"> 
+		select * from sysdictionary where DICTENTRY = #{DICTENTRY,jdbcType=INTEGER}
+  </select>
+  
   <insert id="insert" parameterType="com.cn.hnust.pojo.Sysdictionary">
     insert into sysdictionary (DICTENTRY, DICTPROMPT, SUBENTRY, 
       SUBPROMPT)
