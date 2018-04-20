@@ -17,10 +17,10 @@
     <result column="leavetime" jdbcType="TIME" property="leavetime" />
     <result column="begintime" jdbcType="TIME" property="begintime" />
     <result column="endtime" jdbcType="TIME" property="endtime" />
-    <result column="orderstate" jdbcType="CHAR" property="orderstate" />
-    <result column="ordertype" jdbcType="CHAR" property="ordertype" />
-    <result column="paystate" jdbcType="CHAR" property="paystate" />
-    <result column="cstate" jdbcType="CHAR" property="cstate" />
+    <result column="orderstate" jdbcType="VARCHAR" property="orderstate" />
+    <result column="ordertype" jdbcType="VARCHAR" property="ordertype" />
+    <result column="paystate" jdbcType="VARCHAR" property="paystate" />
+    <result column="cstate" jdbcType="VARCHAR" property="cstate" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
   <insert id="insert" parameterType="com.cn.hnust.pojo.Checkorder">
@@ -36,8 +36,8 @@
       #{enddate,jdbcType=DATE}, #{checkdate,jdbcType=DATE}, #{reservedate,jdbcType=DATE}, 
       #{leavedate,jdbcType=DATE}, #{checktime,jdbcType=TIME}, #{reservetime,jdbcType=TIME}, 
       #{leavetime,jdbcType=TIME}, #{begintime,jdbcType=TIME}, #{endtime,jdbcType=TIME}, 
-      #{orderstate,jdbcType=CHAR}, #{ordertype,jdbcType=CHAR}, #{paystate,jdbcType=CHAR}, 
-      #{cstate,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR})
+      #{orderstate,jdbcType=VARCHAR}, #{ordertype,jdbcType=VARCHAR}, #{paystate,jdbcType=VARCHAR}, 
+      #{cstate,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cn.hnust.pojo.Checkorder">
     insert into checkorder
@@ -150,16 +150,16 @@
         #{endtime,jdbcType=TIME},
       </if>
       <if test="orderstate != null">
-        #{orderstate,jdbcType=CHAR},
+        #{orderstate,jdbcType=VARCHAR},
       </if>
       <if test="ordertype != null">
-        #{ordertype,jdbcType=CHAR},
+        #{ordertype,jdbcType=VARCHAR},
       </if>
       <if test="paystate != null">
-        #{paystate,jdbcType=CHAR},
+        #{paystate,jdbcType=VARCHAR},
       </if>
       <if test="cstate != null">
-        #{cstate,jdbcType=CHAR},
+        #{cstate,jdbcType=VARCHAR},
       </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},

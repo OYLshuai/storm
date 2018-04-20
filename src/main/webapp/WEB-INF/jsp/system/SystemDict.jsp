@@ -22,6 +22,7 @@
 <title>Insert title here</title>
 </head>
 <body style="margin: 20px;">
+	<div style="display:none" class="alert alert-danger" role="alert">未知错误</div>
 	<div class="col-md-12">
 		<div class="col-md-2">
 			<strong>父项数据字典</strong>
@@ -125,9 +126,12 @@ function findChildDict(row){
 			//var message = JSON.stringify(result.message);
 			console.log(result);
 			$("#dictionaryData").bootstrapTable('load',result);
+			
 		},
 		error : function(result) {
 			//var message = JSON.stringify(result.message);
+			$(".alert").show(500);
+			setTimeout("$('.alert').hide(500);",2000)
 		}
 	});
 }

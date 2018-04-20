@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cn.hnust.pojo.Room;
-import com.cn.hnust.service.IRoomService;
+import com.cn.hnust.service.IRoomService; 
 
 @Controller
 @RequestMapping("/roomData")
@@ -23,6 +23,7 @@ public class RoomController {
 	@RequestMapping("/allRoom")
 	public @ResponseBody List<Map<String, Room>> allRoom(HttpServletRequest httpReqest){
 		List<Map<String, Room>> response = this.roomService.getAllRoom();
+		
 		return response;
 	}
 	
@@ -35,6 +36,7 @@ public class RoomController {
 	@RequestMapping("/unCheckRoom")
 	public @ResponseBody List<Map<String, Room>> unCheckRoom(HttpServletRequest httpReqest){
 		List<Map<String, Room>> response = this.roomService.getUnCheckRoom();
+		
 		return response;
 	}
 

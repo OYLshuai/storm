@@ -22,6 +22,7 @@
 <title>Insert title here</title>
 </head>
 <body style="margin: 20px;">
+	<div style="display:none" class="alert alert-danger" role="alert">未知错误</div>
 	<div class="col-md-12">
 		<div class="col-md-2">
 			<strong>父项数据字典</strong>
@@ -101,6 +102,7 @@ $('#dictEntryData').bootstrapTable({
     showRefresh: true,                  //是否显示刷新按钮
     minimumCountColumns: 2,             //最少允许的列数
     height:765,
+    onClickRow: function(row){ findChildDict(row) },  //单击方法
     clickToSelect: true,                //是否启用点击选中行
 	    columns: [{
 	        field: 'dictentry',
@@ -111,5 +113,27 @@ $('#dictEntryData').bootstrapTable({
 	    }]
 	});
 
+function findChildDict(row){
+	console.log("click:" + row.dictentry)
+	$.ajax({
+		url : "../dictData/byEntry?entry=" + row.dictentry,
+		type : "POST",
+		dataType : "json",
+		contentType : "application/json;charset=UTF-8",
+		// <!-- 向后端传输的数据 -->
+		data : JSON.stringify(row),
+		success : function(result) {
+			//var message = JSON.stringify(result.message);
+			console.log(result);
+			$("#dictionaryData").bootstrapTable('load',result);
+			
+		},
+		error : function(result) {
+			//var message = JSON.stringify(result.message);
+			$(".alert").show(500);
+			setTimeout("$('.alert').hide(500);",2000)
+		}
+	});
+}
 </script>
 </html>

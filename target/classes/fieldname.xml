@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<FieldItems>
+  <FieldItem english_name='rstate' entry_name='客房状态' dict_entry='1001' />
+  <FieldItem english_name='roomtype' entry_name='客房类型' dict_entry='1002' />
+  <FieldItem english_name='cstate' entry_name='客户状态' dict_entry='1003' />
+  <FieldItem english_name='paystate' entry_name='支付状态' dict_entry='1004' />
+  <FieldItem english_name='orderstate' entry_name='订单状态' dict_entry='1005' />
+  <FieldItem english_name='ordertype' entry_name='订单类型' dict_entry='1006' />
+</FieldItems>

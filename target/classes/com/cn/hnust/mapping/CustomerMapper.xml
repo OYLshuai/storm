@@ -6,7 +6,7 @@
     <result column="idno" jdbcType="CHAR" property="idno" />
     <result column="phone" jdbcType="CHAR" property="phone" />
     <result column="sex" jdbcType="CHAR" property="sex" />
-    <result column="ctype" jdbcType="CHAR" property="ctype" />
+    <result column="ctype" jdbcType="VARCHAR" property="ctype" />
     <result column="frequency" jdbcType="INTEGER" property="frequency" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
@@ -15,7 +15,7 @@
       sex, ctype, frequency, remark
       )
     values (#{cname,jdbcType=VARCHAR}, #{idno,jdbcType=CHAR}, #{phone,jdbcType=CHAR}, 
-      #{sex,jdbcType=CHAR}, #{ctype,jdbcType=CHAR}, #{frequency,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}
+      #{sex,jdbcType=CHAR}, #{ctype,jdbcType=VARCHAR}, #{frequency,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.cn.hnust.pojo.Customer">
@@ -57,7 +57,7 @@
         #{sex,jdbcType=CHAR},
       </if>
       <if test="ctype != null">
-        #{ctype,jdbcType=CHAR},
+        #{ctype,jdbcType=VARCHAR},
       </if>
       <if test="frequency != null">
         #{frequency,jdbcType=INTEGER},
