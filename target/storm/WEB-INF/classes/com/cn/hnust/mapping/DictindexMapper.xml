@@ -6,6 +6,11 @@
     <result column="ENTRY" jdbcType="VARCHAR" property="entry" />
     <result column="ENTRYPort" jdbcType="VARCHAR" property="entryport" />
   </resultMap>
+  
+  <select id="selectAllDictEntry" resultMap="BaseResultMap"> 
+		select * from dictindex 
+  </select>
+  
   <insert id="insert" parameterType="com.cn.hnust.pojo.Dictindex">
     insert into dictindex (DICTENTRY, ENTRY, ENTRYPort
       )

@@ -7,7 +7,9 @@ E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\controller\RoomController.jav
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\dao\UserMapper.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\pojo\ImageUrl.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\impl\RoomServiceImpl.java
+E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\IDictIndex.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\impl\UserServiceImpl.java
+E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\impl\DictIndexService.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\IJavaSymbol.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\controller\SystemController.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\IRoomService.java

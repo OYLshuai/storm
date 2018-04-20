@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cn.hnust.pojo.Dictindex;
 import com.cn.hnust.pojo.Sysdictionary;
-//import com.cn.hnust.service.IDictIndex;
+import com.cn.hnust.service.IDictIndex;
 import com.cn.hnust.service.ISysdictService;
 
 @Controller
@@ -22,8 +22,8 @@ public class SysDictionrayController {
 	@Resource
 	private ISysdictService sysDictService;
 	
-	//@Resource
-	//private IDictIndex dictService;
+	@Resource
+	private IDictIndex dictService;
 	/**
 	 * 获取所有字典项
 	 * @param httpReqest
@@ -52,9 +52,9 @@ public class SysDictionrayController {
 	 * @param httpReqest
 	 * @return
 	 */
-/*	@RequestMapping("/allDict")
+	@RequestMapping("/allDict")
 	public @ResponseBody List<Map<String, Dictindex>> allDict(HttpServletRequest httpReqest){
 		List<Map<String, Dictindex>> response = this.dictService.selectAllDictEntry();
 		return response;
-	}*/
+	}
 }
