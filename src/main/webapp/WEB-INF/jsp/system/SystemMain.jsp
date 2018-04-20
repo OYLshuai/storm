@@ -10,6 +10,7 @@
 <link href="/storm/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="/storm/static/css/style.css" rel="stylesheet">
 <link href="/storm/static/bootstrap-3.3.7-dist/css/bootstrap-table.min.css" rel="stylesheet">
+<link href="/storm/static/bootstrap-3.3.7-dist/css/bootstrap-select.min.css" rel="stylesheet">
 
 <!--引入JQuery -->
 <script src="/storm/static/js/uitl.js"></script>
@@ -17,6 +18,7 @@
 <script src="/storm/static/js/jquery.min.js"></script>
 <script src="/storm/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="/storm/static/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
+<script src="/storm/static/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
 <script src="/storm/static/bootstrap-3.3.7-dist/js/bootstrap-table-zh-CN.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
@@ -24,17 +26,8 @@
 <body style="margin: 20px;">
 	<div class = "">
 		<div id = "unCheckRoom">
-			<strong>可出租房间</strong>
 			<div id="unCheckToolbar" class="btn-group">
-	            <button id="btn_add" type="button" class="btn btn-default">
-	                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
-	            </button>
-	            <button id="btn_edit" type="button" class="btn btn-default">
-	                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
-	            </button>
-	            <button id="btn_delete" type="button" class="btn btn-default">
-	                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
-	            </button>
+				<strong>可出租房间</strong>
 	        </div>
 	        <div name="tableDiv" style=" OVERFLOW-Y: auto; OVERFLOW-X:hidden; height:380px;">
 				<table id="unCheckRoomData">
@@ -43,17 +36,8 @@
 			</div>
 		</div>
 		<div id = "checkRoom" >
-			<strong>不可出租房间</strong>
 			<div id="checkToolbar" class="btn-group">
-	            <button id="btn_add" type="button" class="btn btn-default">
-	                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
-	            </button>
-	            <button id="btn_edit" type="button" class="btn btn-default">
-	                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
-	            </button>
-	            <button id="btn_delete" type="button" class="btn btn-default">
-	                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
-	            </button>
+				<strong>不可出租房间</strong>
 	        </div>
 	        <div name="tableDiv" style="OVERFLOW-Y: auto; OVERFLOW-X:hidden;height:380px;">
 				<table id="checkRoomData">
@@ -61,12 +45,128 @@
 				</table>
 			</div>
 		</div>
+		
+		<!-- 模态框（Modal） -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							房间设置
+						</h4>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" role="form">
+							<div class="form-group">  
+	                            <label for="roomno" class="col-sm-2 control-label">房号: </label>  
+	                            <div class="col-sm-10">  
+	                                <input type="text" class="form-control" id="roomno" name="roomno" disabled="disabled">  
+	                            </div>  
+	                        </div> 
+							<div class="form-group">  
+	                            <label for="roomtype" class="col-sm-2 control-label">房间类型: </label>  
+	                            <div class="col-sm-10">  
+	                                <select id="roomtype" class="selectpicker" data-live-search="false" disabled="disabled"></select>  
+	                            </div>  
+	                        </div>
+							<div class="form-group">  
+	                            <label for="rstate" class="col-sm-2 control-label">房间状态: </label>  
+	                            <div class="col-sm-10">  
+	                                <select  id="rstate" class="selectpicker" data-live-search="false"></select>  
+	                            </div>  
+	                        </div>
+							<div class="form-group">  
+	                            <label for="price" class="col-sm-2 control-label">房间价格: </label>  
+	                            <div class="col-sm-10">  
+	                                <input type="text" class="form-control" id="price" name="price">  
+	                            </div>  
+	                        </div>
+	                        <div class="form-group">  
+	                            <label for="remark" class="col-sm-2 control-label">备注</label>  
+	                            <div class="col-sm-10">  
+	                                <input  class="form-control"  name="remark" id="remark" > 
+	                            </div>  
+	                        </div>  
+                		</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button id="commit" type="button" class="btn btn-primary">
+							提交更改
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal -->
+		</div>
+		
 	</div>
 </body>
 <script type="text/javascript" charset="utf-8">
-	 $(function(){
-		 //$("h2").fadeIn();
-	 });
+
+	$(function(){
+		 dictEntry("roomtype",1002);
+		 dictEntry("rstate",1001);
+	});
+
+	$(window).on('load', function() {  
+	    $('#rstate').selectpicker('val', '');  
+	    $('#rstate').selectpicker('refresh');  
+	    $('#roomtype').selectpicker('val', '');  
+	    $('#roomtype').selectpicker('refresh');  
+	    
+	});
+
+	 $(".selectpicker").selectpicker({  
+           noneSelectedText : '请选择'
+    });  
+	 
+	 function dictEntry(selectId,dictEntry){
+		//下拉数据加载  
+       $.ajax({  
+             type : 'get',  
+             url : "../dictData/byEntry?entry=" + dictEntry,  
+             dataType : 'json',  
+             success : function(datas) {//返回list数据并循环获取  
+                 var select = $("#"+selectId);  
+                 for (var i = 0; i < datas.length; i++) {  
+                     select.append("<option value='"+datas[i].subprompt+"'>"  
+                             + datas[i].subprompt + "</option>");  
+                 }  
+                 select.selectpicker('val', '');  
+                 select.selectpicker('refresh');  
+             }  
+         }); 
+	 }
+	 
+	 function modUnCheckRoom(row){
+	 	$('#myModal').modal('show');
+	 	$('#roomno').val(row.roomno);
+	 	$('#roomtype').val(row.roomtype);
+	 	$('#rstate').val(row.rstate);
+	 	$('#price').val(row.price);
+	 	$('#remark').val(row.remark);
+	 }
+	 
+	 function operateFormatter(value, row, index) {
+	        return '<a class="mod" style="cursor:pointer">修改</a> ' + '<a class="del" style="cursor:pointer">删除</a> ';
+	  }
+	 
+    //表格  - 操作 - 事件
+    window.operateEvents = {
+        'click .mod': function(e, value, row, index) {      
+              //修改操作
+        	modUnCheckRoom(row);
+         },
+        'click .del': function(e, value, row, index) {      
+             //删除操作
+             
+         }
+            
+     }
 	 
 	 $('#checkRoomData').bootstrapTable({
 		 url: '../roomData/checkRoom.json',
@@ -104,7 +204,11 @@
 		        title: '备注'
 		    }, {
 		        field: 'opreter',
-		        title: '操作'
+		        title: '操作',
+                align : 'center',
+                width : '15%',
+                events : operateEvents,
+                formatter : operateFormatter
 		    }]
 		});
 	 
@@ -144,7 +248,11 @@
 		        title: '备注'
 		    }, {
 		        field: 'opreter',
-		        title: '操作'
+		        title: '操作',
+                align : 'center',
+                width : '15%',
+                events : operateEvents,
+                formatter : operateFormatter
 		    }]
 		});
 </script>
