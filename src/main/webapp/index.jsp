@@ -52,7 +52,7 @@
 						Java <span class="caret"> </span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="/storm/page/javaPage" target="iframe">Java 基础</a></li>
+						<li><a href="/storm/page/java" target="iframe">Java 基础</a></li>
 						<li><a href="/storm/page/javaSpringPage" target="iframe">Java Spring</a></li>
 						<li><a href="#">SpringMVC</a></li>
 						<li role="separator" class="divider"></li>
@@ -64,20 +64,7 @@
 				<li id="Link_1"><a href="/storm/page/javaReptilePage" target="iframe">爬虫 <span class="sr-only">(current)</span></a></li>
 				<li id="Link_2"><a href="/storm/page/htmlJsp" target="iframe">HTML5</a></li>
 				<li id="Link_3"><a href="/storm/page/demoJsp" target="iframe">演示demo</a></li>
-				<li id="Link_4" class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-					Dropdown <span class="caret"> </span>
-				</a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">Separated link</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul>
-				</li>
+				<li id="Link_4"><a href="/storm/page/systemPage" target="iframe">七家系统</a></li>
 			</ul>
 			<form class="navbar-form navbar-left">
 				<div class="form-group">

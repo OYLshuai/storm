@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.hnust.dao.DictindexMapper">
+  <resultMap id="BaseResultMap" type="com.cn.hnust.pojo.Dictindex">
+    <result column="DICTENTRY" jdbcType="INTEGER" property="dictentry" />
+    <result column="ENTRY" jdbcType="VARCHAR" property="entry" />
+    <result column="ENTRYPort" jdbcType="VARCHAR" property="entryport" />
+  </resultMap>
+  <insert id="insert" parameterType="com.cn.hnust.pojo.Dictindex">
+    insert into dictindex (DICTENTRY, ENTRY, ENTRYPort
+      )
+    values (#{dictentry,jdbcType=INTEGER}, #{entry,jdbcType=VARCHAR}, #{entryport,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.hnust.pojo.Dictindex">
+    insert into dictindex
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dictentry != null">
+        DICTENTRY,
+      </if>
+      <if test="entry != null">
+        ENTRY,
+      </if>
+      <if test="entryport != null">
+        ENTRYPort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dictentry != null">
+        #{dictentry,jdbcType=INTEGER},
+      </if>
+      <if test="entry != null">
+        #{entry,jdbcType=VARCHAR},
+      </if>
+      <if test="entryport != null">
+        #{entryport,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

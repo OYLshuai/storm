@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.hnust.dao.SysdictionaryMapper">
+  <resultMap id="BaseResultMap" type="com.cn.hnust.pojo.Sysdictionary">
+    <result column="DICTENTRY" jdbcType="INTEGER" property="dictentry" />
+    <result column="DICTPROMPT" jdbcType="VARCHAR" property="dictprompt" />
+    <result column="SUBENTRY" jdbcType="VARCHAR" property="subentry" />
+    <result column="SUBPROMPT" jdbcType="VARCHAR" property="subprompt" />
+  </resultMap>
+  <insert id="insert" parameterType="com.cn.hnust.pojo.Sysdictionary">
+    insert into sysdictionary (DICTENTRY, DICTPROMPT, SUBENTRY, 
+      SUBPROMPT)
+    values (#{dictentry,jdbcType=INTEGER}, #{dictprompt,jdbcType=VARCHAR}, #{subentry,jdbcType=VARCHAR}, 
+      #{subprompt,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.hnust.pojo.Sysdictionary">
+    insert into sysdictionary
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dictentry != null">
+        DICTENTRY,
+      </if>
+      <if test="dictprompt != null">
+        DICTPROMPT,
+      </if>
+      <if test="subentry != null">
+        SUBENTRY,
+      </if>
+      <if test="subprompt != null">
+        SUBPROMPT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dictentry != null">
+        #{dictentry,jdbcType=INTEGER},
+      </if>
+      <if test="dictprompt != null">
+        #{dictprompt,jdbcType=VARCHAR},
+      </if>
+      <if test="subentry != null">
+        #{subentry,jdbcType=VARCHAR},
+      </if>
+      <if test="subprompt != null">
+        #{subprompt,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

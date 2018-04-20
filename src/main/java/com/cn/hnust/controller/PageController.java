@@ -47,4 +47,10 @@ public class PageController {
 		model.addAttribute("row", "1");
 		return "testDemo";
 	}
+	
+	@RequestMapping("/systemPage")
+	public String systemPage(HttpServletRequest request, Model model) {
+		model.addAttribute("row", "1");
+		return "system";
+	}
 }

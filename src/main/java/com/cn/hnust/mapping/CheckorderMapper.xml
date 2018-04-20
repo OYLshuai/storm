@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.hnust.dao.CheckorderMapper">
+  <resultMap id="BaseResultMap" type="com.cn.hnust.pojo.Checkorder">
+    <result column="orderno" jdbcType="INTEGER" property="orderno" />
+    <result column="roomno" jdbcType="INTEGER" property="roomno" />
+    <result column="idno" jdbcType="CHAR" property="idno" />
+    <result column="cname" jdbcType="VARCHAR" property="cname" />
+    <result column="phone" jdbcType="CHAR" property="phone" />
+    <result column="begindate" jdbcType="DATE" property="begindate" />
+    <result column="enddate" jdbcType="DATE" property="enddate" />
+    <result column="checkdate" jdbcType="DATE" property="checkdate" />
+    <result column="reservedate" jdbcType="DATE" property="reservedate" />
+    <result column="leavedate" jdbcType="DATE" property="leavedate" />
+    <result column="checktime" jdbcType="TIME" property="checktime" />
+    <result column="reservetime" jdbcType="TIME" property="reservetime" />
+    <result column="leavetime" jdbcType="TIME" property="leavetime" />
+    <result column="begintime" jdbcType="TIME" property="begintime" />
+    <result column="endtime" jdbcType="TIME" property="endtime" />
+    <result column="orderstate" jdbcType="CHAR" property="orderstate" />
+    <result column="ordertype" jdbcType="CHAR" property="ordertype" />
+    <result column="paystate" jdbcType="CHAR" property="paystate" />
+    <result column="cstate" jdbcType="CHAR" property="cstate" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <insert id="insert" parameterType="com.cn.hnust.pojo.Checkorder">
+    insert into checkorder (orderno, roomno, idno, 
+      cname, phone, begindate, 
+      enddate, checkdate, reservedate, 
+      leavedate, checktime, reservetime, 
+      leavetime, begintime, endtime, 
+      orderstate, ordertype, paystate, 
+      cstate, remark)
+    values (#{orderno,jdbcType=INTEGER}, #{roomno,jdbcType=INTEGER}, #{idno,jdbcType=CHAR}, 
+      #{cname,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, #{begindate,jdbcType=DATE}, 
+      #{enddate,jdbcType=DATE}, #{checkdate,jdbcType=DATE}, #{reservedate,jdbcType=DATE}, 
+      #{leavedate,jdbcType=DATE}, #{checktime,jdbcType=TIME}, #{reservetime,jdbcType=TIME}, 
+      #{leavetime,jdbcType=TIME}, #{begintime,jdbcType=TIME}, #{endtime,jdbcType=TIME}, 
+      #{orderstate,jdbcType=CHAR}, #{ordertype,jdbcType=CHAR}, #{paystate,jdbcType=CHAR}, 
+      #{cstate,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.hnust.pojo.Checkorder">
+    insert into checkorder
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderno != null">
+        orderno,
+      </if>
+      <if test="roomno != null">
+        roomno,
+      </if>
+      <if test="idno != null">
+        idno,
+      </if>
+      <if test="cname != null">
+        cname,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="begindate != null">
+        begindate,
+      </if>
+      <if test="enddate != null">
+        enddate,
+      </if>
+      <if test="checkdate != null">
+        checkdate,
+      </if>
+      <if test="reservedate != null">
+        reservedate,
+      </if>
+      <if test="leavedate != null">
+        leavedate,
+      </if>
+      <if test="checktime != null">
+        checktime,
+      </if>
+      <if test="reservetime != null">
+        reservetime,
+      </if>
+      <if test="leavetime != null">
+        leavetime,
+      </if>
+      <if test="begintime != null">
+        begintime,
+      </if>
+      <if test="endtime != null">
+        endtime,
+      </if>
+      <if test="orderstate != null">
+        orderstate,
+      </if>
+      <if test="ordertype != null">
+        ordertype,
+      </if>
+      <if test="paystate != null">
+        paystate,
+      </if>
+      <if test="cstate != null">
+        cstate,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderno != null">
+        #{orderno,jdbcType=INTEGER},
+      </if>
+      <if test="roomno != null">
+        #{roomno,jdbcType=INTEGER},
+      </if>
+      <if test="idno != null">
+        #{idno,jdbcType=CHAR},
+      </if>
+      <if test="cname != null">
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="begindate != null">
+        #{begindate,jdbcType=DATE},
+      </if>
+      <if test="enddate != null">
+        #{enddate,jdbcType=DATE},
+      </if>
+      <if test="checkdate != null">
+        #{checkdate,jdbcType=DATE},
+      </if>
+      <if test="reservedate != null">
+        #{reservedate,jdbcType=DATE},
+      </if>
+      <if test="leavedate != null">
+        #{leavedate,jdbcType=DATE},
+      </if>
+      <if test="checktime != null">
+        #{checktime,jdbcType=TIME},
+      </if>
+      <if test="reservetime != null">
+        #{reservetime,jdbcType=TIME},
+      </if>
+      <if test="leavetime != null">
+        #{leavetime,jdbcType=TIME},
+      </if>
+      <if test="begintime != null">
+        #{begintime,jdbcType=TIME},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=TIME},
+      </if>
+      <if test="orderstate != null">
+        #{orderstate,jdbcType=CHAR},
+      </if>
+      <if test="ordertype != null">
+        #{ordertype,jdbcType=CHAR},
+      </if>
+      <if test="paystate != null">
+        #{paystate,jdbcType=CHAR},
+      </if>
+      <if test="cstate != null">
+        #{cstate,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

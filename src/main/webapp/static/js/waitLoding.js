@@ -15,8 +15,10 @@ var opts = {
   fps: 20, // Frames per second when using setTimeout() as a fallback in IE 9
   zIndex: 2e9, // The z-index (defaults to 2000000000)
   className: 'spinner', // The CSS class to assign to the spinner
-  top: '250%', // Top position relative to parent
-  left: '630%', // Left position relative to parent
+ // top: '250%', // Top position relative to parent
+ // left: '630%', // Left position relative to parent
+  top: '350%', // Top position relative to parent
+  left: '920%', // Left position relative to parent
   position: 'absolute' // Element positioning
 };
 
