@@ -8,7 +8,21 @@
     <result column="price" jdbcType="INTEGER" property="price" />
     <result column="remak" jdbcType="VARCHAR" property="remak" />
   </resultMap>
+  <!-- 更新信息 -->  
+  <update id="modRoom" parameterType="com.cn.hnust.pojo.Room">  
+         UPDATE room  
+            SET roomtype = #{roomtype,jdbcType=VARCHAR},   
+                rstate   = #{rstate,jdbcType=VARCHAR},  
+                price    = #{price,jdbcType=INTEGER},  
+                remak    = #{remak,jdbcType=VARCHAR}  
+          WHERE roomno = #{roomno,jdbcType=INTEGER};     
+  </update>  
   
+<!-- 删除 -->  
+  <delete id="deleteStudent" parameterType="java.lang.Integer">  
+        DELETE FROM room WHERE roomno = #{roomno,jdbcType=INTEGER};  
+  </delete> 
+
   <select id="selectAllRoom" resultMap="BaseResultMap"> 
 		select * from room 
   </select>

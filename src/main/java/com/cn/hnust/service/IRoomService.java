@@ -12,7 +12,7 @@ public interface IRoomService {
 
 	public List<Map<String, Room>> getUnCheckRoom();
 
-	public int modRoomMessage(Integer roomno);
+	public int modRoomMessage(Room room);
 
 	public int addRoom(Room room);
 

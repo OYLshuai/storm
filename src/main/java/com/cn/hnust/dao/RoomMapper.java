@@ -18,5 +18,5 @@ public interface RoomMapper {
     
     int delRoom(Integer roomno);
     
-    int modRoom(Integer roomno);
+    int modRoom(Room record);
 }

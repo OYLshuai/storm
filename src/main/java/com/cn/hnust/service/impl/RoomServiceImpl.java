@@ -35,12 +35,6 @@ public class RoomServiceImpl implements IRoomService{
 	}
 
 	@Override
-	public int modRoomMessage(Integer roomno) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public int DelRoom(Integer roomno) {
 		// TODO Auto-generated method stub
 		room.delRoom(roomno);
@@ -51,6 +45,13 @@ public class RoomServiceImpl implements IRoomService{
 	public int addRoom(Room roomData) {
 		// TODO Auto-generated method stub
 		room.insert(roomData);
+		return 0;
+	}
+
+	@Override
+	public int modRoomMessage(Room roomData) {
+		// TODO Auto-generated method stub
+		room.modRoom(roomData);
 		return 0;
 	}
 

@@ -7,9 +7,12 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cn.hnust.pojo.Room;
 import com.cn.hnust.service.IRoomService; 
 
@@ -40,6 +43,11 @@ public class RoomController {
 		return response;
 	}
 
+	@RequestMapping("/delRoom")
+	public @ResponseBody void delRoom(HttpServletRequest httpReqest){
+		this.roomService.DelRoom(Integer.valueOf(httpReqest.getParameter("roomno")));
+	}
+
 	@RequestMapping("/addRoom")
 	public @ResponseBody String addRoom(HttpServletRequest httpReqest){
 		Room room = new Room();
@@ -54,4 +62,16 @@ public class RoomController {
 		
 		return "system/SystemMain";
 	}
+	
+
+	@RequestMapping(value = "/modRoom" , method = RequestMethod.POST, consumes = "application/json")
+	@ResponseBody 
+	public JSONObject modRoom(@RequestBody Room room){
+		JSONObject result = new JSONObject();
+		this.roomService.modRoomMessage(room);
+		result.put("falg", 1);
+		return result;
+	}
+	
+	
 }

@@ -11,6 +11,7 @@
 <link href="/storm/static/css/style.css" rel="stylesheet">
 <link href="/storm/static/bootstrap-3.3.7-dist/css/bootstrap-table.min.css" rel="stylesheet">
 <link href="/storm/static/bootstrap-3.3.7-dist/css/bootstrap-select.min.css" rel="stylesheet">
+<link href="/storm/static/bootstrap-3.3.7-dist/css/bootstrapValidator.min.css" rel="stylesheet">
 
 <!--引入JQuery -->
 <script src="/storm/static/js/uitl.js"></script>
@@ -20,6 +21,8 @@
 <script src="/storm/static/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
 <script src="/storm/static/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>
 <script src="/storm/static/bootstrap-3.3.7-dist/js/bootstrap-table-zh-CN.min.js"></script>
+<script src="/storm/static/bootstrap-3.3.7-dist/js/jquery.serializejson.min.js"></script>
+<script src="/storm/static/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
@@ -59,11 +62,11 @@
 						</h4>
 					</div>
 					<div class="modal-body">
-						<form class="form-horizontal" role="form">
+						<form id="roomDiv" class="form-horizontal" role="form">
 							<div class="form-group">  
 	                            <label for="roomno" class="col-sm-2 control-label">房号: </label>  
 	                            <div class="col-sm-10">  
-	                                <input type="text" class="form-control" id="roomno" name="roomno" disabled="disabled">  
+	                                <input type="text" class="form-control" id="roomno" name="roomno" readonly="readonly">  
 	                            </div>  
 	                        </div> 
 							<div class="form-group">  
@@ -75,19 +78,19 @@
 							<div class="form-group">  
 	                            <label for="rstate" class="col-sm-2 control-label">房间状态: </label>  
 	                            <div class="col-sm-10">  
-	                                <select  id="rstate" class="selectpicker" data-live-search="false"></select>  
+	                                <select  id="rstate" class="selectpicker" data-live-search="false"  disabled="disabled"></select>  
 	                            </div>  
 	                        </div>
 							<div class="form-group">  
 	                            <label for="price" class="col-sm-2 control-label">房间价格: </label>  
 	                            <div class="col-sm-10">  
-	                                <input type="text" class="form-control" id="price" name="price">  
+	                                <input type="text" class="form-control" id="price" name="price" >  
 	                            </div>  
 	                        </div>
 	                        <div class="form-group">  
-	                            <label for="remark" class="col-sm-2 control-label">备注</label>  
+	                            <label for="remak" class="col-sm-2 control-label">备注</label>  
 	                            <div class="col-sm-10">  
-	                                <input  class="form-control"  name="remark" id="remark" > 
+	                                <input  class="form-control"  name="remak" id="remak" > 
 	                            </div>  
 	                        </div>  
                 		</form>
@@ -95,7 +98,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
 						</button>
-						<button id="commit" type="button" class="btn btn-primary">
+						<button id="commit" type="button" class="btn btn-primary" onClick="commit()">
 							提交更改
 						</button>
 					</div>
@@ -110,13 +113,37 @@
 	$(function(){
 		 dictEntry("roomtype",1002);
 		 dictEntry("rstate",1001);
+		 
+		 $('form').bootstrapValidator({
+					message: 'This value is not valid',
+		            feedbackIcons: {
+		                valid: 'glyphicon glyphicon-ok',
+		                invalid: 'glyphicon glyphicon-remove',
+		                validating: 'glyphicon glyphicon-refresh'
+		            },
+
+		            fields: {
+		            	price: {
+		                    message: '价格错误',
+		                    validators: {
+		                        notEmpty: {
+		                            message: '价格不能为空'
+		                        },
+		                        regexp: {
+		                            regexp: /^[0-9]+$/,
+		                            message: '价格错误'
+		                        }
+		                    }
+		                }
+		            }
+		        });
 	});
 
 	$(window).on('load', function() {  
 	    $('#rstate').selectpicker('val', '');  
-	    $('#rstate').selectpicker('refresh');  
+	    //$('#rstate').selectpicker('refresh');  
 	    $('#roomtype').selectpicker('val', '');  
-	    $('#roomtype').selectpicker('refresh');  
+	    //$('#roomtype').selectpicker('refresh');  
 	    
 	});
 
@@ -124,6 +151,7 @@
            noneSelectedText : '请选择'
     });  
 	 
+	 //可能需要包装成一个通用的JS
 	 function dictEntry(selectId,dictEntry){
 		//下拉数据加载  
        $.ajax({  
@@ -145,14 +173,28 @@
 	 function modUnCheckRoom(row){
 	 	$('#myModal').modal('show');
 	 	$('#roomno').val(row.roomno);
-	 	$('#roomtype').val(row.roomtype);
-	 	$('#rstate').val(row.rstate);
 	 	$('#price').val(row.price);
-	 	$('#remark').val(row.remark);
+	 	$('#remak').val(row.remak);
+	 	//$('#roomtype').val(row.roomtype);
+	 	$('#roomtype').selectpicker('val', row.roomtype);//设置选中 
+	 	$('#roomtype').selectpicker('refresh');
+	 	
+	 	//$('#rstate').val(row.rstate);
+	 	$('#rstate').selectpicker('val', row.rstate);//设置选中 
+	 	$('#rstate').selectpicker('refresh');
 	 }
 	 
 	 function operateFormatter(value, row, index) {
-	        return '<a class="mod" style="cursor:pointer">修改</a> ' + '<a class="del" style="cursor:pointer">删除</a> ';
+		 if(row.rstate == '已住房'){
+		        return '<a class="unCheckRoom" style="cursor:pointer">退房</a> ';
+		 }else if(row.rstate == '空房'){
+		        return '<a class="checkRoom" style="cursor:pointer">开房</a> ' 
+	             +'<a class="destineRoom" style="cursor:pointer">预定</a> ' 
+	             +'<a class="mod" style="cursor:pointer">修改</a> ' ;
+		 }else{
+	        return '<a class="mod" style="cursor:pointer">修改</a> ';
+	            // + '<a class="del" style="cursor:pointer">删除</a> ';
+		 }
 	  }
 	 
     //表格  - 操作 - 事件
@@ -161,11 +203,20 @@
               //修改操作
         	modUnCheckRoom(row);
          },
-        'click .del': function(e, value, row, index) {      
-             //删除操作
+        'click .checkRoom': function(e, value, row, index) {      
+             //开房操作
+             console.log("带小情人开房")
+         },
+        'click .unCheckRoom': function(e, value, row, index) {      
+             //退房操作
+             console.log("被掏空退房")
+             
+         },
+        'click .destineRoom': function(e, value, row, index) {      
+             //预定操作
+             console.log("准备被掏空")
              
          }
-            
      }
 	 
 	 $('#checkRoomData').bootstrapTable({
@@ -255,5 +306,42 @@
                 formatter : operateFormatter
 		    }]
 		});
+	 
+	 function commit(){
+		 //获取表单的值
+			var data = {
+					roomno : $("#roomno").val(),
+					roomtype : $("#roomtype").val(),
+					rstate : $("#rstate").val(),
+					price : $("#price").val(),
+					remak : $("#remak").val()
+			}
+		 console.log("two",data);
+		 $.ajax({
+			    url:'../roomData/modRoom.json',
+				type : "POST",
+			    contentType: 'application/json;charset=UTF-8',//加上防止415错误
+				dataType : "json",
+			    data: JSON.stringify(data),
+			    beforeSend:function(){
+			        //请求前
+			    	$('#myModal').modal('hide');
+			    },
+			    success:function(result){
+			        //请求成功时
+			    	if(result.falg == 1){
+			    		//window.location.reload();
+			    		$('#unCheckRoomData').bootstrapTable('refresh');
+			    		$('#checkRoomData').bootstrapTable('refresh');
+					}
+			    },
+			    complete:function(){
+			        //请求结束时
+			    },
+			    error:function(){
+			        //请求失败时
+			    }
+			});
+	 }
 </script>
 </html>
