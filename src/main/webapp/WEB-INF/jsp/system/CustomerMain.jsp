@@ -23,6 +23,7 @@
 <script src="/storm/static/bootstrap-3.3.7-dist/js/bootstrap-table-zh-CN.min.js"></script>
 <script src="/storm/static/bootstrap-3.3.7-dist/js/jquery.serializejson.min.js"></script>
 <script src="/storm/static/bootstrap-3.3.7-dist/js/bootstrapValidator.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-confirmation/1.0.7/bootstrap-confirmation.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
@@ -69,6 +70,7 @@
 			  <button id="resetData" type="reset" class="btn btn-info" >清空</button>
 			</form>
 		</div>
+		
 		<div id="customerDataDiv" class="col-sm-9">
 			<div id="customerDataBar" class="btn-group">
 				<strong>客户信息</strong>
@@ -151,12 +153,20 @@
 		
 	</div>
 </body>
+<style type="text/css">
+.but-float {
+	padding: 0px 3px;
+}
+</style>
 <script type="text/javascript" charset="utf-8">
+var pram={
+	'rowData':""
+};
+
 $(function(){
 	uitl.dictEntry("ctype",1007);
 	uitl.dictEntry("ctypeModal",1007);
 	sexInit();
-	
 	$("#newCustomerFrom").bootstrapValidator({
 		message: 'This value is not valid',
         feedbackIcons: {
@@ -200,7 +210,10 @@ $(function(){
             }
         }
     });
-	
+	modalValidator();
+});
+
+function modalValidator(){
 	$("#cutomerDiv").bootstrapValidator({
 		message: 'This value is not valid',
         feedbackIcons: {
@@ -224,9 +237,13 @@ $(function(){
             }
         }
     });
-	
+}
+//Modal验证销毁重构
+$('#myModal').on('hidden.bs.modal', function() {
+    $("#cutomerDiv").data('bootstrapValidator').destroy();
+    $('#cutomerDiv').data('bootstrapValidator', null);
+    modalValidator();
 });
- 
 function sexFormatter(value, row, index){
 	if(row.sex == 1){
 		return '男'
@@ -264,34 +281,37 @@ $(".selectpicker").selectpicker({
 }); 
 
 function operateFormatter(value, row, index) {
-    return '<a class="mod" style="cursor:pointer">修改</a> ' + '<a class="del" style="cursor:pointer">删除</a> ';
+    return '<a class="mod" style="cursor:pointer">修改</a> ' 
+         + '<a class="del" style="cursor:pointer">删除</a> ';
 }
 //表格  - 操作 - 事件
 window.operateEvents = {
-    'click .mod': function(e, value, row, index) {      
-          //修改操作
-        openModCustomer(row);
-    	console.log("修改客户信息")
+    'click .mod': function(e, value, row, index) {
+        openCustomer(row);
      },
-    'click .del': function(e, value, row, index) {      
-         //开房操作
-         console.log("删除客户信息")
+    'click .del': function(e, value, row, index) {
+    	 pram.rowData=row;
      }
  }
-
-function openModCustomer(row){
-	$('#myModal').modal('show');
-	$('#cnameModal').val(row.cname);
-	$('#idnoModal').val(row.idno);
-	$('#phoneModal').val(row.phone);
-	$('#frequencyModal').val(row.frequency);
-	$('#remarkModal').val(row.remark);
- 	$('#ctypeModal').selectpicker('val', row.ctype);//设置选中 
- 	$('#roomtype').selectpicker('refresh');
- 	$('#sexModal').selectpicker('val', row.sex);//设置选中 
- 	$('#roomtype').selectpicker('refresh');
+function delCustomer(row){
+	
+	var idno = row.idno;
+	$.ajax({
+	    url:'../customerData/delCustomer.json?idno='+idno,
+		type : "POST",
+	    contentType: 'application/json;charset=UTF-8',//加上防止415错误
+	    success:function(result){
+	        //请求成功时
+	    	$('#customerData').bootstrapTable('refresh');
+	    	$("#resetData").trigger("click");//触发reset按钮
+	    },
+	    error:function(){
+	        //请求失败时
+	        alert('请求失败');
+	    }
+	});
+	
 }
-
 $('#customerData').bootstrapTable({
 	 url: '../customerData/allCustomer.json',
 	 dataType: "json",
@@ -311,6 +331,23 @@ $('#customerData').bootstrapTable({
     minimumCountColumns: 2,             //最少允许的列数
     clickToSelect: true,                //是否启用点击选中行
     height:818,
+    onLoadSuccess: function(data){  //加载成功时执行
+    	$(".del").confirmation({
+            animation:true,
+            placement:"bottom",
+            title:"确定要删除吗？",
+            btnOkClass:"btn btn-danger btn-xs but-float",
+            btnCancelClass:"btn btn-default btn-xs but-float",
+            btnOkLabel:'确定',
+            btnCancelLabel:'取消',
+            onConfirm:function () {
+                //alert("点击了确定");
+            	delCustomer(pram.rowData);
+            },
+            onCancel: function () { 
+            }
+        });
+      },
     cardView: false,                    //是否显示详细视图
 	    columns: [{
 	        field: 'cname',
@@ -359,8 +396,6 @@ function commit(){
 			frequency : $("#frequency").val(),
 			phone : $("#phone").val()
 	}
-	console.log(data);
-	
 	$.ajax({
 	    url:'../customerData/addCustomer.json',
 		type : "POST",
@@ -379,12 +414,53 @@ function commit(){
 	});
 }
 
+function openCustomer(row){
+	$('#myModal').modal('show');
+	$('#cnameModal').val(row.cname);
+	$('#idnoModal').val(row.idno);
+	$('#phoneModal').val(row.phone);
+	$('#frequencyModal').val(row.frequency);
+	$('#remarkModal').val(row.remark);
+ 	$('#ctypeModal').selectpicker('val', row.ctype);//设置选中 
+ 	$('#roomtype').selectpicker('refresh');
+ 	$('#sexModal').selectpicker('val', row.sex);//设置选中 
+ 	$('#roomtype').selectpicker('refresh');
+}
+
 function commitModData(){
 	$('#cutomerDiv').data('bootstrapValidator').validate();  
     if(!$('#cutomerDiv').data('bootstrapValidator').isValid()){  
         return ;  
     }  
+	var data= {
+			cname : $("#cnameModal").val(),
+			idno : $("#idnoModal").val(),
+			ctype : $("#ctypeModal").val(),
+			sex : $("#sexModal").val(),
+			remark : $("#remarkModal").val(),
+			frequency : $("#frequencyModal").val(),
+			phone : $("#phoneModal").val()
+	}
+	$.ajax({
+	    url:'../customerData/modCustomer.json',
+		type : "POST",
+	    contentType: 'application/json;charset=UTF-8',//加上防止415错误
+		dataType : "json",
+	    data: JSON.stringify(data),
+	    success:function(result){
+	        //请求成功时
+			$('#myModal').modal('hide');
+	    	$('#customerData').bootstrapTable('refresh');
+	    },
+	    error:function(){
+	        //请求失败时
+	        alert('请求失败');
+	    }
+	});
+    
 }
+
+
 
 </script>
 </html>

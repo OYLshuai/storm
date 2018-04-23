@@ -191,6 +191,8 @@
 		        return '<a class="checkRoom" style="cursor:pointer">开房</a> ' 
 	             +'<a class="destineRoom" style="cursor:pointer">预定</a> ' 
 	             +'<a class="mod" style="cursor:pointer">修改</a> ' ;
+		 }else if(row.rstate == '预定房'){
+		        return '<a class="orderRoom" style="cursor:pointer">登记</a> ';
 		 }else{
 	        return '<a class="mod" style="cursor:pointer">修改</a> ';
 	            // + '<a class="del" style="cursor:pointer">删除</a> ';
@@ -316,7 +318,6 @@
 					price : $("#price").val(),
 					remak : $("#remak").val()
 			}
-		 console.log("two",data);
 		 $.ajax({
 			    url:'../roomData/modRoom.json',
 				type : "POST",

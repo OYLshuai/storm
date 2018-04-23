@@ -35,4 +35,21 @@ public class CustomerController {
 		result.put("result", row);
 		return result;
 	}
+
+	@RequestMapping("/modCustomer")
+	public @ResponseBody JSONObject modCustomer(@RequestBody Customer customer){
+		JSONObject result = new JSONObject();
+		int row = this.customerService.modCustomer(customer);
+		result.put("result", row);
+		return result;
+	}
+
+	@RequestMapping("/delCustomer")
+	public @ResponseBody JSONObject delCustomer(HttpServletRequest httpReqest){
+		JSONObject result = new JSONObject();
+		String idno = httpReqest.getParameter("idno");
+		int row = this.customerService.delCustomer(idno);
+		result.put("result", row);
+		return result;
+	}
 }

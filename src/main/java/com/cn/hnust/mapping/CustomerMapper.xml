@@ -24,7 +24,7 @@
   </update> 
   
   <!-- 删除 -->  
-  <delete id="deleteStudent" parameterType="String">  
+  <delete id="delCustomer" parameterType="String">
         DELETE FROM customer WHERE idno = #{idno,jdbcType=CHAR};  
   </delete> 
   

@@ -39,11 +39,11 @@
 	<div class="col-md-12">
 		<div class="list-group col-md-2" style=" padding-top: 5px;">
 		  <h2>七家-酒店管理系统</h2>
-		  <a href="/storm/system/SystemMain" target="systemIframe" class="list-group-item active">房源详情</a>
+		  <a href="/storm/system/SystemMain" target="systemIframe" class="list-group-item active">房源信息</a>
 		  <a href="#" target="systemIframe" class="list-group-item">客户开房</a>
 		  <a href="#" target="systemIframe" class="list-group-item">预约检查</a>
-		  <a href="#" target="systemIframe" class="list-group-item">房源检查</a>
-		  <a href="/storm/system/CustomerMain" target="systemIframe" class="list-group-item">客户检查</a>
+		  <a href="#" target="systemIframe" class="list-group-item">房源详情</a>
+		  <a href="/storm/system/CustomerMain" target="systemIframe" class="list-group-item">客户信息</a>
 		  <a href="#" target="systemIframe" class="list-group-item">订单信息</a>
 		  <a href="#" target="systemIframe" class="list-group-item">客户退房</a>
 		  <a href="/storm/system/SystemDict" target="systemIframe" class="list-group-item">数据字典设置</a>
