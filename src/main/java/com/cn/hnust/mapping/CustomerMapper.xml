@@ -10,6 +10,38 @@
     <result column="frequency" jdbcType="INTEGER" property="frequency" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
+  
+  <!-- 更新信息 -->  
+  <update id="modCustomer" parameterType="com.cn.hnust.pojo.Customer">  
+         UPDATE customer  
+            SET cname     = #{cname,jdbcType=VARCHAR},   
+                phone     = #{phone,jdbcType=CHAR},  
+                sex       = #{sex,jdbcType=CHAR},  
+                ctype     = #{ctype,jdbcType=CHAR},  
+                frequency = #{frequency,jdbcType=INTEGER},  
+                remark    = #{remark,jdbcType=VARCHAR}    
+          WHERE idno = #{idno,jdbcType=CHAR};     
+  </update> 
+  
+  <!-- 删除 -->  
+  <delete id="deleteStudent" parameterType="String">  
+        DELETE FROM customer WHERE idno = #{idno,jdbcType=CHAR};  
+  </delete> 
+  
+  <select id="selectAllCustomer" resultMap="BaseResultMap"> 
+		select * from customer 
+  </select>
+  
+  <select id="selectCustomerByIdNo" parameterType="String" resultMap="BaseResultMap"> 
+		select * from customer where idno = #{idno,jdbcType=CHAR};
+  </select>
+  
+  <select id="selectCustomerByCname" parameterType="String" resultMap="BaseResultMap"> 
+		select * from customer where cname = #{cname,jdbcType=VARCHAR};
+  </select>
+  
+  
+  
   <insert id="insert" parameterType="com.cn.hnust.pojo.Customer">
     insert into customer (cname, idno, phone, 
       sex, ctype, frequency, remark

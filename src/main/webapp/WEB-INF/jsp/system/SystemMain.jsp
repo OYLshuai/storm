@@ -111,8 +111,8 @@
 <script type="text/javascript" charset="utf-8">
 
 	$(function(){
-		 dictEntry("roomtype",1002);
-		 dictEntry("rstate",1001);
+		uitl.dictEntry("roomtype",1002);
+		uitl.dictEntry("rstate",1001);
 		 
 		 $('form').bootstrapValidator({
 					message: 'This value is not valid',
@@ -151,7 +151,7 @@
            noneSelectedText : '请选择'
     });  
 	 
-	 //可能需要包装成一个通用的JS
+/* 	 //可能需要包装成一个通用的JS
 	 function dictEntry(selectId,dictEntry){
 		//下拉数据加载  
        $.ajax({  
@@ -168,7 +168,7 @@
                  select.selectpicker('refresh');  
              }  
          }); 
-	 }
+	 } */
 	 
 	 function modUnCheckRoom(row){
 	 	$('#myModal').modal('show');

@@ -24,13 +24,13 @@
 <body style="margin: 20px;">
 	<div style="display:none" class="alert alert-danger" role="alert">未知错误</div>
 	<div class="col-md-12">
-		<div class="col-md-2">
+		<div class="col-md-3">
 			<strong>父项数据字典</strong>
 			<table id="dictEntryData">
 				
 			</table>
 		</div>
-		<div id = "dictionaryDiv"  class="col-md-10" >
+		<div id = "dictionaryDiv"  class="col-md-9" >
 			<strong>数据字典</strong>
 			<div id="dictionary" class="btn-group">
 	            <button id="btn_add" type="button" class="btn btn-default">

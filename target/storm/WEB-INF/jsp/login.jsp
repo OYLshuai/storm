@@ -68,6 +68,7 @@
 			id : $("#inputId").val(),
 			password : $("#inputPassword").val()
 		}
+		console.log("login",data);
 		$.ajax({
 			url : "main/showMain",
 			type : "POST",
