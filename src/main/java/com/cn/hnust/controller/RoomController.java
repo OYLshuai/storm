@@ -44,23 +44,19 @@ public class RoomController {
 	}
 
 	@RequestMapping("/delRoom")
-	public @ResponseBody void delRoom(HttpServletRequest httpReqest){
-		this.roomService.DelRoom(Integer.valueOf(httpReqest.getParameter("roomno")));
+	public @ResponseBody JSONObject delRoom(HttpServletRequest httpReqest){
+		JSONObject result = new JSONObject();
+		int row = this.roomService.DelRoom(Integer.valueOf(httpReqest.getParameter("roomno")));
+		result.put("result", row);
+		return result;
 	}
 
 	@RequestMapping("/addRoom")
-	public @ResponseBody String addRoom(HttpServletRequest httpReqest){
-		Room room = new Room();
-		
-		room.setRoomno(Integer.valueOf(httpReqest.getParameter("roomNo")));
-		room.setPrice(Integer.valueOf(httpReqest.getParameter("price")));
-		room.setRoomtype(httpReqest.getParameter("roomType"));
-		room.setRstate(httpReqest.getParameter("rstate"));
-		room.setRemak(httpReqest.getParameter("remak"));
-		
+	public @ResponseBody JSONObject addRoom(@RequestBody Room room){
+		JSONObject result = new JSONObject();
 		int row = this.roomService.addRoom(room);
-		
-		return "system/SystemMain";
+		result.put("result", row);
+		return result;
 	}
 	
 

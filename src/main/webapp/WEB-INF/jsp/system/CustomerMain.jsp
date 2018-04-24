@@ -167,6 +167,12 @@ $(function(){
 	uitl.dictEntry("ctype",1007);
 	uitl.dictEntry("ctypeModal",1007);
 	sexInit();
+	
+	validator();
+	modalValidator();
+});
+
+function validator(){
 	$("#newCustomerFrom").bootstrapValidator({
 		message: 'This value is not valid',
         feedbackIcons: {
@@ -210,8 +216,7 @@ $(function(){
             }
         }
     });
-	modalValidator();
-});
+}
 
 function modalValidator(){
 	$("#cutomerDiv").bootstrapValidator({
@@ -292,9 +297,8 @@ window.operateEvents = {
     'click .del': function(e, value, row, index) {
     	 pram.rowData=row;
      }
- }
+}
 function delCustomer(row){
-	
 	var idno = row.idno;
 	$.ajax({
 	    url:'../customerData/delCustomer.json?idno='+idno,
@@ -310,7 +314,6 @@ function delCustomer(row){
 	        alert('请求失败');
 	    }
 	});
-	
 }
 $('#customerData').bootstrapTable({
 	 url: '../customerData/allCustomer.json',
@@ -323,8 +326,8 @@ $('#customerData').bootstrapTable({
     sortable: false,                    //是否启用排序
     sortOrder: "asc",                   //排序方式
     pageNumber:1,                       //初始化加载第一页，默认第一页
-    pageSize: 15,                        //每页的记录行数（*）
-    pageList: [15, 30, 45, 60],          //可供选择的每页的行数（*）
+    pageSize: 18,                        //每页的记录行数（*）
+    pageList: [18, 36, 54, 70],          //可供选择的每页的行数（*）
     search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
     showColumns: true,                  //是否显示所有的列
     showRefresh: true,                  //是否显示刷新按钮
@@ -376,12 +379,19 @@ $('#customerData').bootstrapTable({
 	        title: '操作',
             align : 'center',
             width : '15%',
+            switchable:false,
             events : operateEvents,
             formatter : operateFormatter
 	    }]
-	});
+});
 
 function commit(){
+	
+	if($("#idno").val()==''||$("#cname").val()==''||$("#phone").val()==''){
+		$("#newCustomerFrom").data('bootstrapValidator').destroy();
+	    $('#newCustomerFrom').data('bootstrapValidator', null);
+	    validator();
+	}
 	
 	$('#newCustomerFrom').data('bootstrapValidator').validate();  
     if(!$('#newCustomerFrom').data('bootstrapValidator').isValid()){  
@@ -422,9 +432,7 @@ function openCustomer(row){
 	$('#frequencyModal').val(row.frequency);
 	$('#remarkModal').val(row.remark);
  	$('#ctypeModal').selectpicker('val', row.ctype);//设置选中 
- 	$('#roomtype').selectpicker('refresh');
  	$('#sexModal').selectpicker('val', row.sex);//设置选中 
- 	$('#roomtype').selectpicker('refresh');
 }
 
 function commitModData(){
@@ -459,8 +467,5 @@ function commitModData(){
 	});
     
 }
-
-
-
 </script>
 </html>

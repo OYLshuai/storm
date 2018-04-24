@@ -15,6 +15,12 @@ public class SystemController {
 		return "system/SystemMain";
 	}
 	
+	@RequestMapping("/RoomMain")
+	public String RoomMain(HttpServletRequest request, Model model) {
+		model.addAttribute("row", "1");
+		return "system/RoomMain";
+	}
+	
 	@RequestMapping("/CustomerMain")
 	public String CustomerMain(HttpServletRequest request, Model model) {
 		model.addAttribute("row", "1");

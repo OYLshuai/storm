@@ -318,7 +318,6 @@
 					price : $("#price").val(),
 					remak : $("#remak").val()
 			}
-		 console.log("two",data);
 		 $.ajax({
 			    url:'../roomData/modRoom.json',
 				type : "POST",

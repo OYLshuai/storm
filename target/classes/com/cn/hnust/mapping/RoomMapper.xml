@@ -19,7 +19,7 @@
   </update>  
   
 <!-- 删除 -->  
-  <delete id="deleteStudent" parameterType="java.lang.Integer">  
+  <delete id="delRoom" parameterType="java.lang.Integer">  
         DELETE FROM room WHERE roomno = #{roomno,jdbcType=INTEGER};  
   </delete> 
 
