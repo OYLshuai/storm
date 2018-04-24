@@ -156,6 +156,7 @@
 <style type="text/css">
 .but-float {
 	padding: 0px 3px;
+	display: none;
 }
 </style>
 <script type="text/javascript" charset="utf-8">
@@ -339,7 +340,7 @@ $('#customerData').bootstrapTable({
             animation:true,
             placement:"bottom",
             title:"确定要删除吗？",
-            btnOkClass:"btn btn-danger btn-xs but-float",
+            btnOkClass:"btn btn-danger btn-sm",
             btnCancelClass:"btn btn-default btn-xs but-float",
             btnOkLabel:'确定',
             btnCancelLabel:'取消',

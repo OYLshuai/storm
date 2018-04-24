@@ -191,7 +191,7 @@
 		        return '<a class="checkRoom" style="cursor:pointer">开房</a> ' 
 	             +'<a class="destineRoom" style="cursor:pointer">预定</a> ' 
 	             +'<a class="mod" style="cursor:pointer">修改</a> ' ;
-		 }else if(row.rstate == '预定房'){
+		 }else if(row.rstate == '预定'){
 		        return '<a class="orderRoom" style="cursor:pointer">登记</a> ';
 		 }else{
 	        return '<a class="mod" style="cursor:pointer">修改</a> ';
