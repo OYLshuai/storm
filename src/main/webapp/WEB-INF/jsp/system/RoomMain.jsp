@@ -58,7 +58,7 @@
                       <select  id="rstate" class="selectpicker" data-live-search="false" name="rstate" ></select>  
                   </div>  
               </div>
-			  <button type="button" class="btn btn-primary" onClick="commit()">提交</button>
+			  <button type="button" class="btn btn-primary" onClick="commit()">新增</button>
 			  <button id="resetData" type="reset" class="btn btn-info" >清空</button>
 			</form>
 		</div>
