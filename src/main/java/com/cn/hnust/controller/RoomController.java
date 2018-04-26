@@ -26,8 +26,22 @@ public class RoomController {
 	@RequestMapping("/allRoom")
 	public @ResponseBody List<Map<String, Room>> allRoom(HttpServletRequest httpReqest){
 		List<Map<String, Room>> response = this.roomService.getAllRoom();
-		
 		return response;
+	}
+
+	@RequestMapping("/getRoomByNo")
+	public @ResponseBody JSONObject getRoomByNo(HttpServletRequest httpReqest){
+		JSONObject result = new JSONObject();
+		String roomno = httpReqest.getParameter("roomno");
+		Room room = this.roomService.getRoomByNo(Integer.valueOf(roomno));
+		if(room != null){
+			result.put("room", room);
+			result.put("flag", 1);
+		}else{
+			result.put("flag", 0);
+		}
+		
+		return result;
 	}
 	
 	@RequestMapping("/checkRoom")

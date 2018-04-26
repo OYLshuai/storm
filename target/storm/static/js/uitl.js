@@ -30,5 +30,14 @@ var uitl = {
 	                 select.selectpicker('refresh');  
 	             }  
 	         }); 
+		 },
+		 "sexInit":function(){
+			$('#sex').append("<option value='1'>"  
+		            + "男" + "</option>");  
+			$('#sex').append("<option value='0'>"  
+		            + "女" + "</option>"); 
+
+			$('#sex').selectpicker('val', '');  
+			$('#sex').selectpicker('refresh');  
 		 }
 }

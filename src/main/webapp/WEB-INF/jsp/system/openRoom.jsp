@@ -241,22 +241,32 @@ function reserveCon(){
 $("#roomno").blur(function(){
 	var roomno = $("#roomno").val();
 	console.log(roomno);
-/* 	$.ajax({
-	    url:'../roomData/modRoom.json',
+ 	$.ajax({
+	    url:'../roomData/getRoomByNo.json?roomno='+roomno,
 		type : "POST",
 	    contentType: 'application/json;charset=UTF-8',//加上防止415错误
-		dataType : "json",
-	    data: JSON.stringify(data),
 	    success:function(result){
 	        //请求成功时
-			$('#myModal').modal('hide');
-	    	$('#roomData').bootstrapTable('refresh');
+			console.log("获取到的信息",result);
+	        if(result.flag==1){
+				$('#roomno').val(result.room.roomno);
+				$('#price').val(result.room.price);
+				$('#remak').val(result.room.remak);
+			 	$('#roomtype').selectpicker('val', result.room.roomtype);//设置选中 
+			 	$('#rstate').selectpicker('val', result.room.rstate);//设置选中 
+	        }else{
+				$('#price').val("");
+				$('#remak').val("");
+				$('#roomtype').selectpicker('refresh');  
+			 	$('#roomtype').selectpicker('val', "");//设置选中 
+			 	$('#rstate').selectpicker('val', "");//设置选中 
+	        }
 	    },
 	    error:function(){
 	        //请求失败时
 	        alert('请求失败');
 	    }
-	}); */
+	}); 
 }); 
 
 </script>

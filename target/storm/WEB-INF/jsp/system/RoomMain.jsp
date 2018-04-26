@@ -58,7 +58,7 @@
                       <select  id="rstate" class="selectpicker" data-live-search="false" name="rstate" ></select>  
                   </div>  
               </div>
-			  <button type="button" class="btn btn-primary" onClick="commit()">提交</button>
+			  <button type="button" class="btn btn-primary" onClick="commit()">新增</button>
 			  <button id="resetData" type="reset" class="btn btn-info" >清空</button>
 			</form>
 		</div>
@@ -135,6 +135,7 @@
 <style type="text/css">
 .but-float {
 	padding: 0px 3px;
+	display: none;
 }
 </style>
 <script type="text/javascript" charset="utf-8">
@@ -222,8 +223,19 @@ $('#myModal').on('hidden.bs.modal', function() {
     modalValidator();
 });
 function operateFormatter(value, row, index) {
-    return '<a class="mod" style="cursor:pointer">修改</a> ' 
-         + '<a class="del" style="cursor:pointer">删除</a> ';
+	if(row.rstate == '空房'){
+        return '<a class="checkRoom" style="cursor:pointer">开房</a> ' 
+         +'<a class="destineRoom" style="cursor:pointer">预定</a> ' 
+         +'<a class="mod" style="cursor:pointer">修改</a> '
+         +'<a class="del" style="cursor:pointer">删除</a> ' ;
+	 }else if(row.rstate == '预定'){
+	    return '<a class="orderRoom" style="cursor:pointer">登记</a> '
+			 + '<a class="mod" style="cursor:pointer">修改</a> '
+		     + '<a class="del" style="cursor:pointer">删除</a> ';
+	 }else{
+	    return '<a class="mod" style="cursor:pointer">修改</a> '
+	         + '<a class="del" style="cursor:pointer">删除</a> ';
+	 }
 }
 //表格  - 操作 - 事件
 window.operateEvents = {
@@ -354,12 +366,11 @@ $('#roomData').bootstrapTable({
            animation:true,
            placement:"bottom",
            title:"确定要删除吗？",
-           btnOkClass:"btn btn-danger btn-xs but-float",
+           btnOkClass:"btn btn-danger btn-sm",
            btnCancelClass:"btn btn-default btn-xs but-float",
            btnOkLabel:'确定',
            btnCancelLabel:'取消',
            onConfirm:function () {
-               console.log("点击了确定");
            	   delRoom(pram.rowData);
            },
            onCancel: function () { 

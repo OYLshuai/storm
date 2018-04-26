@@ -16,6 +16,8 @@ public interface RoomMapper {
 
     List<Map<String,Room>> selectUnCheckRoom();
     
+    Room selectRoomByNo(Integer roomno);
+    
     int delRoom(Integer roomno);
     
     int modRoom(Room record);

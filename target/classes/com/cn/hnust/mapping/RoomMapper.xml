@@ -35,6 +35,10 @@
 		select * from room where rstate = "空房"
   </select>
   
+  <select id="selectRoomByNo" resultType="com.cn.hnust.pojo.Room" parameterType="java.lang.Integer"> 
+		select * from room WHERE roomno = #{roomno,jdbcType=INTEGER}; 
+  </select>
+  
   <insert id="insert" parameterType="com.cn.hnust.pojo.Room">
     insert into room (roomno, roomtype, rstate, 
       price, remak)

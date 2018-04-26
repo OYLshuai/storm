@@ -55,4 +55,11 @@ public class RoomServiceImpl implements IRoomService{
 		return 0;
 	}
 
+	@Override
+	public Room getRoomByNo(Integer roomno) {
+		// TODO Auto-generated method stub
+		
+		return room.selectRoomByNo(roomno);
+	}
+
 }
