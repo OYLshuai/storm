@@ -184,8 +184,14 @@
                      <select id="paystate" class=" selectpicker" data-live-search="false" name="paystate" ></select>  
                  </div>  
               </div>
-			  
 	    </div>
+    </div>
+    <div style="">
+    	<div class="col-sm-5">
+    	</div>
+    	<div class="col-sm-5" style="width: 15%;">
+    		<button type="button" class="btn btn-primary btn-block" onClick="commitData()">提交</button>
+    	</div>
     </div>
 </body>
 <script type="text/javascript" charset="utf-8">
@@ -222,7 +228,7 @@ $(function(){
     $('#unCheckDateDiv').change(function(){
         $('#checkDateDiv').datetimepicker('setEndDate', $("#unCheckDate").val());
     });
-    
+
 });
 
 function  initDateSelect(divId){
@@ -329,5 +335,87 @@ function selectCustomer(data){
 		}); 
 	}
 }; 
+
+function checkMustDate(){
+	var checkDate = $('#checkDate').val();
+	var unCheckDate = $('#unCheckDate').val();
+	if(checkDate=="" || unCheckDate==""){
+		alert("入住时间和退房时间必填");
+		return false;
+	}
+	if($('#idno').val()==""){
+		alert("请选择入住用户");
+		return false;
+	}
+	if($('#roomno').val()==""){
+		alert("请选择入住房间");
+		return false;
+	}
+	return true;
+}
+
+function commitData(){
+	if(!checkMustDate())
+		return ;	
+	var checkDate = $('#checkDate').val();
+	var unCheckDate = $('#unCheckDate').val();
+	if($("#reserve")[0].checked){
+		var reserveVal = $('#reserveDate').val();
+		var reserveDate = reserveVal.split(" ")[0];
+		var reserveTime = reserveVal.split(" ")[1];
+		var orderType = "预约单";
+		var cstate = "已预定";
+	}else{
+		var reserveDate = ' ';
+		var reserveTime = ' ';
+		var orderType = "住房单";
+		var cstate = "已入住";
+	}
+	if($('#paystate').val() == '未付'){
+		var ordersTate = '未付'
+	}else{
+		var ordersTate = '已付'
+	}
+	
+	var data = {
+		orderno : 10,
+		roomno : $('#roomno').val(),
+		idno : $('#idno').val(),
+		cname : $('#cname').val(),
+		phone : $('#phone').val(),
+		begindate : '',
+		enddate : '',
+		checkdate : checkDate.split(" ")[0],
+		reservedate : reserveDate,
+		leavedate : unCheckDate.split(" ")[0],
+		checktime : checkDate.split(" ")[1],
+		reservetime : reserveTime,
+		leavetime : unCheckDate.split(" ")[1],
+		begintime : '',
+		endtime : '',
+		orderstate : ordersTate,
+		ordertype : orderType,
+		paystate : $('#paystate').val(),
+		cstate : cstate,
+		remark : $('#remark3').val()
+	}
+	
+	$.ajax({
+	    url:'../checkorderData/addCheckorder.json',
+		type : "POST",
+	    contentType: 'application/json;charset=UTF-8',//加上防止415错误
+		dataType : "json",
+	    data: JSON.stringify(data),
+	    success:function(result){
+	        //请求成功后跳转到订单信息
+	    	alert("开房成功");
+	    },
+	    error:function(){
+	        //请求失败时
+	        alert('请求失败');
+	    }
+	});
+
+}
 </script>
 </html>

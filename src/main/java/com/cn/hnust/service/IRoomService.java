@@ -19,4 +19,6 @@ public interface IRoomService {
 	public int addRoom(Room room);
 
 	public int DelRoom(Integer roomno);
+
+	public int invalidRoom(Integer roomno);
 }

@@ -11,6 +11,7 @@ E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\impl\RoomServiceImpl.
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\IDictIndex.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\impl\UserServiceImpl.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\impl\DictIndexService.java
+E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\ICheckorderService.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\IJavaSymbol.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\controller\SystemController.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\IRoomService.java
@@ -22,6 +23,8 @@ E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\reptile\ReptileDowImg.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\ICustomerService.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\ISysdictService.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\controller\JavaPageCon.java
+E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\impl\CheckorderService.java
+E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\controller\CheckorderController.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\IUserService.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\dao\DictindexMapper.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\controller\SysDictionrayController.java

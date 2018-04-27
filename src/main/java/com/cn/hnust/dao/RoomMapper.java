@@ -3,6 +3,8 @@ package com.cn.hnust.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.cn.hnust.pojo.Room;
 
 public interface RoomMapper {
@@ -17,6 +19,8 @@ public interface RoomMapper {
     List<Map<String,Room>> selectUnCheckRoom();
     
     Room selectRoomByNo(Integer roomno);
+    
+    int invalidRoom(Integer roomno);
     
     int delRoom(Integer roomno);
     

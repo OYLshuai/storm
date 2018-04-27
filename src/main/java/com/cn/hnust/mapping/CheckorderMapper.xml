@@ -23,6 +23,115 @@
     <result column="cstate" jdbcType="VARCHAR" property="cstate" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
+  
+  <!-- 更新信息 -->  
+  <update id="modCheckorder" parameterType="com.cn.hnust.pojo.Checkorder">  
+         UPDATE checkorder  
+            SET cname       = #{cname,jdbcType=VARCHAR},   
+                phone       = #{phone,jdbcType=CHAR},  
+                checkdate   = #{checkdate,jdbcType=DATE},  
+                reservedate = #{reservedate,jdbcType=DATE},  
+                leavedate   = #{leavedate,jdbcType=DATE},  
+                checktime   = #{checktime,jdbcType=TIME},
+                reservetime = #{reservetime,jdbcType=TIME},  
+                leavetime   = #{leavetime,jdbcType=TIME},  
+                orderstate  = #{orderstate,jdbcType=VARCHAR},  
+                ordertype   = #{ordertype,jdbcType=VARCHAR},
+                paystate    = #{paystate,jdbcType=VARCHAR},  
+                cstate      = #{cstate,jdbcType=VARCHAR},  
+                remark      = #{remark,jdbcType=VARCHAR}    
+          WHERE idno   = #{idno,jdbcType=CHAR}
+            AND roomno = #{idno,jdbcType=INTEGER};     
+  </update> 
+  <!-- 更新订单信息 -->
+    <update id="invalidCheckorder">  
+         UPDATE checkorder  
+            SET orderstate  = #{orderstate,jdbcType=VARCHAR}, 
+                remark      = #{remark,jdbcType=VARCHAR}    
+          WHERE idno   = #{idno,jdbcType=CHAR}
+            AND roomno = #{idno,jdbcType=INTEGER};     
+  </update> 
+  
+  <!-- 删除 -->  
+  <delete id="delCheckorder">
+        DELETE FROM customer WHERE idno = #{idno,jdbcType=CHAR} AND roomno = #{idno,jdbcType=INTEGER};  
+  </delete> 
+  
+  <select id="selectAllOrder" resultMap="BaseResultMap"> 
+		select * from checkorder 
+  </select>
+    
+  <select id="selectOrderByTerm" resultMap="BaseResultMap" parameterType="com.cn.hnust.pojo.Checkorder"> 
+		select * from checkorder where 1=1
+		      <if test="orderno != null">
+		        AND orderno=#{orderno,jdbcType=INTEGER},
+		      </if>
+		      <if test="roomno != null">
+		        AND roomno=#{roomno,jdbcType=INTEGER},
+		      </if>
+		      <if test="idno != null">
+		        AND idno=#{idno,jdbcType=CHAR},
+		      </if>
+		      <if test="cname != null">
+		        AND cname=#{cname,jdbcType=VARCHAR},
+		      </if>
+		      <if test="phone != null">
+		        AND phone=#{phone,jdbcType=CHAR},
+		      </if>
+		      <if test="begindate != null">
+		        AND begindate=#{begindate,jdbcType=DATE},
+		      </if>
+		      <if test="enddate != null">
+		        AND enddate=#{enddate,jdbcType=DATE},
+		      </if>
+		      <if test="checkdate != null">
+		        AND checkdate=#{checkdate,jdbcType=DATE},
+		      </if>
+		      <if test="reservedate != null">
+		        AND reservedate=#{reservedate,jdbcType=DATE},
+		      </if>
+		      <if test="leavedate != null">
+		        AND leavedate=#{leavedate,jdbcType=DATE},
+		      </if>
+		      <if test="checktime != null">
+		        AND checktime=#{checktime,jdbcType=TIME},
+		      </if>
+		      <if test="reservetime != null">
+		        AND reservetime=#{reservetime,jdbcType=TIME},
+		      </if>
+		      <if test="leavetime != null">
+		        AND leavetime=#{leavetime,jdbcType=TIME},
+		      </if>
+		      <if test="begintime != null">
+		        AND begintime=#{begintime,jdbcType=TIME},
+		      </if>
+		      <if test="endtime != null">
+		        AND endtime=#{endtime,jdbcType=TIME},
+		      </if>
+		      <if test="orderstate != null">
+		        AND orderstate=#{orderstate,jdbcType=VARCHAR},
+		      </if>
+		      <if test="ordertype != null">
+		        AND ordertype=#{ordertype,jdbcType=VARCHAR},
+		      </if>
+		      <if test="paystate != null">
+		        AND paystate=#{paystate,jdbcType=VARCHAR},
+		      </if>
+		      <if test="cstate != null">
+		        AND cstate=#{cstate,jdbcType=VARCHAR},
+		      </if>
+		      <if test="remark != null">
+		        AND remark=#{remark,jdbcType=VARCHAR},
+		      </if>
+  </select>
+  
+  <select id="selectOrderByNo" resultType="com.cn.hnust.pojo.Checkorder"> 
+		select * from checkorder 
+		        WHERE idno   = #{idno,jdbcType=CHAR}
+                  AND roomno = #{idno,jdbcType=INTEGER};   
+  </select>
+  
+  
   <insert id="insert" parameterType="com.cn.hnust.pojo.Checkorder">
     insert into checkorder (orderno, roomno, idno, 
       cname, phone, begindate, 
