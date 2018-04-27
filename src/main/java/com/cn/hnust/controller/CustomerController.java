@@ -28,6 +28,20 @@ public class CustomerController {
 		return response;
 	}
 	
+	@RequestMapping("/getCustomerById")
+	public @ResponseBody JSONObject getCustomerById(HttpServletRequest httpReqest){
+		JSONObject result = new JSONObject();
+		String idno = httpReqest.getParameter("idno");
+		List<Map<String, Customer>> response = this.customerService.getCustomerByIdNo(idno);
+		if(!response.isEmpty()){
+			result.put("customer", response.get(0));
+			result.put("flag", 1);
+		}else{
+			result.put("flag", 0);
+		}
+		return result;
+	}
+	
 	@RequestMapping("/addCustomer")
 	public @ResponseBody JSONObject addCustomer(@RequestBody Customer customer){
 		JSONObject result = new JSONObject();

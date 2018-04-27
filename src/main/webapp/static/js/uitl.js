@@ -16,6 +16,9 @@ var uitl = {
 		 //可能需要包装成一个通用的JS  下拉框获取数据字典
 		 "dictEntry":function(selectId,dictEntry){
 			//下拉数据加载  
+		   $("#"+selectId).selectpicker({  
+	            noneSelectedText : '请选择'  
+	        }); 
 	       $.ajax({  
 	             type : 'get',  
 	             url : "../dictData/byEntry?entry=" + dictEntry,  
@@ -31,7 +34,54 @@ var uitl = {
 	             }  
 	         }); 
 		 },
+		 "roomEntry":function(selectId){
+			//下拉数据加载  
+		   $("#"+selectId).selectpicker({  
+	          noneSelectedText : '请选择'  
+	       }); 
+	       $.ajax({  
+	             type : 'get',  
+	             url : "../roomData/unCheckRoom",  
+	             dataType : 'json',  
+	             success : function(datas) {//返回list数据并循环获取  
+	                 var select = $("#"+selectId);  
+	                 select.append("<option value='"+""+"'>"  
+                             + "请选择" + "</option>");  
+	                 for (var i = 0; i < datas.length; i++) {  
+	                     select.append("<option value='"+datas[i].roomno+"'>"  
+	                             + datas[i].roomno + "</option>");  
+	                 }  
+	                 select.selectpicker('val', '');  
+	                 select.selectpicker('refresh');  
+	             }  
+	         }); 
+		 },
+		 "customerEntry":function(selectId){
+			//下拉数据加载  
+		   $("#"+selectId).selectpicker({  
+	          noneSelectedText : '请选择'
+	       }); 
+	       $.ajax({  
+	             type : 'get',  
+	             url : "../customerData/allCustomer",  
+	             dataType : 'json',  
+	             success : function(datas) {//返回list数据并循环获取  
+	                 var select = $("#"+selectId);  
+	                 select.append("<option value='"+""+"'>"  
+                             + "请选择" + "</option>");  
+	                 for (var i = 0; i < datas.length; i++) {  
+	                     select.append("<option value='"+datas[i].idno+"'>"  
+	                             + datas[i].idno + "(" + datas[i].cname + ")" + "</option>");  
+	                 }  
+	                 select.selectpicker('val', '');  
+	                 select.selectpicker('refresh');  
+	             }  
+	         }); 
+		 },
 		 "sexInit":function(){
+		    $('#sex').selectpicker({  
+		        noneSelectedText : '请选择'
+		    }); 
 			$('#sex').append("<option value='1'>"  
 		            + "男" + "</option>");  
 			$('#sex').append("<option value='0'>"  
