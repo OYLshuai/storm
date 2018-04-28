@@ -44,7 +44,7 @@
 		  <!-- <a href="#" target="systemIframe" class="list-group-item">预约检查</a> -->
 		  <a href="/storm/system/RoomMain" target="systemIframe" class="list-group-item">房源详情</a>
 		  <a href="/storm/system/CustomerMain" target="systemIframe" class="list-group-item">客户信息</a>
-		  <a href="#" target="systemIframe" class="list-group-item">订单信息</a>
+		  <a href="/storm/system/CheckorderMain" target="systemIframe" class="list-group-item">订单信息</a>
 		  <a href="#" target="systemIframe" class="list-group-item">客户退房</a>
 		  <a href="/storm/system/SystemDict" target="systemIframe" class="list-group-item">数据字典设置</a>
 		</div>

@@ -17,7 +17,9 @@ public class SystemController {
 	
 	@RequestMapping("/openRoom")
 	public String openRoom(HttpServletRequest request, Model model) {
+		String roomno = request.getParameter("roomno");
 		model.addAttribute("row", "1");
+		model.addAttribute("roomno", roomno);
 		return "system/openRoom";
 	}
 	
@@ -33,6 +35,12 @@ public class SystemController {
 		return "system/CustomerMain";
 	}
 
+	@RequestMapping("/CheckorderMain")
+	public String CheckorderMain(HttpServletRequest request, Model model) {
+		model.addAttribute("row", "1");
+		return "system/CheckorderMain";
+	}
+	
 	@RequestMapping("/SystemDict")
 	public String SystemDict(HttpServletRequest request, Model model) {
 		model.addAttribute("row", "1");

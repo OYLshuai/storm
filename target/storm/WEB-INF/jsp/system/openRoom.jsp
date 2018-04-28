@@ -181,7 +181,13 @@
 			  <div class="form-group"  style="margin-top: -21px;">  
                  <label for="paystate" class="control-label">支付状态</label>  
                  <div class="">  
-                     <select id="paystate" class=" selectpicker" data-live-search="false" name="paystate" ></select>  
+                     <select id="paystate" class=" selectpicker" onchange="selectState(this)" data-live-search="false" name="paystate" ></select>  
+                 </div>  
+              </div>
+			  <div class="form-group"  style="">  
+                 <label for="orderstate" class="control-label">订单状态</label>  
+                 <div class="">  
+                     <select id="orderstate" class=" selectpicker" data-live-search="false" name="orderstate" disabled="disabled" ></select>  
                  </div>  
               </div>
 	    </div>
@@ -203,6 +209,7 @@ $(function(){
 	uitl.dictEntry("ctype",1007);
 	uitl.dictEntry("ctypeModal",1007);
 	uitl.dictEntry("paystate",1004);
+	uitl.dictEntry("orderstate",1005);
 	uitl.sexInit();
 	uitl.roomEntry("roomno");
 	uitl.customerEntry("idno");
@@ -228,7 +235,8 @@ $(function(){
     $('#unCheckDateDiv').change(function(){
         $('#checkDateDiv').datetimepicker('setEndDate', $("#unCheckDate").val());
     });
-
+    $("#reserve").click();
+    $("#reserve").click();
 });
 
 function  initDateSelect(divId){
@@ -252,11 +260,52 @@ function reserveCon(){
 	console.log($("#reserve")[0].checked);
 	if($("#reserve")[0].checked){
 	    $("#zhezhao").css("display","none"); 
+	    $('#paystate').find('[value=预定金]').show();
+	    $('#paystate').selectpicker('refresh');
+	    if($('#paystate').val()!="未付"){
+		    $('#orderstate').selectpicker('val', "已付");//设置选中 
+		    $('#orderstate').selectpicker('refresh');
+	    }else{
+		    $('#orderstate').selectpicker('val', "未付");//设置选中 
+		    $('#orderstate').selectpicker('refresh');
+	    }
 	}else{
 	    $("#zhezhao").css("display","block"); 
+	    $('#paystate').find('[value=预定金]').hide();
+	    $('#paystate').selectpicker('refresh');
+	    if($('#paystate').val()!="未付"){
+		    $('#orderstate').selectpicker('val', "进行");//设置选中 
+		    $('#orderstate').selectpicker('refresh');
+	    }else{
+		    $('#orderstate').selectpicker('val', "未付");//设置选中 
+		    $('#orderstate').selectpicker('refresh');
+	    }
 	}
+	
+	
 }
-
+function selectState(data){
+	var state = data.options[data.selectedIndex].value;
+	if($("#reserve")[0].checked){
+		if( state !="未付"){
+		    $('#orderstate').selectpicker('val', "已付");//设置选中 
+		    $('#orderstate').selectpicker('refresh');
+	    }else{
+		    $('#orderstate').selectpicker('val', "未付");//设置选中 
+		    $('#orderstate').selectpicker('refresh');
+	    }
+	}else{
+		if( state!="未付" ){
+		    $('#orderstate').selectpicker('val', "进行");//设置选中 
+		    $('#orderstate').selectpicker('refresh');
+	    }else{
+		    $('#orderstate').selectpicker('val', "未付");//设置选中 
+		    $('#orderstate').selectpicker('refresh');
+	    }
+	}
+	
+	
+}
 function selectRoom(data){
 	var roomno = data.options[data.selectedIndex].value;
 	if(roomno==""){
@@ -366,8 +415,8 @@ function commitData(){
 		var orderType = "预约单";
 		var cstate = "已预定";
 	}else{
-		var reserveDate = ' ';
-		var reserveTime = ' ';
+		var reserveDate = '0000-00-00';
+		var reserveTime = '00:00:00';
 		var orderType = "住房单";
 		var cstate = "已入住";
 	}
@@ -378,21 +427,20 @@ function commitData(){
 	}
 	
 	var data = {
-		orderno : 10,
 		roomno : $('#roomno').val(),
 		idno : $('#idno').val(),
 		cname : $('#cname').val(),
 		phone : $('#phone').val(),
-		begindate : '',
-		enddate : '',
+		begindate : '0000-00-00',
+		enddate : '0000-00-00',
 		checkdate : checkDate.split(" ")[0],
 		reservedate : reserveDate,
 		leavedate : unCheckDate.split(" ")[0],
 		checktime : checkDate.split(" ")[1],
 		reservetime : reserveTime,
 		leavetime : unCheckDate.split(" ")[1],
-		begintime : '',
-		endtime : '',
+		begintime : '00:00:00',
+		endtime : '00:00:00',
 		orderstate : ordersTate,
 		ordertype : orderType,
 		paystate : $('#paystate').val(),

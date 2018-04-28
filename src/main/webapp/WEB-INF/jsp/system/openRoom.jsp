@@ -447,6 +447,8 @@ function commitData(){
 		cstate : cstate,
 		remark : $('#remark3').val()
 	}
+	var _page = $('.list-group', window.parent.document);
+	var _pageLength = _page.children().length;
 	
 	$.ajax({
 	    url:'../checkorderData/addCheckorder.json',
@@ -456,7 +458,7 @@ function commitData(){
 	    data: JSON.stringify(data),
 	    success:function(result){
 	        //请求成功后跳转到订单信息
-	    	alert("开房成功");
+			_page.children()[5].click();
 	    },
 	    error:function(){
 	        //请求失败时

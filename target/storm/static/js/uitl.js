@@ -19,8 +19,13 @@ var uitl = {
 		   $("#"+selectId).selectpicker({  
 	            noneSelectedText : '请选择'  
 	        }); 
+		   var async = true;
+		   if(selectId == 'paystate'){
+			   async = false;
+		   }
 	       $.ajax({  
 	             type : 'get',  
+	             async: async,
 	             url : "../dictData/byEntry?entry=" + dictEntry,  
 	             dataType : 'json',  
 	             success : function(datas) {//返回list数据并循环获取  
