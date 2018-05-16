@@ -63,9 +63,9 @@ public class RoomServiceImpl implements IRoomService{
 	}
 
 	@Override
-	public int invalidRoom(Integer roomno) {
+	public int invalidRoom(Integer roomno,String roomState) {
 		// TODO Auto-generated method stub
-		room.invalidRoom(roomno);
+		room.invalidRoom(roomno,roomState);
 		return 0;
 	}
 

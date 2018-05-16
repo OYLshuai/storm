@@ -32,11 +32,18 @@ public class CheckorderController {
 		return response;
 	}
 	
+	/**
+	 * Mybatis 多参数实例 roomService
+	 * @param checkorder
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/addCheckorder")
-	public @ResponseBody JSONObject addCheckorder(@RequestBody Checkorder checkorder){
+	public @ResponseBody JSONObject addCheckorder(@RequestBody Checkorder checkorder,HttpServletRequest request){
 		JSONObject result = new JSONObject();
 		int roomno = checkorder.getRoomno();
-		roomService.invalidRoom(roomno);
+		String roomState = request.getParameter("roomState");
+		roomService.invalidRoom(roomno,roomState);
 		int row = this.checkorderService.addCheckorder(checkorder);
 		result.put("result", row);
 		return result;

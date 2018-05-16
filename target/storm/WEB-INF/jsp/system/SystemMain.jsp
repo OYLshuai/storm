@@ -188,8 +188,8 @@
 		 if(row.rstate == '已住房'){
 		        return '<a class="unCheckRoom" style="cursor:pointer">退房</a> ';
 		 }else if(row.rstate == '空房'){
-		        return '<a class="checkRoom" style="cursor:pointer">开房</a> ' 
-	             +'<a class="destineRoom" style="cursor:pointer">预定</a> ' 
+		        return '<a href="/storm/system/openRoom?roomno='+ row.roomno +'&&jump=true" target="systemIframe" class="checkRoom" style="cursor:pointer">开房</a> ' 
+	             +'<a href="/storm/system/openRoom?destine=destine&&roomno='+ row.roomno +'&&jump=true" target="systemIframe" class="destineRoom" style="cursor:pointer">预定</a> ' 
 	             +'<a class="mod" style="cursor:pointer">修改</a> ' ;
 		 }else if(row.rstate == '预定'){
 		        return '<a class="orderRoom" style="cursor:pointer">登记</a> ';
@@ -205,18 +205,13 @@
               //修改操作
         	modUnCheckRoom(row);
          },
-        'click .checkRoom': function(e, value, row, index) {      
+        'click .orderRoom': function(e, value, row, index) {      
              //开房操作
-             console.log("带小情人开房")
+             console.log("登记开房")
          },
         'click .unCheckRoom': function(e, value, row, index) {      
              //退房操作
              console.log("被掏空退房")
-             
-         },
-        'click .destineRoom': function(e, value, row, index) {      
-             //预定操作
-             console.log("准备被掏空")
              
          }
      }

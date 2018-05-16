@@ -20,7 +20,7 @@ public interface RoomMapper {
     
     Room selectRoomByNo(Integer roomno);
     
-    int invalidRoom(Integer roomno);
+    int invalidRoom(@Param("roomno")Integer roomno,@Param("roomState")String roomState);
     
     int delRoom(Integer roomno);
     

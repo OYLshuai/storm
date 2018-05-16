@@ -18,10 +18,10 @@
           WHERE roomno = #{roomno,jdbcType=INTEGER};     
   </update>  
   
-    <update id="invalidRoom" parameterType="java.lang.Integer">  
+    <update id="invalidRoom">  
          UPDATE room  
-            SET rstate   = "已住"
-          WHERE roomno = #{roomno,jdbcType=INTEGER};     
+            SET rstate   = #{roomState}
+          WHERE roomno = #{roomno};     
   </update>  
   
 <!-- 删除 -->  

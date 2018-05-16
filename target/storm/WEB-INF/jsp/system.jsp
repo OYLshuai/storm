@@ -37,7 +37,7 @@
 </head>
 <body>
 	<div class="col-md-12">
-		<div class="list-group col-md-2" style=" padding-top: 5px;">
+		<div id="systemGroup" class="list-group col-md-2" style=" padding-top: 5px;">
 		  <h2>七家-酒店管理系统</h2>
 		  <a href="/storm/system/SystemMain" target="systemIframe" class="list-group-item active">房源信息</a>
 		  <a href="/storm/system/openRoom" target="systemIframe" class="list-group-item">客户开房</a>

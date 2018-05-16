@@ -40,18 +40,149 @@
 				
 			</table>
 		</div>
+		
+		<!-- 模态框（Modal） -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog" style="width:720px">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							订单信息详情
+						</h4>
+					</div>
+					<div class="modal-body">
+						<form id="cutomerDiv" class="form-horizontal" role="form">
+							<div class="form-group">  
+	                            <label for="cnameModal" class="col-sm-2 control-label">客户姓名:</label>  
+	                            <div class="col-sm-10">  
+	                                <input type="text" class="form-control" id="cnameModal" name="cnameModal" readonly="readonly">  
+	                            </div>  
+	                        </div> 
+							<div class="form-group">  
+	                            <label for="idnoModal" class="col-sm-2 control-label">证件号码:</label>  
+	                            <div class="col-sm-10">  
+	                                <input type="text" class="form-control" id="idnoModal" name="idnoModal" readonly="readonly" >  
+	                            </div>  
+	                        </div>
+							<div class="form-group">  
+	                            <label for="roomnoModal" class="col-sm-2 control-label">房号:</label>  
+	                            <div class="col-sm-10">  
+	                                <input type="text" class="form-control" id="roomnoModal" name="roomnoModal" readonly="readonly" >  
+	                            </div>  
+	                        </div>
+	                        <div class="form-group">  
+	                            <label for="phoneModal" class="col-sm-2 control-label">电话号码:</label>  
+	                            <div class="col-sm-10">  
+	                                <input  class="form-control"  name="phoneModal" id="phoneModal"  disabled="disabled" > 
+	                            </div>  
+	                        </div> 
+							<div class="form-group">  
+	                            <label for="reservedateModal" class="col-sm-2 control-label">预定日期:</label>  
+	                            <div class="col-sm-10">  
+	                                <input type="text" class="form-control" id="reservedateModal" name="reservedateModal"  disabled="disabled" >  
+	                            </div>  
+	                        </div>
+							<div class="form-group">  
+	                            <label for="checkdateModal" class="col-sm-2 control-label">入住日期:</label>  
+	                            <div class="col-sm-10">  
+	                                <input type="text" class="form-control" id="checkdateModal" name="checkdateModal"  disabled="disabled" >  
+	                            </div>  
+	                        </div>
+							<div class="form-group">  
+	                            <label for="leavedateModal" class="col-sm-2 control-label">退房日期:</label>  
+	                            <div class="col-sm-10">  
+	                                <input type="text" class="form-control" id="leavedateModal" name="leavedateModal"  disabled="disabled" >  
+	                            </div>  
+	                        </div>
+	                        <div class="form-group">  
+	                            <label for="remarkModal" class="col-sm-2 control-label">备注:</label>  
+	                            <div class="col-sm-10">  
+	                                <input  class="form-control"  name="remarkModal" id="remarkModal"  disabled="disabled" > 
+	                            </div>  
+	                        </div> 
+							<div class="form-group">  
+	                            <label for="orderstateModal" class="col-sm-2 control-label">订单状态: </label>  
+	                            <div class="col-sm-10">  
+	                                <select id="orderstateModal" class="selectpicker" data-live-search="false" disabled="disabled" ></select>  
+	                            </div>  
+	                        </div>
+							<div class="form-group">  
+	                            <label for="ordertypeModal" class="col-sm-2 control-label">订单类型: </label>  
+	                            <div class="col-sm-10">  
+	                                <select  id="ordertypeModal" class="selectpicker" data-live-search="false" disabled="disabled" ></select>  
+	                            </div>  
+	                        </div> 
+							<div class="form-group">  
+	                            <label for="paystateModal" class="col-sm-2 control-label">支付状态: </label>  
+	                            <div class="col-sm-10">  
+	                                <select id="paystateModal" class="selectpicker" data-live-search="false" disabled="disabled" ></select>  
+	                            </div>  
+	                        </div>
+							<div class="form-group">  
+	                            <label for="cstateModal" class="col-sm-2 control-label">客户状态: </label>  
+	                            <div class="col-sm-10">  
+	                                <select  id="cstateModal" class="selectpicker" data-live-search="false" disabled="disabled" ></select>  
+	                            </div>  
+	                        </div> 
+                		</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal -->
+		</div>
 	</div>
 </body>
 <script type="text/javascript" charset="utf-8">
+$(function(){
+	uitl.dictEntry("orderstateModal",1005);
+	uitl.dictEntry("ordertypeModal",1006);
+	uitl.dictEntry("paystateModal",1004);
+	uitl.dictEntry("cstateModal",1003);
+});
 
 function operateFormatter(value, row, index) {
     return '<a class="details" style="cursor:pointer">详情</a> ' ;
+}
+function timeFormatter(value, row, index){
+	console.log("valuevalue",value);
+	if(value == '00:00:00'){
+		return '-';
+	}else{
+		return value;
+	}
 }
 //表格  - 操作 - 事件
 window.operateEvents = {
     'click .details': function(e, value, row, index) {
         console.log("查看详情");
+        openDetaile(row);
      }
+}
+
+function openDetaile(row){
+	$('#myModal').modal('show');
+	$('#cnameModal').val(row.cname);
+	$('#idnoModal').val(row.idno);
+	$('#roomnoModal').val(row.roomno);
+	$('#phoneModal').val(row.phone);
+	if(row.reservedate){
+		$('#reservedateModal').val(row.reservedate+" "+row.reservetime);
+	}else{
+		$('#reservedateModal').val("");
+	}
+	$('#checkdateModal').val(row.checkdate+" "+row.checktime);
+	$('#leavedateModal').val(row.leavedate+" "+row.leavetime);
+	$('#remarkModal').val(row.remark);
+ 	$('#orderstateModal').selectpicker('val', row.orderstate);//设置选中 
+ 	$('#ordertypeModal').selectpicker('val', row.ordertype);//设置选中 
+ 	$('#paystateModal').selectpicker('val', row.paystate);//设置选中 
+ 	$('#cstateModal').selectpicker('val', row.cstate);//设置选中 
 }
 
 $('#checkorderData').bootstrapTable({
@@ -71,7 +202,7 @@ $('#checkorderData').bootstrapTable({
    showRefresh: true,                  //是否显示刷新按钮
    minimumCountColumns: 2,             //最少允许的列数
    clickToSelect: true,                //是否启用点击选中行
-   height:818,
+   height:790,
    onLoadSuccess: function(data){  //加载成功时执行
    },
    cardView: false,                    //是否显示详细视图
@@ -88,7 +219,7 @@ $('#checkorderData').bootstrapTable({
 	        field: 'roomno',
 	        title: '房号'
 	    }, {
-	        field: 'checkdeta',
+	        field: 'checkdate',
 	        title: '入住日期'
 	    }, {
 	        field: 'checktime',
@@ -104,7 +235,8 @@ $('#checkorderData').bootstrapTable({
 	        title: '预定日期'
 	    }, {
 	        field: 'reservetime',
-	        title: '预定时间'
+	        title: '预定时间',
+            formatter : timeFormatter
 	    },{
 	        field: 'orderstate',
 	        title: '订单状态'
