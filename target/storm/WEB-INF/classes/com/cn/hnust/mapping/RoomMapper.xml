@@ -18,10 +18,10 @@
           WHERE roomno = #{roomno,jdbcType=INTEGER};     
   </update>  
   
-    <update id="invalidRoom">  
+    <update id="invalidRoom" >  
          UPDATE room  
-            SET rstate   = #{roomState}
-          WHERE roomno = #{roomno};     
+            SET rstate = #{roomState,jdbcType=VARCHAR}
+          WHERE roomno = #{roomno,jdbcType=INTEGER};     
   </update>  
   
 <!-- 删除 -->  
@@ -39,6 +39,10 @@
   
   <select id="selectUnCheckRoom" resultMap="BaseResultMap"> 
 		select * from room where rstate = "空房"
+  </select>
+  
+  <select id="selectOrderRoom" resultMap="BaseResultMap"> 
+		SELECT * FROM room WHERE rstate = "预定"
   </select>
   
   <select id="selectRoomByNo" resultType="com.cn.hnust.pojo.Room" parameterType="java.lang.Integer"> 

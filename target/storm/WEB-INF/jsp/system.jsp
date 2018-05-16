@@ -41,7 +41,7 @@
 		  <h2>七家-酒店管理系统</h2>
 		  <a href="/storm/system/SystemMain" target="systemIframe" class="list-group-item active">房源信息</a>
 		  <a href="/storm/system/openRoom" target="systemIframe" class="list-group-item">客户开房</a>
-		  <!-- <a href="#" target="systemIframe" class="list-group-item">预约检查</a> -->
+		  <a href="/storm/system/orderRoomMain" target="systemIframe" class="list-group-item">预约检查</a>
 		  <a href="/storm/system/RoomMain" target="systemIframe" class="list-group-item">房源详情</a>
 		  <a href="/storm/system/CustomerMain" target="systemIframe" class="list-group-item">客户信息</a>
 		  <a href="/storm/system/CheckorderMain" target="systemIframe" class="list-group-item">订单信息</a>

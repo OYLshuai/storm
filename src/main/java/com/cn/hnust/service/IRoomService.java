@@ -12,6 +12,8 @@ public interface IRoomService {
 
 	public List<Map<String, Room>> getUnCheckRoom();
 	
+	public List<Map<String, Room>> getOrderRoom();
+	
 	public Room getRoomByNo(Integer roomno);
 
 	public int modRoomMessage(Room room);

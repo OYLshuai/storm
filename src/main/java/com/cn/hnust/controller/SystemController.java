@@ -34,6 +34,13 @@ public class SystemController {
 		return "system/openRoom";
 	}
 	
+	
+	@RequestMapping("/orderRoomMain")
+	public String orderRoomMain(HttpServletRequest request, Model model) {
+		model.addAttribute("row", "1");
+		return "system/orderRoomMain";
+	}
+	
 	@RequestMapping("/RoomMain")
 	public String RoomMain(HttpServletRequest request, Model model) {
 		model.addAttribute("row", "1");

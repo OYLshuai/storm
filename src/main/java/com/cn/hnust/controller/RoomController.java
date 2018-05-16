@@ -56,6 +56,12 @@ public class RoomController {
 		
 		return response;
 	}
+	
+	@RequestMapping("/orderRoom")
+	public @ResponseBody List<Map<String, Room>> orderRoom(HttpServletRequest httpReqest){
+		List<Map<String, Room>> response = this.roomService.getOrderRoom();
+		return response;
+	}
 
 	@RequestMapping("/delRoom")
 	public @ResponseBody JSONObject delRoom(HttpServletRequest httpReqest){

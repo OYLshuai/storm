@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cn.hnust.pojo.Checkorder;
+import com.cn.hnust.pojo.Customer;
+import com.cn.hnust.pojo.Room;
 import com.cn.hnust.service.ICheckorderService;
 import com.cn.hnust.service.IRoomService;
 
@@ -28,6 +30,29 @@ public class CheckorderController {
 	@RequestMapping("/allCheckorder")
 	public @ResponseBody List<Map<String, Checkorder>> allCheckorder(HttpServletRequest httpReqest){
 		List<Map<String, Checkorder>> response = this.checkorderService.getAllCheckorder();
+		
+		return response;
+	}
+	
+	@RequestMapping("/oneCheckorder")
+	public @ResponseBody JSONObject oneCheckorder(HttpServletRequest httpReqest){
+		JSONObject result = new JSONObject();
+		String idno = httpReqest.getParameter("idno");
+		String roomno = httpReqest.getParameter("roomno");
+		int room = Integer.valueOf(roomno);
+		List<Map<String, Checkorder>> response = this.checkorderService.getOneCheckorder(idno,room);
+		if(!response.isEmpty()){
+			result.put("Checkorder", response.get(0));
+			result.put("flag", 1);
+		}else{
+			result.put("flag", 0);
+		}
+		return result;
+	}
+	
+	@RequestMapping("/orderCustomer")
+	public @ResponseBody List<Map<String, Checkorder>> orderCustomer(HttpServletRequest httpReqest){
+		List<Map<String, Checkorder>> response = this.checkorderService.getOrderCustomer();
 		
 		return response;
 	}

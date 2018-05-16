@@ -39,5 +39,6 @@ E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\controller\LoginController.ja
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\pojo\Customer.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\pojo\Dictindex.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\impl\JavaSymbolServiceImpl.java
+E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\controller\OrderRoomController.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\dao\CustomerMapper.java
 E:\Play_Code\Demo\storm\src\main\java\com\cn\hnust\service\impl\SysdictServiceImpl.java

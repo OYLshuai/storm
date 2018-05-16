@@ -60,7 +60,11 @@
   <select id="selectAllOrder" resultMap="BaseResultMap"> 
 		select * from checkorder 
   </select>
-    
+  
+   <select id="selectOrderCustomer" resultMap="BaseResultMap"> 
+		SELECT *, COUNT(DISTINCT idno) FROM checkorder WHERE cstate="已预定" AND orderstate IN ("已付","未付") GROUP BY idno
+  </select>
+  
   <select id="selectOrderByTerm" resultMap="BaseResultMap" parameterType="com.cn.hnust.pojo.Checkorder"> 
 		select * from checkorder where 1=1
 		      <if test="orderno != null">
@@ -131,6 +135,15 @@
                   AND roomno = #{idno,jdbcType=INTEGER};   
   </select>
   
+   <select id="selectOneOrder" resultMap="BaseResultMap"> 
+		select * from checkorder 
+		 WHERE idno   = #{idno,jdbcType=CHAR}
+           AND roomno = #{idno,jdbcType=INTEGER}
+           AND ordertype = "预约单" 
+           AND orderstate IN ("已付","未付") 
+           ORDER BY  orderno;
+           ;   
+  </select>
   
   <insert id="insert" parameterType="com.cn.hnust.pojo.Checkorder">
     insert into checkorder (orderno, roomno, idno, 

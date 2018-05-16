@@ -69,4 +69,10 @@ public class RoomServiceImpl implements IRoomService{
 		return 0;
 	}
 
+	@Override
+	public List<Map<String, Room>> getOrderRoom() {
+		// TODO Auto-generated method stub
+		return room.selectOrderRoom();
+	}
+
 }

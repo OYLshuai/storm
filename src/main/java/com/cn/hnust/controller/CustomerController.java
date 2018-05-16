@@ -27,7 +27,7 @@ public class CustomerController {
 		
 		return response;
 	}
-	
+
 	@RequestMapping("/getCustomerById")
 	public @ResponseBody JSONObject getCustomerById(HttpServletRequest httpReqest){
 		JSONObject result = new JSONObject();

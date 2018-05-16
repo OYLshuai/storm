@@ -39,6 +39,7 @@ var uitl = {
 	             }  
 	         }); 
 		 },
+		 ///获取可住的房间
 		 "roomEntry":function(selectId){
 			//下拉数据加载  
 		   $("#"+selectId).selectpicker({  
@@ -61,6 +62,30 @@ var uitl = {
 	             }  
 	         }); 
 		 },
+		 //获取已预约的房号
+		 "orderRoomEntry":function(selectId){
+				//下拉数据加载  
+			   $("#"+selectId).selectpicker({  
+		          noneSelectedText : '请选择'  
+		       }); 
+		       $.ajax({  
+		             type : 'get',  
+		             url : "../roomData/orderRoom",  
+		             dataType : 'json',  
+		             success : function(datas) {//返回list数据并循环获取  
+		                 var select = $("#"+selectId);  
+		                 select.append("<option value='"+""+"'>"  
+	                             + "请选择" + "</option>");  
+		                 for (var i = 0; i < datas.length; i++) {  
+		                     select.append("<option value='"+datas[i].roomno+"'>"  
+		                             + datas[i].roomno + "</option>");  
+		                 }  
+		                 select.selectpicker('val', '');  
+		                 select.selectpicker('refresh');  
+		             }  
+		         }); 
+		 },
+		 //获取所有的客户
 		 "customerEntry":function(selectId){
 			//下拉数据加载  
 		   $("#"+selectId).selectpicker({  
@@ -82,6 +107,29 @@ var uitl = {
 	                 select.selectpicker('refresh');  
 	             }  
 	         }); 
+		 },
+		 //获取预约的客户
+		 "orderCustomerEntry":function(selectId){
+				//下拉数据加载  
+			   $("#"+selectId).selectpicker({  
+		          noneSelectedText : '请选择'
+		       }); 
+		       $.ajax({  
+		             type : 'get',  
+		             url : "../checkorderData/orderCustomer",  
+		             dataType : 'json',  
+		             success : function(datas) {//返回list数据并循环获取  
+		                 var select = $("#"+selectId);  
+		                 select.append("<option value='"+""+"'>"  
+	                             + "请选择" + "</option>");  
+		                 for (var i = 0; i < datas.length; i++) {  
+		                     select.append("<option value='"+datas[i].idno+"'>"  
+		                             + datas[i].idno + "(" + datas[i].cname + ")" + "</option>");  
+		                 }  
+		                 select.selectpicker('val', '');  
+		                 select.selectpicker('refresh');  
+		             }  
+		         }); 
 		 },
 		 "sexInit":function(){
 		    $('#sex').selectpicker({  

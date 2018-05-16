@@ -32,7 +32,7 @@
 </head>
 <body style="margin: 20px;">
 	<div id="openRoomDataBar" class="btn-group" style="font-size: 20px;">
-		<strong>开房及预约</strong>
+		<strong>开房</strong>
     </div>
     <div id="dataDiv" class="col-sm-12">
 	    <div id="customerDiv" class="col-sm-4">
@@ -156,7 +156,8 @@
 			  
 			  
 			  <div class="form-group" style="margin-top: 16px;">
-			    <label for="checkDate" class="control-label">入住日期</label>
+			    <label id="chInputFlag" for="checkDate" class="control-label" style="margin-bottom: -20px;">入住日期</label>
+			    <label id="reInputFlag" for="checkDate" class="control-label" style="display:none;margin-bottom: -20px;">预约入住日期</label>
 			    <br/>
 				  <div id="checkDateDiv" class="input-group date" style="margin-top: 4px;">
 	                  <input id="checkDate" name="checkDate" class="form-control" type="text" readonly="readonly"> 
@@ -164,7 +165,8 @@
 	              </div>
 			  </div>
 			  <div class="form-group" style="margin-top: 16px;">
-			    <label for="unCheckDate" class="control-label">退房日期</label>
+			    <label id="chExitFlag" for="unCheckDate" class="control-label" style="margin-bottom: -20px;">退房日期</label>
+			    <label id="reExitFlag" for="unCheckDate" class="control-label" style="display:none;margin-bottom: -20px;">预约退房日期</label>
 			    <br/>
 	              <div id="unCheckDateDiv" class="input-group date" style="margin-top: 4px;">
 	                  <input id="unCheckDate" name="unCheckDate" class="form-control" type="text" readonly="readonly">
@@ -237,13 +239,14 @@ $(function(){
     });
     $("#reserve").click();
     $("#reserve").click();
-    
-    jumpFunction();
+
+	var jump = "${jump}";
+	if(jump == "true"){
+    	jumpFunction();
+	}
 });
 
 function jumpFunction(){
-	var jump = "${jump}";
-	if(jump){
 		var nextA = $(".active",window.parent.document).next();
 		$(".active",window.parent.document).removeClass("active");
 		nextA.addClass("active");
@@ -255,7 +258,6 @@ function jumpFunction(){
 		}
 		selectRoom(roomno);
 		selectCustomer(idno);
-	}
 }
 
 function  initDateSelect(divId){
@@ -276,7 +278,7 @@ function  initDateSelect(divId){
 }
 
 function reserveCon(){
-	if($("#reserve")[0].checked){
+	if($("#reserve")[0].checked){   //勾选了预定
 	    $("#zhezhao").css("display","none"); 
 	    $('#paystate').find('[value=预定金]').show();
 	    $('#paystate').selectpicker('refresh');
@@ -287,6 +289,10 @@ function reserveCon(){
 		    $('#orderstate').selectpicker('val', "未付");//设置选中 
 		    $('#orderstate').selectpicker('refresh');
 	    }
+	    $("#reExitFlag").css("display","block"); 
+	    $("#reInputFlag").css("display","block"); 
+	    $("#chExitFlag").css("display","none"); 
+	    $("#chInputFlag").css("display","none"); 
 	}else{
 	    $("#zhezhao").css("display","block"); 
 	    $('#paystate').find('[value=预定金]').hide();
@@ -298,6 +304,10 @@ function reserveCon(){
 		    $('#orderstate').selectpicker('val', "未付");//设置选中 
 		    $('#orderstate').selectpicker('refresh');
 	    }
+	    $("#reExitFlag").css("display","none"); 
+	    $("#reInputFlag").css("display","none"); 
+	    $("#chExitFlag").css("display","block"); 
+	    $("#chInputFlag").css("display","block"); 
 	}
 }
 function selectState(data){
@@ -429,16 +439,32 @@ function commitData(){
 		return ;	
 	var checkDate = $('#checkDate').val();
 	var unCheckDate = $('#unCheckDate').val();
-	if($("#reserve")[0].checked){
+	if($("#reserve")[0].checked){  //预定
 		var reserveVal = $('#reserveDate').val();
 		var reserveDate = reserveVal.split(" ")[0];
 		var reserveTime = reserveVal.split(" ")[1];
+		var beginDate = checkDate.split(" ")[0];
+		var beginTime = checkDate.split(" ")[1];
+		var endDate = unCheckDate.split(" ")[0];
+		var endTime = unCheckDate.split(" ")[1];
+		var checkdate = '0000-00-00';
+		var checktime = '00:00:00';
+		var leavedate = '0000-00-00';
+		var leavetime = '00:00:00';
 		var orderType = "预约单";
 		var cstate = "已预定";
 		var roomState = "预定";
 	}else{
 		var reserveDate = '0000-00-00';
 		var reserveTime = '00:00:00';
+		var beginDate = '0000-00-00';
+		var beginTime = '00:00:00';
+		var endDate = '0000-00-00';
+		var endTime = '00:00:00';
+		var checkdate = checkDate.split(" ")[0];
+		var checktime = checkDate.split(" ")[1];
+		var leavedate = unCheckDate.split(" ")[0];
+		var leavetime = unCheckDate.split(" ")[1];
 		var orderType = "住房单";
 		var cstate = "已入住";
 		var roomState = "已住";
@@ -454,16 +480,16 @@ function commitData(){
 		idno : $('#idno').val(),
 		cname : $('#cname').val(),
 		phone : $('#phone').val(),
-		begindate : '0000-00-00',
-		enddate : '0000-00-00',
-		checkdate : checkDate.split(" ")[0],
+		begindate : beginDate,
+		enddate : endDate,
+		checkdate : checkdate,
 		reservedate : reserveDate,
-		leavedate : unCheckDate.split(" ")[0],
-		checktime : checkDate.split(" ")[1],
+		leavedate : leavedate,
+		checktime : checktime,
 		reservetime : reserveTime,
-		leavetime : unCheckDate.split(" ")[1],
-		begintime : '00:00:00',
-		endtime : '00:00:00',
+		leavetime : leavetime,
+		begintime : beginTime,
+		endtime : endTime,
 		orderstate : ordersTate,
 		ordertype : orderType,
 		paystate : $('#paystate').val(),
@@ -474,7 +500,7 @@ function commitData(){
 	var _pageLength = _page.children().length;
 	
 	$.ajax({
-	    url:'../checkorderData/addCheckorder.json?roomState'+ roomState,
+	    url:'../checkorderData/addCheckorder.json?roomState='+ roomState,
 		type : "POST",
 	    contentType: 'application/json;charset=UTF-8',//加上防止415错误
 		dataType : "json",

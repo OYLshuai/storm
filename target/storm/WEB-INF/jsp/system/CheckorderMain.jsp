@@ -86,6 +86,18 @@
 	                            </div>  
 	                        </div>
 							<div class="form-group">  
+	                            <label for="begindateModal" class="col-sm-2 control-label">预定入住日期:</label>  
+	                            <div class="col-sm-10">  
+	                                <input type="text" class="form-control" id="begindateModal" name="begindateModal"  disabled="disabled" >  
+	                            </div>  
+	                        </div>
+							<div class="form-group">  
+	                            <label for="enddateModal" class="col-sm-2 control-label">预定退房日期:</label>  
+	                            <div class="col-sm-10">  
+	                                <input type="text" class="form-control" id="enddateModal" name="enddateModal"  disabled="disabled" >  
+	                            </div>  
+	                        </div>
+							<div class="form-group">  
 	                            <label for="checkdateModal" class="col-sm-2 control-label">入住日期:</label>  
 	                            <div class="col-sm-10">  
 	                                <input type="text" class="form-control" id="checkdateModal" name="checkdateModal"  disabled="disabled" >  
@@ -176,8 +188,26 @@ function openDetaile(row){
 	}else{
 		$('#reservedateModal').val("");
 	}
-	$('#checkdateModal').val(row.checkdate+" "+row.checktime);
-	$('#leavedateModal').val(row.leavedate+" "+row.leavetime);
+	if(row.begindate){
+		$('#begindateModal').val(row.begindate+" "+row.begintime);
+	}else{
+		$('#begindateModal').val("");
+	}
+	if(row.enddate){
+		$('#enddateModal').val(row.enddate+" "+row.endtime);
+	}else{
+		$('#enddateModal').val("");
+	}
+	if(row.checkdate){
+		$('#checkdateModal').val(row.checkdate+" "+row.checktime);
+	}else{
+		$('#checkdateModal').val("");
+	}
+	if(row.leavedate){
+		$('#leavedateModal').val(row.leavedate+" "+row.leavetime);
+	}else{
+		$('#leavedateModal').val("");
+	}
 	$('#remarkModal').val(row.remark);
  	$('#orderstateModal').selectpicker('val', row.orderstate);//设置选中 
  	$('#ordertypeModal').selectpicker('val', row.ordertype);//设置选中 
@@ -223,19 +253,35 @@ $('#checkorderData').bootstrapTable({
 	        title: '入住日期'
 	    }, {
 	        field: 'checktime',
-	        title: '入住时间'
+	        title: '入住时间',
+            formatter : timeFormatter
 	    }, {
 	        field: 'leavedate',
 	        title: '退房日期'
 	    }, {
 	        field: 'leavetime',
-	        title: '退房时间'
+	        title: '退房时间',
+            formatter : timeFormatter
 	    },{
 	        field: 'reservedate',
 	        title: '预定日期'
 	    }, {
 	        field: 'reservetime',
 	        title: '预定时间',
+            formatter : timeFormatter
+	    },{
+	        field: 'begindate',
+	        title: '预定入住日期'
+	    },{
+	        field: 'begintime',
+	        title: '预定退房时间',
+            formatter : timeFormatter
+	    },{
+	        field: 'enddate',
+	        title: '预定退房日期'
+	    },{
+	        field: 'endtime',
+	        title: '预定退房时间',
             formatter : timeFormatter
 	    },{
 	        field: 'orderstate',

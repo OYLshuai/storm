@@ -14,9 +14,15 @@ public interface CheckorderMapper {
     
     List<Map<String,Checkorder>> selectAllOrder();
     
+    List<Map<String,Checkorder>> selectOrderCustomer();
+    
     List<Map<String,Checkorder>> selectOrderByTerm(Checkorder record);
     
+    //查询单个订单
     Checkorder selectOrderByNo(@Param("idno")String idno,@Param("roomno")Integer roomno);
+    
+    //查询预约的订单
+    List<Map<String, Checkorder>> selectOneOrder(@Param("idno")String idno,@Param("roomno")Integer roomno);
     
     int modCheckorder(Checkorder record);
     

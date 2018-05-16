@@ -18,6 +18,8 @@ public interface RoomMapper {
 
     List<Map<String,Room>> selectUnCheckRoom();
     
+    List<Map<String,Room>> selectOrderRoom();
+    
     Room selectRoomByNo(Integer roomno);
     
     int invalidRoom(@Param("roomno")Integer roomno,@Param("roomState")String roomState);

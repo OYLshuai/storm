@@ -56,4 +56,16 @@ public class CheckorderService implements ICheckorderService{
 		return 0;
 	}
 
+	@Override
+	public List<Map<String, Checkorder>> getOrderCustomer() {
+		// TODO Auto-generated method stub
+		return checkorderMapper.selectOrderCustomer();
+	}
+
+	@Override
+	public List<Map<String, Checkorder>> getOneCheckorder(String idno, Integer roomno) {
+		// TODO Auto-generated method stub
+		return checkorderMapper.selectOneOrder(idno, roomno);
+	}
+
 }
