@@ -291,7 +291,7 @@ $('#checkorderData').bootstrapTable({
 	        title: '订单类型'
 	    },{
 	        field: 'paystate',
-	        title: '支付状态'
+	        title: '订单支付状态'
 	    }, {
 	        field: 'cstate',
 	        title: '客户状态'

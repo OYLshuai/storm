@@ -23,6 +23,8 @@ public interface RoomMapper {
     Room selectRoomByNo(Integer roomno);
     
     int invalidRoom(@Param("roomno")Integer roomno,@Param("roomState")String roomState);
+
+    int updateRoomState(Integer roomno);
     
     int delRoom(Integer roomno);
     

@@ -19,4 +19,6 @@ public interface CustomerMapper {
     int modCustomer(Customer customer);
     
     int delCustomer(String idno);
+    
+    int addFrequency(String idno);
 }

@@ -52,4 +52,11 @@ public class CustomerService implements ICustomerService{
 		return customer.delCustomer(idno);
 	}
 
+	@Override
+	public int addFreq(String idno) {
+		// TODO Auto-generated method stub
+		customer.addFrequency(idno);
+		return 0;
+	}
+
 }

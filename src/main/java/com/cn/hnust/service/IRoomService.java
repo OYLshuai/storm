@@ -23,4 +23,6 @@ public interface IRoomService {
 	public int DelRoom(Integer roomno);
 
 	public int invalidRoom(Integer roomno,String roomState);
+
+	public int invalidRoom(Integer roomno);
 }

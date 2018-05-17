@@ -22,6 +22,10 @@
                 remark    = #{remark,jdbcType=VARCHAR}    
           WHERE idno = #{idno,jdbcType=CHAR};     
   </update> 
+  <update id="addFrequency" parameterType="String">  
+         UPDATE customer SET frequency = frequency+1
+          WHERE idno = #{idno,jdbcType=CHAR};     
+  </update> 
   
   <!-- 删除 -->  
   <delete id="delCustomer" parameterType="String">

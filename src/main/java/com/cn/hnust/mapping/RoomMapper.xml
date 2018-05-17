@@ -23,7 +23,12 @@
             SET rstate = #{roomState,jdbcType=VARCHAR}
           WHERE roomno = #{roomno,jdbcType=INTEGER};     
   </update>  
-  
+    
+    <update id="updateRoomState" parameterType="java.lang.Integer">  
+         UPDATE room  
+            SET rstate = "已住"
+          WHERE roomno = #{roomno,jdbcType=INTEGER};     
+  </update>  
 <!-- 删除 -->  
   <delete id="delRoom" parameterType="java.lang.Integer">  
         DELETE FROM room WHERE roomno = #{roomno,jdbcType=INTEGER};  

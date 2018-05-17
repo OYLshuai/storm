@@ -51,6 +51,11 @@
           WHERE idno   = #{idno,jdbcType=CHAR}
             AND roomno = #{idno,jdbcType=INTEGER};     
   </update> 
+    <update id="updateCheckorderState" parameterType="java.lang.Integer">  
+         UPDATE checkorder  
+            SET orderstate  = "作废"  
+          WHERE orderno = #{order,jdbcType=INTEGER};     
+  </update> 
   
   <!-- 删除 -->  
   <delete id="delCheckorder">
@@ -132,13 +137,13 @@
   <select id="selectOrderByNo" resultType="com.cn.hnust.pojo.Checkorder"> 
 		select * from checkorder 
 		        WHERE idno   = #{idno,jdbcType=CHAR}
-                  AND roomno = #{idno,jdbcType=INTEGER};   
+                  AND roomno = #{roomno,jdbcType=INTEGER};   
   </select>
   
    <select id="selectOneOrder" resultMap="BaseResultMap"> 
 		select * from checkorder 
 		 WHERE idno   = #{idno,jdbcType=CHAR}
-           AND roomno = #{idno,jdbcType=INTEGER}
+           AND roomno = #{roomno,jdbcType=INTEGER}
            AND ordertype = "预约单" 
            AND orderstate IN ("已付","未付") 
            ORDER BY  orderno;

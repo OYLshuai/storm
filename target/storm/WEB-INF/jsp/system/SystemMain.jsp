@@ -192,7 +192,7 @@
 	             +'<a href="/storm/system/openRoom?destine=destine&&roomno='+ row.roomno +'&&jump=true" target="systemIframe" class="destineRoom" style="cursor:pointer">预定</a> ' 
 	             +'<a class="mod" style="cursor:pointer">修改</a> ' ;
 		 }else if(row.rstate == '预定'){
-		        return '<a class="orderRoom" style="cursor:pointer">登记</a> ';
+		        return '<a href="/storm/system/orderRoomMain?destine=check&&roomno='+ row.roomno +'&&jump=true" target="systemIframe" class="orderRoom" style="cursor:pointer">登记</a> ';
 		 }else{
 	        return '<a class="mod" style="cursor:pointer">修改</a> ';
 	            // + '<a class="del" style="cursor:pointer">删除</a> ';

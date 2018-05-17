@@ -507,7 +507,7 @@ function commitData(){
 	    data: JSON.stringify(data),
 	    success:function(result){
 	        //请求成功后跳转到订单信息
-			_page.children()[5].click();
+			_page.children()[6].click();
 	    },
 	    error:function(){
 	        //请求失败时

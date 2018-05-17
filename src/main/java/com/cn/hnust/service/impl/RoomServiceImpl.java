@@ -75,4 +75,11 @@ public class RoomServiceImpl implements IRoomService{
 		return room.selectOrderRoom();
 	}
 
+	@Override
+	public int invalidRoom(Integer roomno) {
+		// TODO Auto-generated method stub
+		room.updateRoomState(roomno);
+		return 0;
+	}
+
 }

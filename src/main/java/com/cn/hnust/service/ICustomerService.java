@@ -17,4 +17,6 @@ public interface ICustomerService {
 	public int addCustomer(Customer customer);
 	
 	public int delCustomer(String idno);
+	
+	public int addFreq(String idno);
 }

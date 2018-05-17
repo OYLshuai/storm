@@ -16,6 +16,7 @@ import com.cn.hnust.pojo.Checkorder;
 import com.cn.hnust.pojo.Customer;
 import com.cn.hnust.pojo.Room;
 import com.cn.hnust.service.ICheckorderService;
+import com.cn.hnust.service.ICustomerService;
 import com.cn.hnust.service.IRoomService;
 
 @Controller
@@ -26,6 +27,9 @@ public class CheckorderController {
 	
 	@Resource
 	private IRoomService roomService;
+
+	@Resource
+	private ICustomerService customerService;
 	
 	@RequestMapping("/allCheckorder")
 	public @ResponseBody List<Map<String, Checkorder>> allCheckorder(HttpServletRequest httpReqest){
@@ -70,6 +74,21 @@ public class CheckorderController {
 		String roomState = request.getParameter("roomState");
 		roomService.invalidRoom(roomno,roomState);
 		int row = this.checkorderService.addCheckorder(checkorder);
+		result.put("result", row);
+		return result;
+	}
+	
+	@RequestMapping("/orderChange")
+	public @ResponseBody JSONObject orderChange(@RequestBody Checkorder checkorder,HttpServletRequest request){
+		JSONObject result = new JSONObject();
+		int roomno = checkorder.getRoomno();
+		String idno = checkorder.getIdno();
+		String orderno = request.getParameter("orderno");
+		Integer orderNo = Integer.valueOf(orderno);
+		roomService.invalidRoom(roomno);//修改客房状态
+		customerService.addFreq(idno);//修改客户住房次数
+		this.checkorderService.changeCheckOrder(orderNo);//作废原有预定订单
+		int row = this.checkorderService.addCheckorder(checkorder);//新建住房订单
 		result.put("result", row);
 		return result;
 	}

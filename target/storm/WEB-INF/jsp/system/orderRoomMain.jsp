@@ -31,6 +31,9 @@
 <title>Insert title here</title>
 </head>
 <body style="margin: 20px;">
+<div class="alert alert-danger alert-dismissible" id="errmessage" role="alert" style = "display:none;float: none;">
+	<button id="errmessageBtn" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
 	<div id="openRoomDataBar" class="btn-group" style="font-size: 20px;">
 		<strong>预约</strong>
     </div>
@@ -113,45 +116,43 @@
 	    	<div id="dateDataBar" class="btn-group">
 				<strong>登记时间</strong>
 	        </div>
-			<form class="form-inline"id="newDateFrom" style="margin-top: 15px;" role="form">
-			  <div class="form-group">
-			    <label for="reserveDate" class="control-label">预约日期</label>
-			    <br/>
-			      <div id="zhezhao" style="background-color:#e3e3e3; position:absolute; z-index:9999; top:58px;height: 36px;width: 210px;opacity: 0.5; display:block;">
-			      
-			      </div>
-	              <div id="reserveDateDiv" class="input-group date" style="margin-top: 4px;">
-	                  <input id="reserveDate" name="reserveDate" class="form-control" type="text" readonly="readonly">
-	                  <span id="reserveSpan" class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
-	              </div>
-			  </div>
-			  <div class="form-group" style="margin-top: 24px;margin-left: 7px;">
-			  	<input type="checkbox" name="reserve" id="reserve" onClick="reserveCon()">预约住房
-			  </div>
-			  <br/>
+			<form class="form-inline"id="newDateFrom" style="" role="form">
 			  <div class="form-group" style="margin-top: 16px;">
-			    <label id="chInputFlag" for="checkDate" class="control-label" style="margin-bottom: -20px;">入住日期</label>
-			    <label id="reInputFlag" for="checkDate" class="control-label" style="display:none;margin-bottom: -20px;">预约入住日期</label>
+			    <label id="chInputFlag" for="checkDate" class="control-label">入住日期</label>
 			    <br/>
 				  <div id="checkDateDiv" class="input-group date" style="margin-top: 4px;">
 	                  <input id="checkDate" name="checkDate" class="form-control" type="text" readonly="readonly"> 
 	                  <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
 	              </div>
 			  </div>
-			  <div class="form-group" style="margin-top: 16px;">
-			    <label id="chExitFlag" for="unCheckDate" class="control-label" style="margin-bottom: -20px;">退房日期</label>
-			    <label id="reExitFlag" for="unCheckDate" class="control-label" style="display:none;margin-bottom: -20px;">预约退房日期</label>
+<!-- 			  <div class="form-group" style="margin-top: 16px;">
+			    <label id="chExitFlag" for="unCheckDate" class="control-label">退房日期</label>
 			    <br/>
 	              <div id="unCheckDateDiv" class="input-group date" style="margin-top: 4px;">
 	                  <input id="unCheckDate" name="unCheckDate" class="form-control" type="text" readonly="readonly">
 	                  <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
 	              </div>
-			  </div>
+			  </div> -->
 			</form>
+			  <div class="form-group" style="margin-top: 16px;">
+			    <label for="remark3">预约日期</label>
+			  <br/>
+			    <input type="text" class="form-control" id="reserveDate" name="reserveDate" placeholder="预约日期" disabled="disabled" >
+			  </div>
+			  <div class="form-group" style="margin-top: 16px;">
+			    <label for="remark3">预约入住日期</label>
+			  <br/>
+			    <input type="text" class="form-control" id="beginDate" name="beginDate" placeholder="预约入住日期" disabled="disabled" >
+			  </div>
+			  <div class="form-group" style="margin-top: 16px;">
+			    <label for="remark3">预约退房日期</label>
+			  <br/>
+			    <input type="text" class="form-control" id="endDate" name="endDate" placeholder="预约退房日期" disabled="disabled" >
+			  </div>
 			  <div class="form-group" style="margin-top: 16px;">
 			    <label for="remark3">备注</label>
 			  <br/>
-			    <input type="text" class="form-control" id="remark3" name="remark3" placeholder="备注">
+			    <input type="text" class="form-control" id="remark3" name="remark3" placeholder="备注" disabled="disabled" >
 			  </div>
 			  <br/>
 			  <div class="form-group"  style="margin-top: -21px;">  
@@ -172,11 +173,15 @@
     	<div class="col-sm-5">
     	</div>
     	<div class="col-sm-5" style="width: 15%;">
-    		<button type="button" class="btn btn-primary btn-block" onClick="commitData()">提交</button>
+    		<button type="button" class="btn btn-primary btn-block" onClick="commitData()">登记</button>
     	</div>
     </div>
 </body>
 <script type="text/javascript" charset="utf-8">
+var impData = {
+	"orderno" : 0	
+};
+
 $(function(){
 	uitl.dictEntry("roomtype",1002);
 	uitl.dictEntry("roomtypeModal",1002);
@@ -191,7 +196,6 @@ $(function(){
 	uitl.orderCustomerEntry("idno");
     initDateSelect("checkDateDiv");
     initDateSelect("unCheckDateDiv");
-    initDateSelect("reserveDateDiv");
     
     $('#checkDateDiv').unbind("change");
     $('#checkDateDiv').change(function(){
@@ -211,13 +215,13 @@ $(function(){
 });
 
 function jumpFunction(){
-		var nextA = $(".active",window.parent.document).next();
+		var nextA = $(".active",window.parent.document).next().next();
 		$(".active",window.parent.document).removeClass("active");
 		nextA.addClass("active");
 		var roomno = "${roomno}";
 		var idno = "${idno}";
 		var destine = "${destine}";
-		if(destine == 'destine'){
+		if(destine == 'check'){
 			$("#reserve").click();
 		}
 		selectRoom(roomno);
@@ -241,58 +245,20 @@ function  initDateSelect(divId){
     });
 }
 
-function reserveCon(){
-	if($("#reserve")[0].checked){   //勾选了预定
-	    $("#zhezhao").css("display","none"); 
-	    $('#paystate').find('[value=预定金]').show();
-	    $('#paystate').selectpicker('refresh');
-	    if($('#paystate').val()!="未付"){
-		    $('#orderstate').selectpicker('val', "已付");//设置选中 
-		    $('#orderstate').selectpicker('refresh');
-	    }else{
-		    $('#orderstate').selectpicker('val', "未付");//设置选中 
-		    $('#orderstate').selectpicker('refresh');
-	    }
-	    $("#reExitFlag").css("display","block"); 
-	    $("#reInputFlag").css("display","block"); 
-	    $("#chExitFlag").css("display","none"); 
-	    $("#chInputFlag").css("display","none"); 
-	}else{
-	    $("#zhezhao").css("display","block"); 
-	    $('#paystate').find('[value=预定金]').hide();
-	    $('#paystate').selectpicker('refresh');
-	    if($('#paystate').val()!="未付"){
-		    $('#orderstate').selectpicker('val', "进行");//设置选中 
-		    $('#orderstate').selectpicker('refresh');
-	    }else{
-		    $('#orderstate').selectpicker('val', "未付");//设置选中 
-		    $('#orderstate').selectpicker('refresh');
-	    }
-	    $("#reExitFlag").css("display","none"); 
-	    $("#reInputFlag").css("display","none"); 
-	    $("#chExitFlag").css("display","block"); 
-	    $("#chInputFlag").css("display","block"); 
-	}
-}
 function selectState(data){
 	var state = data.options[data.selectedIndex].value;
-	if($("#reserve")[0].checked){
-		if( state !="未付"){
-		    $('#orderstate').selectpicker('val', "已付");//设置选中 
-		    $('#orderstate').selectpicker('refresh');
-	    }else{
-		    $('#orderstate').selectpicker('val', "未付");//设置选中 
-		    $('#orderstate').selectpicker('refresh');
-	    }
-	}else{
-		if( state!="未付" ){
-		    $('#orderstate').selectpicker('val', "进行");//设置选中 
-		    $('#orderstate').selectpicker('refresh');
-	    }else{
-		    $('#orderstate').selectpicker('val', "未付");//设置选中 
-		    $('#orderstate').selectpicker('refresh');
-	    }
+	if(state=="房费"){
+	    $('#orderstate').selectpicker('val', "已付");//设置选中 
+	    $('#orderstate').selectpicker('refresh');
 	}
+	else if( state!="未付" ){
+	    $('#orderstate').selectpicker('val', "进行");//设置选中 
+	    $('#orderstate').selectpicker('refresh');
+    }else{
+	    $('#orderstate').selectpicker('val', "未付");//设置选中 
+	    $('#orderstate').selectpicker('refresh');
+    }
+
 }
 function selectRoomData(data){
 	var roomno = data.options[data.selectedIndex].value;
@@ -330,7 +296,7 @@ function selectRoom(roomno){
 		    },
 		    error:function(){
 		        //请求失败时
-		        alert('请求失败');
+		        setErrMessage("请求失败");
 		    }
 		}); 
 	}
@@ -342,16 +308,34 @@ function selectCustomerData(data){
 	orderDateInf();
 }; 
 
-function selectOrderInf(idno, roomno){
-	
-}
-
 function orderDateInf(){
 	var roomno = $('#roomno').val();
 	var idno = $('#idno').val();
 	if(roomno != "" && idno !=""){
-		
+       $.ajax({  
+             type : 'get',  
+             url : "../checkorderData/oneCheckorder?idno="+idno+"&&roomno="+roomno,  
+             dataType : 'json',  
+             success : function(datas) {//返回list数据并循环获取  
+				if(datas.flag==0){
+			        setErrMessage("该客户未定此房");
+				}else{
+					var row = datas.Checkorder;
+					impData.orderno = row.orderno;
+					$('#reserveDate').val(row.reservedate+" "+row.reservetime);
+					$('#beginDate').val(row.begindate+" "+row.begintime);
+					$('#endDate').val(row.enddate+" "+row.endtime);
+					$('#remark3').val(row.remark);
+				 	$('#orderstate').selectpicker('val', row.orderstate);//设置选中 
+				 	$('#paystate').selectpicker('val', row.paystate);//设置选中 
+				}
+             }
+         }); 
 	}
+}
+//选择客户的时候   房间信息刷新为该客户的订房信息  
+function selectOrderInf(idno, roomno){
+	
 }
 
 function selectCustomer(idno){
@@ -388,7 +372,7 @@ function selectCustomer(idno){
 		    },
 		    error:function(){
 		        //请求失败时
-		        alert('请求失败');
+			    setErrMessage("请求失败");
 		    }
 		}); 
 	}
@@ -398,60 +382,55 @@ function checkMustDate(){
 	var checkDate = $('#checkDate').val();
 	var unCheckDate = $('#unCheckDate').val();
 	if(checkDate=="" || unCheckDate==""){
-		alert("入住时间和退房时间必填");
+		setErrMessage("入住时间和退房时间必填");
 		return false;
 	}
 	if($('#idno').val()==""){
-		alert("请选择入住用户");
+		setErrMessage("请选择入住用户");
 		return false;
 	}
 	if($('#roomno').val()==""){
-		alert("请选择入住房间");
+		setErrMessage("请选择入住房间");
 		return false;
 	}
 	return true;
+}
+
+function setErrMessage(message){
+	if($("#errmessage").find("#message").length=0){
+		$("#errmessageBtn").after("<b id='message'>"+message+"</b>");
+	}else{
+		$("#errmessage").find("#message").remove();
+		$("#errmessageBtn").after("<b id='message'>"+message+"</b>");
+	}
+	$("#errmessage").show(500);
+	setTimeout(function(){
+        $("#errmessage").hide(500);
+    }, 5000);
 }
 
 function commitData(){
 	if(!checkMustDate())
 		return ;	
 	var checkDate = $('#checkDate').val();
-	var unCheckDate = $('#unCheckDate').val();
-	if($("#reserve")[0].checked){  //预定
-		var reserveVal = $('#reserveDate').val();
-		var reserveDate = reserveVal.split(" ")[0];
-		var reserveTime = reserveVal.split(" ")[1];
-		var beginDate = checkDate.split(" ")[0];
-		var beginTime = checkDate.split(" ")[1];
-		var endDate = unCheckDate.split(" ")[0];
-		var endTime = unCheckDate.split(" ")[1];
-		var checkdate = '0000-00-00';
-		var checktime = '00:00:00';
-		var leavedate = '0000-00-00';
-		var leavetime = '00:00:00';
-		var orderType = "预约单";
-		var cstate = "已预定";
-		var roomState = "预定";
-	}else{
-		var reserveDate = '0000-00-00';
-		var reserveTime = '00:00:00';
-		var beginDate = '0000-00-00';
-		var beginTime = '00:00:00';
-		var endDate = '0000-00-00';
-		var endTime = '00:00:00';
-		var checkdate = checkDate.split(" ")[0];
-		var checktime = checkDate.split(" ")[1];
-		var leavedate = unCheckDate.split(" ")[0];
-		var leavetime = unCheckDate.split(" ")[1];
-		var orderType = "住房单";
-		var cstate = "已入住";
-		var roomState = "已住";
-	}
-	if($('#paystate').val() == '未付'){
-		var ordersTate = '未付'
-	}else{
-		var ordersTate = '已付'
-	}
+	var beginVal = $('#beginDate').val();
+	var reserveVal = $('#reserveDate').val();
+	var endVal = $('#endDate').val();
+	
+	var reserveDate = reserveVal.split(" ")[0];
+	var reserveTime = reserveVal.split(" ")[1];
+	var beginDate = beginVal.split(" ")[0];
+	var beginTime = beginVal.split(" ")[1];
+	var endDate = endVal.split(" ")[0];
+	var endTime = endVal.split(" ")[1];
+	var checkdate = checkDate.split(" ")[0];
+	var checktime = checkDate.split(" ")[1];
+	var leavedate = '0000-00-00';
+	var leavetime = '00:00:00';
+	var orderType = "住房单";
+	var cstate = "已入住";
+	var roomState = "已住";
+	var ordersTate = $('#orderstate').val();
 	
 	var data = {
 		roomno : $('#roomno').val(),
@@ -476,9 +455,9 @@ function commitData(){
 	}
 	var _page = $('.list-group', window.parent.document);
 	var _pageLength = _page.children().length;
-	
-	$.ajax({
-	    url:'../checkorderData/addCheckorder.json?roomState='+ roomState,
+
+	 $.ajax({
+	    url:'../checkorderData/orderChange.json?orderno='+impData.orderno,
 		type : "POST",
 	    contentType: 'application/json;charset=UTF-8',//加上防止415错误
 		dataType : "json",
@@ -489,9 +468,9 @@ function commitData(){
 	    },
 	    error:function(){
 	        //请求失败时
-	        alert('请求失败');
+			setErrMessage("请求失败");
 	    }
-	});
+	});  
 
 }
 </script>
