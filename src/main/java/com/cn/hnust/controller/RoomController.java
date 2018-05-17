@@ -66,7 +66,14 @@ public class RoomController {
 	@RequestMapping("/delRoom")
 	public @ResponseBody JSONObject delRoom(HttpServletRequest httpReqest){
 		JSONObject result = new JSONObject();
-		int row = this.roomService.DelRoom(Integer.valueOf(httpReqest.getParameter("roomno")));
+		int RoomNo = Integer.valueOf(httpReqest.getParameter("roomno"));
+		Room room = this.roomService.getRoomByNo(RoomNo);
+		int row;
+		if("预定".equals(room.getRstate()) || "已住".equals(room.getRstate())){
+			row = -1;
+		}else{
+			row = this.roomService.DelRoom(RoomNo);
+		}
 		result.put("result", row);
 		return result;
 	}
@@ -74,8 +81,13 @@ public class RoomController {
 	@RequestMapping("/addRoom")
 	public @ResponseBody JSONObject addRoom(@RequestBody Room room){
 		JSONObject result = new JSONObject();
-		int row = this.roomService.addRoom(room);
-		result.put("result", row);
+		Room checkRoom = this.roomService.getRoomByNo(room.getRoomno());
+		if("".equals(checkRoom)){
+			int row = this.roomService.addRoom(room);
+			result.put("result", row);
+		}else{
+			result.put("result", -1);
+		}
 		return result;
 	}
 	
@@ -84,8 +96,13 @@ public class RoomController {
 	@ResponseBody 
 	public JSONObject modRoom(@RequestBody Room room){
 		JSONObject result = new JSONObject();
-		this.roomService.modRoomMessage(room);
-		result.put("falg", 1);
+		Room checkRoom = this.roomService.getRoomByNo(room.getRoomno());
+		if("预定".equals(checkRoom.getRstate()) || "已住".equals(checkRoom.getRstate())){
+			result.put("falg", -1);
+		}else{
+			this.roomService.modRoomMessage(room);
+			result.put("falg", 1);
+		}
 		return result;
 	}
 	

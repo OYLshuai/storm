@@ -35,7 +35,7 @@
 	<button id="errmessageBtn" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 </div>
 	<div id="openRoomDataBar" class="btn-group" style="font-size: 20px;">
-		<strong>预约</strong>
+		<strong>登记</strong>
     </div>
     <div id="dataDiv" class="col-sm-12">
 	    <div id="customerDiv" class="col-sm-4">
@@ -464,7 +464,7 @@ function commitData(){
 	    data: JSON.stringify(data),
 	    success:function(result){
 	        //请求成功后跳转到订单信息
-			_page.children()[5].click();
+			_page.children()[6].click();
 	    },
 	    error:function(){
 	        //请求失败时

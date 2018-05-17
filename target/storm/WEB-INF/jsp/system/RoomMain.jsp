@@ -276,8 +276,12 @@ function commitModData(){
 	    data: JSON.stringify(data),
 	    success:function(result){
 	        //请求成功时
-			$('#myModal').modal('hide');
-	    	$('#roomData').bootstrapTable('refresh');
+	        if(result.flag == -1){
+	        	alert('房间正在租用或者预定无法删除');
+	        }else{
+				$('#myModal').modal('hide');
+		    	$('#roomData').bootstrapTable('refresh');
+	        }
 	    },
 	    error:function(){
 	        //请求失败时
@@ -314,8 +318,12 @@ function commit(){
 	    data: JSON.stringify(data),
 	    success:function(result){
 	        //请求成功时
-	    	$('#roomData').bootstrapTable('refresh');
-	    	$("#resetData").trigger("click");//触发reset按钮
+	        if(result.result == -1){
+		        alert('房号重复');
+	        }else{
+		    	$('#roomData').bootstrapTable('refresh');
+		    	$("#resetData").trigger("click");//触发reset按钮
+	        }
 	    },
 	    error:function(){
 	        //请求失败时
@@ -332,8 +340,12 @@ function delRoom(row){
 	    contentType: 'application/json;charset=UTF-8',//加上防止415错误
 	    success:function(result){
 	        //请求成功时
-	    	$('#roomData').bootstrapTable('refresh');
-	    	$("#resetData").trigger("click");//触发reset按钮
+	        if(result.row == -1){
+		        alert('房间正在租用或者预定无法删除');
+	        }else{
+		    	$('#roomData').bootstrapTable('refresh');
+		    	$("#resetData").trigger("click");//触发reset按钮
+	        }
 	    },
 	    error:function(){
 	        //请求失败时

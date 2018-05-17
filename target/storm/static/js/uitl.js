@@ -55,7 +55,7 @@ var uitl = {
                              + "请选择" + "</option>");  
 	                 for (var i = 0; i < datas.length; i++) {  
 	                     select.append("<option value='"+datas[i].roomno+"'>"  
-	                             + datas[i].roomno + "</option>");  
+	                             + datas[i].roomno + "(" + datas[i].roomtype + ")" +"</option>");  
 	                 }  
 	                 select.selectpicker('val', '');  
 	                 select.selectpicker('refresh');  
@@ -78,7 +78,7 @@ var uitl = {
 	                             + "请选择" + "</option>");  
 		                 for (var i = 0; i < datas.length; i++) {  
 		                     select.append("<option value='"+datas[i].roomno+"'>"  
-		                             + datas[i].roomno + "</option>");  
+		                             + datas[i].roomno + "(" + datas[i].roomtype + ")" + "</option>");  
 		                 }  
 		                 select.selectpicker('val', '');  
 		                 select.selectpicker('refresh');  

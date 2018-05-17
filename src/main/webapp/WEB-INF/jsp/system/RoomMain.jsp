@@ -28,6 +28,9 @@
 <title>Insert title here</title>
 </head>
 <body style="margin: 20px;">
+<div class="alert alert-danger alert-dismissible" id="errmessage" role="alert" style = "display:none;float: none;">
+	<button id="errmessageBtn" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
 	<div class="col-sm-12">
 		<div id="newRoom" class="col-sm-3">
 			<div id="roomDataBar" class="btn-group">
@@ -152,6 +155,19 @@ $(function(){
 	modalValidator();
 });
 
+function setErrMessage(message){
+	if($("#errmessage").find("#message").length=0){
+		$("#errmessageBtn").after("<b id='message'>"+message+"</b>");
+	}else{
+		$("#errmessage").find("#message").remove();
+		$("#errmessageBtn").after("<b id='message'>"+message+"</b>");
+	}
+	$("#errmessage").show(500);
+	setTimeout(function(){
+        $("#errmessage").hide(500);
+    }, 5000);
+}
+
 function validator(){
 	$("#newRoomFrom").bootstrapValidator({
 		message: 'This value is not valid',
@@ -224,12 +240,12 @@ $('#myModal').on('hidden.bs.modal', function() {
 });
 function operateFormatter(value, row, index) {
 	if(row.rstate == '空房'){
-        return '<a class="checkRoom" style="cursor:pointer">开房</a> ' 
-         +'<a class="destineRoom" style="cursor:pointer">预定</a> ' 
+        return '<a href="/storm/system/openRoom?roomno='+ row.roomno +'&&jump=true" target="systemIframe" class="checkRoom" style="cursor:pointer">开房</a> ' 
+         +'<a href="/storm/system/openRoom?destine=destine&&roomno='+ row.roomno +'&&jump=true" target="systemIframe" class="destineRoom" style="cursor:pointer">预定</a> ' 
          +'<a class="mod" style="cursor:pointer">修改</a> '
          +'<a class="del" style="cursor:pointer">删除</a> ' ;
 	 }else if(row.rstate == '预定'){
-	    return '<a class="orderRoom" style="cursor:pointer">登记</a> '
+	    return '<a href="/storm/system/orderRoomMain?destine=check&&roomno='+ row.roomno +'&&jump=true" target="systemIframe" class="orderRoom" style="cursor:pointer">登记</a> '
 			 + '<a class="mod" style="cursor:pointer">修改</a> '
 		     + '<a class="del" style="cursor:pointer">删除</a> ';
 	 }else{
@@ -276,12 +292,17 @@ function commitModData(){
 	    data: JSON.stringify(data),
 	    success:function(result){
 	        //请求成功时
-			$('#myModal').modal('hide');
-	    	$('#roomData').bootstrapTable('refresh');
+	        if(result.falg == -1){
+				$('#myModal').modal('hide');
+	        	setErrMessage('房间正在租用或者预定无法删除');
+	        }else{
+				$('#myModal').modal('hide');
+		    	$('#roomData').bootstrapTable('refresh');
+	        }
 	    },
 	    error:function(){
 	        //请求失败时
-	        alert('请求失败');
+	        setErrMessage('请求失败');
 	    }
 	});
 }
@@ -314,12 +335,16 @@ function commit(){
 	    data: JSON.stringify(data),
 	    success:function(result){
 	        //请求成功时
-	    	$('#roomData').bootstrapTable('refresh');
-	    	$("#resetData").trigger("click");//触发reset按钮
+	        if(result.result == -1){
+		        setErrMessage('房号重复');
+	        }else{
+		    	$('#roomData').bootstrapTable('refresh');
+		    	$("#resetData").trigger("click");//触发reset按钮
+	        }
 	    },
 	    error:function(){
 	        //请求失败时
-	        alert('请求失败');
+	        setErrMessage('请求失败');
 	    }
 	});
 }
@@ -332,12 +357,16 @@ function delRoom(row){
 	    contentType: 'application/json;charset=UTF-8',//加上防止415错误
 	    success:function(result){
 	        //请求成功时
-	    	$('#roomData').bootstrapTable('refresh');
-	    	$("#resetData").trigger("click");//触发reset按钮
+	        if(result.result == -1){
+		        setErrMessage('房间正在租用或者预定无法删除');
+	        }else{
+		    	$('#roomData').bootstrapTable('refresh');
+		    	$("#resetData").trigger("click");//触发reset按钮
+	        }
 	    },
 	    error:function(){
 	        //请求失败时
-	        alert('请求失败');
+	        setErrMessage('请求失败');
 	    }
 	});
 }
