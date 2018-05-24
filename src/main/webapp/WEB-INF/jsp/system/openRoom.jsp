@@ -213,8 +213,8 @@ $(function(){
 	uitl.dictEntry("paystate",1004);
 	uitl.dictEntry("orderstate",1005);
 	uitl.sexInit();
-	uitl.roomEntry("roomno");
-	uitl.customerEntry("idno");
+	uitl.RoomEntry("roomno","unCheckRoom");
+	uitl.CustomerEntry("idno","allCustomer");
 /*  initDateSelect("beginDateDiv");
     initDateSelect("endDiv"); */
     initDateSelect("checkDateDiv");

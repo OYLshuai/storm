@@ -16,6 +16,8 @@ public interface RoomMapper {
 
     List<Map<String,Room>> selectCheckRoom();
 
+    List<Map<String,Room>> selectCheckingRoom();
+    
     List<Map<String,Room>> selectUnCheckRoom();
     
     List<Map<String,Room>> selectOrderRoom();

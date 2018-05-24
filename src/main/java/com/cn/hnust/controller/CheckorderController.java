@@ -60,6 +60,17 @@ public class CheckorderController {
 		
 		return response;
 	}
+	/***
+	 * 获取已经入住的客户
+	 * @param httpReqest
+	 * @return
+	 */
+	@RequestMapping("/unCheckCustomer")
+	public @ResponseBody List<Map<String, Checkorder>> unCheckCustomer(HttpServletRequest httpReqest){
+		List<Map<String, Checkorder>> response = this.checkorderService.getUnCheckCustomer();
+		
+		return response;
+	}
 	
 	/**
 	 * Mybatis 多参数实例 roomService

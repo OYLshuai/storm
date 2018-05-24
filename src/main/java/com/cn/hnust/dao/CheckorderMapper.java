@@ -16,6 +16,8 @@ public interface CheckorderMapper {
     
     List<Map<String,Checkorder>> selectOrderCustomer();
     
+    List<Map<String,Checkorder>> selectCheckingCustomer();
+    
     List<Map<String,Checkorder>> selectOrderByTerm(Checkorder record);
     
     //查询单个订单

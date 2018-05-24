@@ -192,8 +192,8 @@ $(function(){
 	uitl.dictEntry("paystate",1004);
 	uitl.dictEntry("orderstate",1005);
 	uitl.sexInit();
-	uitl.orderRoomEntry("roomno");
-	uitl.orderCustomerEntry("idno");
+	uitl.RoomEntry("roomno","orderRoom");
+	uitl.CustomerEntry("idno","orderCustomer");
     initDateSelect("checkDateDiv");
     initDateSelect("unCheckDateDiv");
     

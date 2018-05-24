@@ -49,6 +49,12 @@ public class RoomController {
 		List<Map<String, Room>> response = this.roomService.getCheckRoom();
 		return response;
 	}
+	
+	@RequestMapping("/CheckingRoom")
+	public @ResponseBody List<Map<String, Room>> CheckingRoom(HttpServletRequest httpReqest){
+		List<Map<String, Room>> response = this.roomService.getCheckingRoom();
+		return response;
+	}
 
 	@RequestMapping("/unCheckRoom")
 	public @ResponseBody List<Map<String, Room>> unCheckRoom(HttpServletRequest httpReqest){

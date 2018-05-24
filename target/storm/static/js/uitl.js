@@ -40,83 +40,53 @@ var uitl = {
 	         }); 
 		 },
 		 ///获取可住的房间
-		 "roomEntry":function(selectId){
-			//下拉数据加载  
-		   $("#"+selectId).selectpicker({  
-	          noneSelectedText : '请选择'  
-	       }); 
-	       $.ajax({  
-	             type : 'get',  
-	             url : "../roomData/unCheckRoom",  
-	             dataType : 'json',  
-	             success : function(datas) {//返回list数据并循环获取  
-	                 var select = $("#"+selectId);  
-	                 select.append("<option value='"+""+"'>"  
-                             + "请选择" + "</option>");  
-	                 for (var i = 0; i < datas.length; i++) {  
-	                     select.append("<option value='"+datas[i].roomno+"'>"  
-	                             + datas[i].roomno + "(" + datas[i].roomtype + ")" +"</option>");  
-	                 }  
-	                 select.selectpicker('val', '');  
-	                 select.selectpicker('refresh');  
-	             }  
-	         }); 
-		 },
-		 //获取已预约的房号
-		 "orderRoomEntry":function(selectId){
-				//下拉数据加载  
+		 ///type:获取可住房间-》unCheckRoom   获取被出租房间-》CheckingRoom   获取被预约房间-》orderRoom  后面再加
+		 "RoomEntry":function(selectId,type){
+			 var urlData = "";
+			 if(type == "unCheckRoom"){
+				 urlData = "../roomData/unCheckRoom";
+			 }else if(type == "orderRoom"){
+				 urlData = "../roomData/orderRoom";
+			 }else if(type == "CheckingRoom"){
+				 urlData = "../roomData/CheckingRoom";
+			 }
 			   $("#"+selectId).selectpicker({  
-		          noneSelectedText : '请选择'  
+			          noneSelectedText : '请选择'  
+			       }); 
+			       $.ajax({  
+			             type : 'get',  
+			             url : urlData,  
+			             dataType : 'json',  
+			             success : function(datas) {//返回list数据并循环获取  
+			                 var select = $("#"+selectId);  
+			                 select.append("<option value='"+""+"'>"  
+		                             + "请选择" + "</option>");  
+			                 for (var i = 0; i < datas.length; i++) {  
+			                     select.append("<option value='"+datas[i].roomno+"'>"  
+			                             + datas[i].roomno + "(" + datas[i].roomtype + ")" +"</option>");  
+			                 }  
+			                 select.selectpicker('val', '');  
+			                 select.selectpicker('refresh');  
+			             }  
+			         }); 
+		 },
+		 //获取客户信息
+		 ///type:获取所有客户-》allCustomer   获取已入住客户或者已预约客户-》unCheckCustomer   获取已预约客户-》orderCustomer  后面再加
+		 "CustomerEntry":function(selectId,type){
+			 var urlData = "";
+			 if(type == "allCustomer"){
+				 urlData = "../customerData/allCustomer";
+			 }else if(type == "orderCustomer"){
+				 urlData = "../checkorderData/orderCustomer";
+			 }else if(type == "unCheckCustomer"){
+				 urlData = "../checkorderData/unCheckCustomer";
+			 }//下拉数据加载  
+			   $("#"+selectId).selectpicker({  
+			          noneSelectedText : '请选择'
 		       }); 
 		       $.ajax({  
 		             type : 'get',  
-		             url : "../roomData/orderRoom",  
-		             dataType : 'json',  
-		             success : function(datas) {//返回list数据并循环获取  
-		                 var select = $("#"+selectId);  
-		                 select.append("<option value='"+""+"'>"  
-	                             + "请选择" + "</option>");  
-		                 for (var i = 0; i < datas.length; i++) {  
-		                     select.append("<option value='"+datas[i].roomno+"'>"  
-		                             + datas[i].roomno + "(" + datas[i].roomtype + ")" + "</option>");  
-		                 }  
-		                 select.selectpicker('val', '');  
-		                 select.selectpicker('refresh');  
-		             }  
-		         }); 
-		 },
-		 //获取所有的客户
-		 "customerEntry":function(selectId){
-			//下拉数据加载  
-		   $("#"+selectId).selectpicker({  
-	          noneSelectedText : '请选择'
-	       }); 
-	       $.ajax({  
-	             type : 'get',  
-	             url : "../customerData/allCustomer",  
-	             dataType : 'json',  
-	             success : function(datas) {//返回list数据并循环获取  
-	                 var select = $("#"+selectId);  
-	                 select.append("<option value='"+""+"'>"  
-                             + "请选择" + "</option>");  
-	                 for (var i = 0; i < datas.length; i++) {  
-	                     select.append("<option value='"+datas[i].idno+"'>"  
-	                             + datas[i].idno + "(" + datas[i].cname + ")" + "</option>");  
-	                 }  
-	                 select.selectpicker('val', '');  
-	                 select.selectpicker('refresh');  
-	             }  
-	         }); 
-		 },
-		 //获取预约的客户
-		 "orderCustomerEntry":function(selectId){
-				//下拉数据加载  
-			   $("#"+selectId).selectpicker({  
-		          noneSelectedText : '请选择'
-		       }); 
-		       $.ajax({  
-		             type : 'get',  
-		             url : "../checkorderData/orderCustomer",  
+		             url : urlData,  
 		             dataType : 'json',  
 		             success : function(datas) {//返回list数据并循环获取  
 		                 var select = $("#"+selectId);  

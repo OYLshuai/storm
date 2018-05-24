@@ -75,4 +75,10 @@ public class CheckorderService implements ICheckorderService{
 		return 0;
 	}
 
+	@Override
+	public List<Map<String, Checkorder>> getUnCheckCustomer() {
+		// TODO Auto-generated method stub
+		return checkorderMapper.selectCheckingCustomer();
+	}
+
 }

@@ -16,6 +16,8 @@ public interface ICheckorderService {
 	
 	public List<Map<String,Checkorder>> getOrderCustomer();
 	
+	public List<Map<String,Checkorder>> getUnCheckCustomer();
+	
 	public int invalidCheckorder(String idno,Integer roomno,String orderState,String remark);
 	
 	public int addCheckorder(Checkorder order);

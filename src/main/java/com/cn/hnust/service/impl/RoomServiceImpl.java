@@ -82,4 +82,10 @@ public class RoomServiceImpl implements IRoomService{
 		return 0;
 	}
 
+	@Override
+	public List<Map<String, Room>> getCheckingRoom() {
+		// TODO Auto-generated method stub
+		return room.selectCheckingRoom();
+	}
+
 }

@@ -70,6 +70,10 @@
 		SELECT *, COUNT(DISTINCT idno) FROM checkorder WHERE cstate="已预定" AND orderstate IN ("已付","未付") GROUP BY idno
   </select>
   
+   <select id="selectCheckingCustomer" resultMap="BaseResultMap"> 
+		SELECT *, COUNT(DISTINCT idno) FROM checkorder WHERE cstate="已入住" OR (ordertype = "预约单" AND orderstate IN ("已付","未付")) GROUP BY idno
+  </select>
+  
   <select id="selectOrderByTerm" resultMap="BaseResultMap" parameterType="com.cn.hnust.pojo.Checkorder"> 
 		select * from checkorder where 1=1
 		      <if test="orderno != null">

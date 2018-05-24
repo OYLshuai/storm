@@ -10,6 +10,8 @@ public interface IRoomService {
 
 	public List<Map<String, Room>> getCheckRoom();
 
+	public List<Map<String, Room>> getCheckingRoom();
+
 	public List<Map<String, Room>> getUnCheckRoom();
 	
 	public List<Map<String, Room>> getOrderRoom();

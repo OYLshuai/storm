@@ -42,6 +42,10 @@
 		select * from room where rstate not like "空房"
   </select>
   
+    <select id="selectCheckingRoom" resultMap="BaseResultMap"> 
+		select * from room where rstate = "已住"
+  </select>
+  
   <select id="selectUnCheckRoom" resultMap="BaseResultMap"> 
 		select * from room where rstate = "空房"
   </select>

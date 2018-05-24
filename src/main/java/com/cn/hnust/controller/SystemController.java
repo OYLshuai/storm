@@ -72,6 +72,12 @@ public class SystemController {
 		return "system/CheckorderMain";
 	}
 	
+	@RequestMapping("/CheckOut")
+	public String CheckOut(HttpServletRequest request, Model model) {
+		model.addAttribute("row", "1");
+		return "system/CheckOut";
+	}
+	
 	@RequestMapping("/SystemDict")
 	public String SystemDict(HttpServletRequest request, Model model) {
 		model.addAttribute("row", "1");
