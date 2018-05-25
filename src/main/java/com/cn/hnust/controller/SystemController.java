@@ -74,6 +74,19 @@ public class SystemController {
 	
 	@RequestMapping("/CheckOut")
 	public String CheckOut(HttpServletRequest request, Model model) {
+		String jump = request.getParameter("jump");
+		Boolean jumpIdx = Boolean.parseBoolean(jump);  
+		if(jumpIdx){
+			model.addAttribute("jump", jump);
+			String roomno = request.getParameter("roomno");
+			model.addAttribute("roomno", roomno);
+			String idno = request.getParameter("idno");
+			model.addAttribute("idno", idno);
+			String destine = request.getParameter("destine");
+			model.addAttribute("destine", destine);
+		}else{
+			model.addAttribute("jump", false);
+		}
 		model.addAttribute("row", "1");
 		return "system/CheckOut";
 	}

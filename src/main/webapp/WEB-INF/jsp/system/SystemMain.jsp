@@ -78,7 +78,7 @@
 							<div class="form-group">  
 	                            <label for="rstate" class="col-sm-2 control-label">房间状态: </label>  
 	                            <div class="col-sm-10">  
-	                                <select  id="rstate" class="selectpicker" data-live-search="false"  disabled="disabled"></select>  
+	                                <select  id="rstate" class="selectpicker" data-live-search="false" ></select>  
 	                            </div>  
 	                        </div>
 							<div class="form-group">  
@@ -185,8 +185,8 @@
 	 }
 	 
 	 function operateFormatter(value, row, index) {
-		 if(row.rstate == '已住房'){
-		        return '<a class="unCheckRoom" style="cursor:pointer">退房</a> ';
+		 if(row.rstate == '已住'){
+		        return '<a href="/storm/system/CheckOut?roomno='+ row.roomno +'&&jump=true" target="systemIframe"  class="unCheckRoom" style="cursor:pointer">退房</a> ';
 		 }else if(row.rstate == '空房'){
 		        return '<a href="/storm/system/openRoom?roomno='+ row.roomno +'&&jump=true" target="systemIframe" class="checkRoom" style="cursor:pointer">开房</a> ' 
 	             +'<a href="/storm/system/openRoom?destine=destine&&roomno='+ row.roomno +'&&jump=true" target="systemIframe" class="destineRoom" style="cursor:pointer">预定</a> ' 

@@ -1671,3 +1671,21 @@ Caused by: java.lang.IllegalArgumentException: Mapped Statements collection alre
 [INFO] [2018-05-24 17:34:22][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
 [INFO] [2018-05-24 17:34:26][org.zsl.testmybatis.TestMyBatis]{"age":25,"id":1,"mail":"zimo@163.com","password":"123456","username":"Ôø×ÓÄ«"}
 [INFO] [2018-05-24 17:34:26][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@26653222: startup date [Thu May 24 17:34:21 CST 2018]; root of context hierarchy
+[INFO] [2018-05-25 13:52:06][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2018-05-25 13:52:07][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@26653222: startup date [Fri May 25 13:52:07 CST 2018]; root of context hierarchy
+[INFO] [2018-05-25 13:52:08][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2018-05-25 13:52:08][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2018-05-25 13:52:10][org.zsl.testmybatis.TestMyBatis]{"age":25,"id":1,"mail":"zimo@163.com","password":"123456","username":"Ôø×ÓÄ«"}
+[INFO] [2018-05-25 13:52:10][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@26653222: startup date [Fri May 25 13:52:07 CST 2018]; root of context hierarchy
+[INFO] [2018-05-25 14:15:53][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2018-05-25 14:15:54][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@26653222: startup date [Fri May 25 14:15:54 CST 2018]; root of context hierarchy
+[INFO] [2018-05-25 14:15:54][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2018-05-25 14:15:54][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2018-05-25 14:15:56][org.zsl.testmybatis.TestMyBatis]{"age":25,"id":1,"mail":"zimo@163.com","password":"123456","username":"Ôø×ÓÄ«"}
+[INFO] [2018-05-25 14:15:56][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@26653222: startup date [Fri May 25 14:15:54 CST 2018]; root of context hierarchy
+[INFO] [2018-05-25 16:59:03][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2018-05-25 16:59:03][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@26653222: startup date [Fri May 25 16:59:03 CST 2018]; root of context hierarchy
+[INFO] [2018-05-25 16:59:03][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2018-05-25 16:59:03][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2018-05-25 16:59:05][org.zsl.testmybatis.TestMyBatis]{"age":25,"id":1,"mail":"zimo@163.com","password":"123456","username":"Ôø×ÓÄ«"}
+[INFO] [2018-05-25 16:59:05][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@26653222: startup date [Fri May 25 16:59:03 CST 2018]; root of context hierarchy

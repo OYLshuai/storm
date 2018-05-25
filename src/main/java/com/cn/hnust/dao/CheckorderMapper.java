@@ -30,6 +30,8 @@ public interface CheckorderMapper {
     
     int updateCheckorderState(Integer orderno);
     
+    int updateCheckorder(@Param("orderno")Integer orderno,@Param("checkorder")Checkorder record);
+    
     int delCheckorder(@Param("idno")String idno,@Param("roomno")Integer roomno);
     
     int invalidCheckorder(@Param("idno")String idno,@Param("roomno")Integer roomno,@Param("orderstate")String orderstate,@Param("remark")String remark);

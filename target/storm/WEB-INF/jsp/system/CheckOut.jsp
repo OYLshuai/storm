@@ -117,32 +117,32 @@
 				<strong>退房时间</strong>
 	        </div>
 			<form class="form-inline"id="newDateFrom" style="" role="form">
-			  <div class="form-group" style="margin-top: 16px;">
+<!-- 			  <div class="form-group" style="margin-top: 16px;">
 			    <label id="chInputFlag" for="checkDate" class="control-label">入住日期</label>
 			    <br/>
 				  <div id="checkDateDiv" class="input-group date" style="margin-top: 4px;">
 	                  <input id="checkDate" name="checkDate" class="form-control" type="text" readonly="readonly"> 
 	                  <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
 	              </div>
-			  </div>
-<!-- 			  <div class="form-group" style="margin-top: 16px;">
+			  </div> -->
+ 			  <div class="form-group" style="margin-top: 16px;">
 			    <label id="chExitFlag" for="unCheckDate" class="control-label">退房日期</label>
 			    <br/>
 	              <div id="unCheckDateDiv" class="input-group date" style="margin-top: 4px;">
 	                  <input id="unCheckDate" name="unCheckDate" class="form-control" type="text" readonly="readonly">
 	                  <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
 	              </div>
-			  </div> -->
+			  </div> 
 			</form>
-			  <div class="form-group" style="margin-top: 16px;">
-			    <label for="remark3">入住日期</label>
-			  <br/>
-			    <input type="text" class="form-control" id="beginDate" name="beginDate" placeholder="入住日期" disabled="disabled" >
-			  </div>
 			  <div class="form-group" style="margin-top: 16px;">
 			    <label for="remark3">预约日期</label>
 			  <br/>
 			    <input type="text" class="form-control" id="reserveDate" name="reserveDate" placeholder="预约日期" disabled="disabled" >
+			  </div>
+			  <div class="form-group" style="margin-top: 16px;">
+			    <label for="remark3">入住日期</label>
+			  <br/>
+			    <input type="text" class="form-control" id=checkDate name="checkDate" placeholder="入住日期" disabled="disabled" >
 			  </div>
 			  <div class="form-group" style="margin-top: 16px;">
 			    <label for="remark3">预约入住日期</label>
@@ -163,7 +163,7 @@
 			  <div class="form-group"  style="margin-top: -21px;">  
                  <label for="paystate" class="control-label">支付状态</label>  
                  <div class="">  
-                     <select id="paystate" class=" selectpicker" onchange="selectState(this)" data-live-search="false" name="paystate" disabled="disabled"></select>  
+                     <select id="paystate" class=" selectpicker" data-live-search="false" name="paystate" disabled="disabled"></select>  
                  </div>  
               </div>
 	    </div>
@@ -172,13 +172,16 @@
     	<div class="col-sm-5">
     	</div>
     	<div class="col-sm-5" style="width: 15%;">
-    		<button type="button" class="btn btn-primary btn-block" onClick="commitData()">登记</button>
+    		<button type="button" class="btn btn-primary btn-block" onClick="commitData()">退房</button>
     	</div>
     </div>
 </body>
 <script type="text/javascript" charset="utf-8">
 var impData = {
-	"orderno" : 0	
+	//订单编号
+	"orderno" : 0,
+	//订单类型
+	"ordertype": 0
 };
 
 $(function(){
@@ -244,21 +247,6 @@ function  initDateSelect(divId){
     });
 }
 
-function selectState(data){
-	var state = data.options[data.selectedIndex].value;
-	if(state=="房费"){
-	    $('#orderstate').selectpicker('val', "已付");//设置选中 
-	    $('#orderstate').selectpicker('refresh');
-	}
-	else if( state!="未付" ){
-	    $('#orderstate').selectpicker('val', "进行");//设置选中 
-	    $('#orderstate').selectpicker('refresh');
-    }else{
-	    $('#orderstate').selectpicker('val', "未付");//设置选中 
-	    $('#orderstate').selectpicker('refresh');
-    }
-
-}
 function selectRoomData(data){
 	var roomno = data.options[data.selectedIndex].value;
 	selectRoom(roomno);
@@ -304,6 +292,7 @@ function selectRoom(roomno){
 function selectCustomerData(data){
 	var idno = data.options[data.selectedIndex].value;
 	selectCustomer(idno);
+	selectOrderInf(idno);
 	orderDateInf();
 }; 
 
@@ -318,10 +307,19 @@ function orderDateInf(){
              success : function(datas) {//返回list数据并循环获取  
 				if(datas.flag==0){
 			        setErrMessage("该客户未定此房");
+					$('#checkDate').val(" ");
+					$('#reserveDate').val(" ");
+					$('#beginDate').val(" ");
+					$('#endDate').val(" ");
+					$('#remark3').val(" ");
 				}else{
 					var row = datas.Checkorder;
 					impData.orderno = row.orderno;
+					impData.ordertype = row.ordertype;
 					$('#reserveDate').val(row.reservedate+" "+row.reservetime);
+					if(impData.ordertype != "预约单"){
+						$('#checkDate').val(row.checkdate+" "+row.checktime);
+					}
 					$('#beginDate').val(row.begindate+" "+row.begintime);
 					$('#endDate').val(row.enddate+" "+row.endtime);
 					$('#remark3').val(row.remark);
@@ -333,8 +331,10 @@ function orderDateInf(){
 	}
 }
 //选择客户的时候   房间信息刷新为该客户的订房信息  
-function selectOrderInf(idno, roomno){
-	
+function selectOrderInf(idno){
+	if($('#roomno').val()==""){
+
+	}
 }
 
 function selectCustomer(idno){
@@ -412,6 +412,7 @@ function commitData(){
 	if(!checkMustDate())
 		return ;	
 	var checkDate = $('#checkDate').val();
+	var unCheckDate = $('#unCheckDate').val();
 	var beginVal = $('#beginDate').val();
 	var reserveVal = $('#reserveDate').val();
 	var endVal = $('#endDate').val();
@@ -424,12 +425,18 @@ function commitData(){
 	var endTime = endVal.split(" ")[1];
 	var checkdate = checkDate.split(" ")[0];
 	var checktime = checkDate.split(" ")[1];
-	var leavedate = '0000-00-00';
-	var leavetime = '00:00:00';
-	var orderType = "住房单";
-	var cstate = "已入住";
-	var roomState = "已住";
-	var ordersTate = $('#orderstate').val();
+	var leavedate = unCheckDate.split(" ")[0];
+	var leavetime = unCheckDate.split(" ")[1];
+	var roomState = "空房";
+	if(impData.ordertype == "预约单"){
+		var orderType = "预约单";
+		var cstate = "退预定";
+		var ordersTate = "退款";
+	}else{
+		var orderType = "住房单";
+		var cstate = "住房到期";
+		var ordersTate = "完成";
+	}
 	
 	var data = {
 		roomno : $('#roomno').val(),
@@ -452,7 +459,8 @@ function commitData(){
 		cstate : cstate,
 		remark : $('#remark3').val()
 	}
-	var _page = $('.list-group', window.parent.document);
+	console.log("数据：",data);
+/* 	var _page = $('.list-group', window.parent.document);
 	var _pageLength = _page.children().length;
 
 	 $.ajax({
@@ -469,7 +477,7 @@ function commitData(){
 	        //请求失败时
 			setErrMessage("请求失败");
 	    }
-	});  
+	}); */  
 
 }
 </script>

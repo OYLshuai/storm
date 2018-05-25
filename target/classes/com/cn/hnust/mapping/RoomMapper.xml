@@ -43,7 +43,7 @@
   </select>
   
     <select id="selectCheckingRoom" resultMap="BaseResultMap"> 
-		select * from room where rstate = "已住"
+		select * from room where rstate IN ("已住","预定")
   </select>
   
   <select id="selectUnCheckRoom" resultMap="BaseResultMap"> 

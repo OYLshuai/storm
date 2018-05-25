@@ -43,6 +43,26 @@
           WHERE idno   = #{idno,jdbcType=CHAR}
             AND roomno = #{idno,jdbcType=INTEGER};     
   </update> 
+  
+    <!-- 更新信息 -->  
+  <update id="updateCheckorder">  
+         UPDATE checkorder  
+            SET cname       = #{checkorder.cname,jdbcType=VARCHAR},   
+                phone       = #{checkorder.phone,jdbcType=CHAR},  
+                checkdate   = #{checkorder.checkdate,jdbcType=DATE},  
+                reservedate = #{checkorder.reservedate,jdbcType=DATE},  
+                leavedate   = #{checkorder.leavedate,jdbcType=DATE},  
+                checktime   = #{checkorder.checktime,jdbcType=TIME},
+                reservetime = #{checkorder.reservetime,jdbcType=TIME},  
+                leavetime   = #{checkorder.leavetime,jdbcType=TIME},  
+                orderstate  = #{checkorder.orderstate,jdbcType=VARCHAR},  
+                ordertype   = #{checkorder.ordertype,jdbcType=VARCHAR},
+                paystate    = #{checkorder.paystate,jdbcType=VARCHAR},  
+                cstate      = #{checkorder.cstate,jdbcType=VARCHAR},  
+                remark      = #{checkorder.remark,jdbcType=VARCHAR}    
+          WHERE orderno = #{orderno,jdbcType=INTEGER};     
+  </update>
+  
   <!-- 更新订单信息 -->
     <update id="invalidCheckorder">  
          UPDATE checkorder  
@@ -148,8 +168,7 @@
 		select * from checkorder 
 		 WHERE idno   = #{idno,jdbcType=CHAR}
            AND roomno = #{roomno,jdbcType=INTEGER}
-           AND ordertype = "预约单" 
-           AND orderstate IN ("已付","未付") 
+           AND orderstate IN ("已付","进行","未付") 
            ORDER BY  orderno;
            ;   
   </select>

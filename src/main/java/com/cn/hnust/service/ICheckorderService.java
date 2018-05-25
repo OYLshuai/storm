@@ -21,6 +21,8 @@ public interface ICheckorderService {
 	public int invalidCheckorder(String idno,Integer roomno,String orderState,String remark);
 	
 	public int addCheckorder(Checkorder order);
+	
+	public int checkOutOrder(Integer orderno,Checkorder order);
 
 	public int delCheckorder(String idno,Integer roomno);
 	

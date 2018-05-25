@@ -40,7 +40,7 @@ var uitl = {
 	         }); 
 		 },
 		 ///获取可住的房间
-		 ///type:获取可住房间-》unCheckRoom   获取被出租房间-》CheckingRoom   获取被预约房间-》orderRoom  后面再加
+		 ///type:获取可住房间-》unCheckRoom   获取被出租和预约房间-》CheckingRoom   获取被预约房间-》orderRoom  后面再加
 		 "RoomEntry":function(selectId,type){
 			 var urlData = "";
 			 if(type == "unCheckRoom"){

@@ -319,6 +319,12 @@ function orderDateInf(){
              success : function(datas) {//返回list数据并循环获取  
 				if(datas.flag==0){
 			        setErrMessage("该客户未定此房");
+					$('#reserveDate').val(" ");
+					$('#beginDate').val(" ");
+					$('#endDate').val(" ");
+					$('#remark3').val("");
+				 	$('#orderstate').selectpicker('val', row.orderstate);//设置选中 
+				 	$('#paystate').selectpicker('val', row.paystate);//设置选中 
 				}else{
 					var row = datas.Checkorder;
 					impData.orderno = row.orderno;

@@ -225,8 +225,8 @@ $('#checkorderData').bootstrapTable({
    sortable: false,                    //是否启用排序
    sortOrder: "asc",                   //排序方式
    pageNumber:1,                       //初始化加载第一页，默认第一页
-   pageSize: 18,                        //每页的记录行数（*）
-   pageList: [18, 36, 54, 70],          //可供选择的每页的行数（*）
+   pageSize: 16,                        //每页的记录行数（*）
+   pageList: [16, 32, 48],          //可供选择的每页的行数（*）
    search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
    showColumns: true,                  //是否显示所有的列
    showRefresh: true,                  //是否显示刷新按钮

@@ -81,4 +81,11 @@ public class CheckorderService implements ICheckorderService{
 		return checkorderMapper.selectCheckingCustomer();
 	}
 
+	@Override
+	public int checkOutOrder(Integer orderno, Checkorder order) {
+		// TODO Auto-generated method stub
+		checkorderMapper.updateCheckorder(orderno,order);
+		return 0;
+	}
+
 }

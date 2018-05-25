@@ -102,5 +102,22 @@ public class CheckorderController {
 		int row = this.checkorderService.addCheckorder(checkorder);//新建住房订单
 		result.put("result", row);
 		return result;
+	}	
+	/***
+	 * 退房请求
+	 * @param checkorder
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/checkOutOrder")
+	public @ResponseBody JSONObject checkOutOrder(@RequestBody Checkorder checkorder,HttpServletRequest request){
+		JSONObject result = new JSONObject();
+		int roomno = checkorder.getRoomno();
+		String orderno = request.getParameter("orderno");
+		Integer orderNo = Integer.valueOf(orderno);
+		roomService.invalidRoom(roomno,"空房");//修改客房状态
+		int row = this.checkorderService.checkOutOrder(orderNo,checkorder);//更新住房订单
+		result.put("result", row);
+		return result;
 	}
 }
