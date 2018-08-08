@@ -9,8 +9,6 @@ public interface DictindexMapper {
     int insert(Dictindex record);
 
     int insertSelective(Dictindex record);
-
+    
 	List<Map<String, Dictindex>> selectAllDictEntry();
-    
-    
 }

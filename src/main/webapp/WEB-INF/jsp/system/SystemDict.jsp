@@ -22,13 +22,15 @@
 <title>Insert title here</title>
 </head>
 <body style="margin: 20px;">
+	<div style="display:none" class="alert alert-danger" role="alert">未知错误</div>
 	<div class="col-md-12">
-		<div class="col-md-2">
+		<div class="col-md-3">
+			<strong>父项数据字典</strong>
 			<table id="dictEntryData">
 				
 			</table>
 		</div>
-		<div id = "dictionaryDiv">
+		<div id = "dictionaryDiv"  class="col-md-9" >
 			<strong>数据字典</strong>
 			<div id="dictionary" class="btn-group">
 	            <button id="btn_add" type="button" class="btn btn-default">
@@ -60,12 +62,13 @@ $('#dictionaryData').bootstrapTable({
     sortable: false,                    //是否启用排序
     sortOrder: "asc",                   //排序方式
     pageNumber:1,                       //初始化加载第一页，默认第一页
-    pageSize: 6,                        //每页的记录行数（*）
-    pageList: [6, 12, 18, 24],          //可供选择的每页的行数（*）
+    pageSize: 18,                        //每页的记录行数（*）
+    pageList: [18, 36, 54, 70],          //可供选择的每页的行数（*）
     search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
     showColumns: true,                  //是否显示所有的列
     showRefresh: true,                  //是否显示刷新按钮
     minimumCountColumns: 2,             //最少允许的列数
+    height:818,
     clickToSelect: true,                //是否启用点击选中行
     cardView: false,                    //是否显示详细视图
 	    columns: [{
@@ -96,11 +99,11 @@ $('#dictEntryData').bootstrapTable({
     sortable: false,                    //是否启用排序
     sortOrder: "asc",                   //排序方式
     pageNumber:1,                       //初始化加载第一页，默认第一页
-    showColumns: true,                  //是否显示所有的列
     showRefresh: true,                  //是否显示刷新按钮
     minimumCountColumns: 2,             //最少允许的列数
+    height:765,
+    onClickRow: function(row){ findChildDict(row) },  //单击方法
     clickToSelect: true,                //是否启用点击选中行
-    cardView: false,                    //是否显示详细视图
 	    columns: [{
 	        field: 'dictentry',
 	        title: '字典父项'
@@ -110,5 +113,27 @@ $('#dictEntryData').bootstrapTable({
 	    }]
 	});
 
+function findChildDict(row){
+	console.log("click:" + row.dictentry)
+	$.ajax({
+		url : "../dictData/byEntry?entry=" + row.dictentry,
+		type : "POST",
+		dataType : "json",
+		contentType : "application/json;charset=UTF-8",
+		// <!-- 向后端传输的数据 -->
+		data : JSON.stringify(row),
+		success : function(result) {
+			//var message = JSON.stringify(result.message);
+			console.log(result);
+			$("#dictionaryData").bootstrapTable('load',result);
+			
+		},
+		error : function(result) {
+			//var message = JSON.stringify(result.message);
+			$(".alert").show(500);
+			setTimeout("$('.alert').hide(500);",2000)
+		}
+	});
+}
 </script>
 </html>

@@ -18,7 +18,7 @@ public class PageController {
 		return "mainLog";
 	}
 	
-	@RequestMapping("/java")
+	@RequestMapping("/javaPage")
 	public String java(HttpServletRequest request, Model model) {
 		model.addAttribute("row", "1");
 		return "java";
@@ -41,13 +41,13 @@ public class PageController {
 		model.addAttribute("row", "1");
 		return "html_jsp";
 	}
-
+	
 	@RequestMapping("/demoJsp")
 	public String demoJsp(HttpServletRequest request, Model model) {
 		model.addAttribute("row", "1");
 		return "testDemo";
 	}
-
+	
 	@RequestMapping("/systemPage")
 	public String systemPage(HttpServletRequest request, Model model) {
 		model.addAttribute("row", "1");

@@ -23,52 +23,52 @@ public class Checkorder implements Serializable {
     /**
      * 开始日期
      */
-    private Date begindate;
+    private String begindate;
 
     /**
      * 结束日期
      */
-    private Date enddate;
+    private String enddate;
 
     /**
      * 入住日期
      */
-    private Date checkdate;
+    private String checkdate;
 
     /**
      * 预定日期
      */
-    private Date reservedate;
+    private String reservedate;
 
     /**
      * 退房日期
      */
-    private Date leavedate;
+    private String leavedate;
 
     /**
      * 入住时间
      */
-    private Date checktime;
+    private String checktime;
 
     /**
      * 预定时间
      */
-    private Date reservetime;
+    private String reservetime;
 
     /**
      * 退房时间
      */
-    private Date leavetime;
+    private String leavetime;
 
     /**
      * 开始时间
      */
-    private Date begintime;
+    private String begintime;
 
     /**
      * 结束时间
      */
-    private Date endtime;
+    private String endtime;
 
     /**
      * 订单状态(1:已付，2:未付，3:退款，4:完成，5:进行，6:作废)
@@ -137,83 +137,83 @@ public class Checkorder implements Serializable {
         this.phone = phone;
     }
 
-    public Date getBegindate() {
+    public String getBegindate() {
         return begindate;
     }
 
-    public void setBegindate(Date begindate) {
+    public void setBegindate(String begindate) {
         this.begindate = begindate;
     }
 
-    public Date getEnddate() {
+    public String getEnddate() {
         return enddate;
     }
 
-    public void setEnddate(Date enddate) {
+    public void setEnddate(String enddate) {
         this.enddate = enddate;
     }
 
-    public Date getCheckdate() {
+    public String getCheckdate() {
         return checkdate;
     }
 
-    public void setCheckdate(Date checkdate) {
+    public void setCheckdate(String checkdate) {
         this.checkdate = checkdate;
     }
 
-    public Date getReservedate() {
+    public String getReservedate() {
         return reservedate;
     }
 
-    public void setReservedate(Date reservedate) {
+    public void setReservedate(String reservedate) {
         this.reservedate = reservedate;
     }
 
-    public Date getLeavedate() {
+    public String getLeavedate() {
         return leavedate;
     }
 
-    public void setLeavedate(Date leavedate) {
+    public void setLeavedate(String leavedate) {
         this.leavedate = leavedate;
     }
 
-    public Date getChecktime() {
+    public String getChecktime() {
         return checktime;
     }
 
-    public void setChecktime(Date checktime) {
+    public void setChecktime(String checktime) {
         this.checktime = checktime;
     }
 
-    public Date getReservetime() {
+    public String getReservetime() {
         return reservetime;
     }
 
-    public void setReservetime(Date reservetime) {
+    public void setReservetime(String reservetime) {
         this.reservetime = reservetime;
     }
 
-    public Date getLeavetime() {
+    public String getLeavetime() {
         return leavetime;
     }
 
-    public void setLeavetime(Date leavetime) {
+    public void setLeavetime(String leavetime) {
         this.leavetime = leavetime;
     }
 
-    public Date getBegintime() {
+    public String getBegintime() {
         return begintime;
     }
 
-    public void setBegintime(Date begintime) {
+    public void setBegintime(String begintime) {
         this.begintime = begintime;
     }
 
-    public Date getEndtime() {
+    public String getEndtime() {
         return endtime;
     }
 
-    public void setEndtime(Date endtime) {
+    public void setEndtime(String endtime) {
         this.endtime = endtime;
     }
 

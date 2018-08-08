@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cn.hnust.pojo.Javasymbol;
 import com.cn.hnust.service.IJavaSymbol;
 @Controller
-@RequestMapping("/javaDate")
+@RequestMapping("/javaPage")
 public class JavaPageJson {
 
 	@Resource

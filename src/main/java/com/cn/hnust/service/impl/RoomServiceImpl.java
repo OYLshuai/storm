@@ -35,12 +35,6 @@ public class RoomServiceImpl implements IRoomService{
 	}
 
 	@Override
-	public int modRoomMessage(Integer roomno) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public int DelRoom(Integer roomno) {
 		// TODO Auto-generated method stub
 		room.delRoom(roomno);
@@ -52,6 +46,46 @@ public class RoomServiceImpl implements IRoomService{
 		// TODO Auto-generated method stub
 		room.insert(roomData);
 		return 0;
+	}
+
+	@Override
+	public int modRoomMessage(Room roomData) {
+		// TODO Auto-generated method stub
+		room.modRoom(roomData);
+		return 0;
+	}
+
+	@Override
+	public Room getRoomByNo(Integer roomno) {
+		// TODO Auto-generated method stub
+		
+		return room.selectRoomByNo(roomno);
+	}
+
+	@Override
+	public int invalidRoom(Integer roomno,String roomState) {
+		// TODO Auto-generated method stub
+		room.invalidRoom(roomno,roomState);
+		return 0;
+	}
+
+	@Override
+	public List<Map<String, Room>> getOrderRoom() {
+		// TODO Auto-generated method stub
+		return room.selectOrderRoom();
+	}
+
+	@Override
+	public int invalidRoom(Integer roomno) {
+		// TODO Auto-generated method stub
+		room.updateRoomState(roomno);
+		return 0;
+	}
+
+	@Override
+	public List<Map<String, Room>> getCheckingRoom() {
+		// TODO Auto-generated method stub
+		return room.selectCheckingRoom();
 	}
 
 }

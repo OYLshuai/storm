@@ -3,36 +3,71 @@
 <mapper namespace="com.cn.hnust.dao.RoomMapper">
   <resultMap id="BaseResultMap" type="com.cn.hnust.pojo.Room">
     <result column="roomno" jdbcType="INTEGER" property="roomno" />
-    <result column="roomtype" jdbcType="CHAR" property="roomtype" />
-    <result column="rstate" jdbcType="CHAR" property="rstate" />
+    <result column="roomtype" jdbcType="VARCHAR" property="roomtype" />
+    <result column="rstate" jdbcType="VARCHAR" property="rstate" />
     <result column="price" jdbcType="INTEGER" property="price" />
     <result column="remak" jdbcType="VARCHAR" property="remak" />
   </resultMap>
+  <!-- 更新信息 -->  
+  <update id="modRoom" parameterType="com.cn.hnust.pojo.Room">  
+         UPDATE room  
+            SET roomtype = #{roomtype,jdbcType=VARCHAR},   
+                rstate   = #{rstate,jdbcType=VARCHAR},  
+                price    = #{price,jdbcType=INTEGER},  
+                remak    = #{remak,jdbcType=VARCHAR}  
+          WHERE roomno = #{roomno,jdbcType=INTEGER};     
+  </update>  
   
+    <update id="invalidRoom" >  
+         UPDATE room  
+            SET rstate = #{roomState,jdbcType=VARCHAR}
+          WHERE roomno = #{roomno,jdbcType=INTEGER};     
+  </update>  
+    
+    <update id="updateRoomState" parameterType="java.lang.Integer">  
+         UPDATE room  
+            SET rstate = "已住"
+          WHERE roomno = #{roomno,jdbcType=INTEGER};     
+  </update>  
+<!-- 删除 -->  
+  <delete id="delRoom" parameterType="java.lang.Integer">  
+        DELETE FROM room WHERE roomno = #{roomno,jdbcType=INTEGER};  
+  </delete> 
+
   <select id="selectAllRoom" resultMap="BaseResultMap"> 
 		select * from room 
   </select>
   
   <select id="selectCheckRoom" resultMap="BaseResultMap"> 
-		select * from room where rstate in ('2','3','4','5')
+		select * from room where rstate not like "空房"
+  </select>
+  
+    <select id="selectCheckingRoom" resultMap="BaseResultMap"> 
+		select * from room where rstate IN ("已住","预定")
   </select>
   
   <select id="selectUnCheckRoom" resultMap="BaseResultMap"> 
-		select * from room where rstate = '1'
+		select * from room where rstate = "空房"
+  </select>
+  
+  <select id="selectOrderRoom" resultMap="BaseResultMap"> 
+		SELECT * FROM room WHERE rstate = "预定"
+  </select>
+  
+  <select id="selectRoomByNo" resultType="com.cn.hnust.pojo.Room" parameterType="java.lang.Integer"> 
+		select * from room WHERE roomno = #{roomno,jdbcType=INTEGER}; 
   </select>
   
   <insert id="insert" parameterType="com.cn.hnust.pojo.Room">
-    insert into room (roomno, roomtype, rstate, price, remak)
-    values (#{roomno,jdbcType=INTEGER}, 
-            #{roomtype,jdbcType=CHAR}, 
-            #{rstate,jdbcType=CHAR}, 
-            #{price,jdbcType=INTEGER},
-            #{remak,jdbcType=VARCHAR})
+    insert into room (roomno, roomtype, rstate, 
+      price, remak)
+    values (#{roomno,jdbcType=INTEGER}, #{roomtype,jdbcType=VARCHAR}, #{rstate,jdbcType=VARCHAR}, 
+      #{price,jdbcType=INTEGER}, #{remak,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cn.hnust.pojo.Room">
     insert into room
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="roomno != null"> 
+      <if test="roomno != null">
         roomno,
       </if>
       <if test="roomtype != null">
@@ -53,10 +88,10 @@
         #{roomno,jdbcType=INTEGER},
       </if>
       <if test="roomtype != null">
-        #{roomtype,jdbcType=CHAR},
+        #{roomtype,jdbcType=VARCHAR},
       </if>
       <if test="rstate != null">
-        #{rstate,jdbcType=CHAR},
+        #{rstate,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
         #{price,jdbcType=INTEGER},

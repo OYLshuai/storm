@@ -50,6 +50,7 @@
 	 var user = "${user}";
 	 console.log("user",user);
 	 }; */
+	 
 
     $(document).keyup("keydown",function(e){
         // 兼容FF和IE和Opera
@@ -60,13 +61,14 @@
             login();
         }
     })
-
+	 
 	function login() {
 		checkInput();
 		var data = {
 			id : $("#inputId").val(),
 			password : $("#inputPassword").val()
 		}
+		console.log("login",data);
 		$.ajax({
 			url : "main/showMain",
 			type : "POST",

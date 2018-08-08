@@ -14,7 +14,83 @@ public class SystemController {
 		model.addAttribute("row", "1");
 		return "system/SystemMain";
 	}
+	
+	@RequestMapping("/openRoom")
+	public String openRoom(HttpServletRequest request, Model model) {
+		String jump = request.getParameter("jump");
+		Boolean jumpIdx = Boolean.parseBoolean(jump);  
+		if(jumpIdx){
+			model.addAttribute("jump", jump);
+			String roomno = request.getParameter("roomno");
+			model.addAttribute("roomno", roomno);
+			String idno = request.getParameter("idno");
+			model.addAttribute("idno", idno);
+			String destine = request.getParameter("destine");
+			model.addAttribute("destine", destine);
+		}else{
+			model.addAttribute("jump", false);
+		}
+		model.addAttribute("row", "1");
+		return "system/openRoom";
+	}
+	
+	
+	@RequestMapping("/orderRoomMain")
+	public String orderRoomMain(HttpServletRequest request, Model model) {
+		String jump = request.getParameter("jump");
+		Boolean jumpIdx = Boolean.parseBoolean(jump);  
+		if(jumpIdx){
+			model.addAttribute("jump", jump);
+			String roomno = request.getParameter("roomno");
+			model.addAttribute("roomno", roomno);
+			String idno = request.getParameter("idno");
+			model.addAttribute("idno", idno);
+			String destine = request.getParameter("destine");
+			model.addAttribute("destine", destine);
+		}else{
+			model.addAttribute("jump", false);
+		}
+		model.addAttribute("row", "1");
+		return "system/orderRoomMain";
+	}
+	
+	@RequestMapping("/RoomMain")
+	public String RoomMain(HttpServletRequest request, Model model) {
+		model.addAttribute("row", "1");
+		return "system/RoomMain";
+	}
+	
+	@RequestMapping("/CustomerMain")
+	public String CustomerMain(HttpServletRequest request, Model model) {
+		model.addAttribute("row", "1");
+		return "system/CustomerMain";
+	}
 
+	@RequestMapping("/CheckorderMain")
+	public String CheckorderMain(HttpServletRequest request, Model model) {
+		model.addAttribute("row", "1");
+		return "system/CheckorderMain";
+	}
+	
+	@RequestMapping("/CheckOut")
+	public String CheckOut(HttpServletRequest request, Model model) {
+		String jump = request.getParameter("jump");
+		Boolean jumpIdx = Boolean.parseBoolean(jump);  
+		if(jumpIdx){
+			model.addAttribute("jump", jump);
+			String roomno = request.getParameter("roomno");
+			model.addAttribute("roomno", roomno);
+			String idno = request.getParameter("idno");
+			model.addAttribute("idno", idno);
+			String destine = request.getParameter("destine");
+			model.addAttribute("destine", destine);
+		}else{
+			model.addAttribute("jump", false);
+		}
+		model.addAttribute("row", "1");
+		return "system/CheckOut";
+	}
+	
 	@RequestMapping("/SystemDict")
 	public String SystemDict(HttpServletRequest request, Model model) {
 		model.addAttribute("row", "1");

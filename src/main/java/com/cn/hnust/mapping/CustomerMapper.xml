@@ -6,16 +6,52 @@
     <result column="idno" jdbcType="CHAR" property="idno" />
     <result column="phone" jdbcType="CHAR" property="phone" />
     <result column="sex" jdbcType="CHAR" property="sex" />
-    <result column="ctype" jdbcType="CHAR" property="ctype" />
+    <result column="ctype" jdbcType="VARCHAR" property="ctype" />
     <result column="frequency" jdbcType="INTEGER" property="frequency" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
+  
+  <!-- 更新信息 -->  
+  <update id="modCustomer" parameterType="com.cn.hnust.pojo.Customer">  
+         UPDATE customer  
+            SET cname     = #{cname,jdbcType=VARCHAR},   
+                phone     = #{phone,jdbcType=CHAR},  
+                sex       = #{sex,jdbcType=CHAR},  
+                ctype     = #{ctype,jdbcType=CHAR},  
+                frequency = #{frequency,jdbcType=INTEGER},  
+                remark    = #{remark,jdbcType=VARCHAR}    
+          WHERE idno = #{idno,jdbcType=CHAR};     
+  </update> 
+  <update id="addFrequency" parameterType="String">  
+         UPDATE customer SET frequency = frequency+1
+          WHERE idno = #{idno,jdbcType=CHAR};     
+  </update> 
+  
+  <!-- 删除 -->  
+  <delete id="delCustomer" parameterType="String">
+        DELETE FROM customer WHERE idno = #{idno,jdbcType=CHAR};  
+  </delete> 
+  
+  <select id="selectAllCustomer" resultMap="BaseResultMap"> 
+		select * from customer 
+  </select>
+  
+  <select id="selectCustomerByIdNo" parameterType="String" resultMap="BaseResultMap"> 
+		select * from customer where idno = #{idno,jdbcType=CHAR};
+  </select>
+  
+  <select id="selectCustomerByCname" parameterType="String" resultMap="BaseResultMap"> 
+		select * from customer where cname = #{cname,jdbcType=VARCHAR};
+  </select>
+  
+  
+  
   <insert id="insert" parameterType="com.cn.hnust.pojo.Customer">
     insert into customer (cname, idno, phone, 
       sex, ctype, frequency, remark
       )
     values (#{cname,jdbcType=VARCHAR}, #{idno,jdbcType=CHAR}, #{phone,jdbcType=CHAR}, 
-      #{sex,jdbcType=CHAR}, #{ctype,jdbcType=CHAR}, #{frequency,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}
+      #{sex,jdbcType=CHAR}, #{ctype,jdbcType=VARCHAR}, #{frequency,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.cn.hnust.pojo.Customer">
@@ -57,9 +93,9 @@
         #{sex,jdbcType=CHAR},
       </if>
       <if test="ctype != null">
-        #{ctype,jdbcType=CHAR},
+        #{ctype,jdbcType=VARCHAR},
       </if>
-      <if test="frequency != null"> 
+      <if test="frequency != null">
         #{frequency,jdbcType=INTEGER},
       </if>
       <if test="remark != null">
