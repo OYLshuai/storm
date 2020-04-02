@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -14,9 +13,8 @@
 <script src="/storm/static/js/menu.js"></script>
 <script src="/storm/static/js/jquery.min.js"></script>
 <script src="/storm/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <style type="text/css">
 .wrapperXXX {
 	position: fixed;
@@ -31,6 +29,7 @@
 <title>hehe</title>
 </head>
 <body>
+    <%--<%request.setCharacterEncoding("utf-8"); %>--%>
 	<nav class="navbar navbar-default" style="margin-bottom: 5px;">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -52,7 +51,7 @@
 						Java <span class="caret"> </span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="/storm/page/java" target="iframe">Java 基础</a></li>
+						<li><a href="/storm/page/javaPage" target="iframe">Java 基础</a></li>
 						<li><a href="/storm/page/javaSpringPage" target="iframe">Java Spring</a></li>
 						<li><a href="#">SpringMVC</a></li>
 						<li role="separator" class="divider"></li>
@@ -102,9 +101,12 @@
 		</div>
 	</div>
 </body>
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript" charset="UTF-8">
 	 window.onload = function(){
-		var user = "${param.name}";
+         var user = "${param.name}";
+         console.log(${param.id});
+         console.log(user);
+         console.log(user);
 		menu.selectStyle();
 		$("#Link_0").onclick = function(){
 			console.log("onclick",i);

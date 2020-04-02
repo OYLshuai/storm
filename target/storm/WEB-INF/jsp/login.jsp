@@ -27,13 +27,13 @@
 			<h1 class="text-center">Welcome</h1>
 			<br />
 			<div id = "id_input" class="form-group col-md-offset-8">
-				<label for="inputEmail3" class="col-md-4 control-label ">账    号</label>
+				<label for="inputEmail3" id="inputEmail3" class="col-md-4 control-label ">账    号</label>
 				<div class="col-md-4 text-center">
 					<input type="text" class="form-control" id="inputId" placeholder="账    号">
 				</div>
 			</div>
 			<div id= "password_input" class="form-group text-center">
-				<label for="inputPassword3" class="col-md-4 control-label">密   码</label>
+				<label for="inputPassword3" id="inputPassword3" class="col-md-4 control-label">密   码</label>
 				<div class="col-md-4">
 					<input type="password" class="form-control" id="inputPassword" placeholder="密   码">
 				</div>
@@ -46,11 +46,6 @@
 	</form>
 </body>
 <script type="text/javascript" charset="utf-8">
-	/* window.onload = function(){
-	 var user = "${user}";
-	 console.log("user",user);
-	 }; */
-	 
 
     $(document).keyup("keydown",function(e){
         // 兼容FF和IE和Opera
@@ -61,7 +56,7 @@
             login();
         }
     })
-	 
+
 	function login() {
 		checkInput();
 		var data = {
@@ -82,7 +77,7 @@
 				var message = JSON.stringify(result.message);
 				if(result.falg == 2){
 					$("#errmessage").hide(500);
-					window.location.href = uitl.getRootPath() + "/index.jsp?name=" + result.row.username;
+					window.location.href = uitl.getRootPath() + "/index.jsp?id=123&name=" + result.row.username;
 				}else {
 					$("#errmessage").show(500);
 				}
@@ -92,11 +87,11 @@
 			}
 		});
 	}
-	 
+
 	function register(){
 		window.location.href = uitl.getRootPath() + "/register.jsp"
-	} 
-	
+	}
+
 	function checkInput(){
 		id = $("#inputId").val();
 		password = $("#inputPassword").val();
